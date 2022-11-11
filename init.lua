@@ -1,0 +1,6 @@
+require("user.options")
+require("user.keymappings")
+require("user.autocommands")
+require("user.plugins").setup()
+require("user.lsp")
+require("user.colorscheme")
