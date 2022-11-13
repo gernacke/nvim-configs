@@ -10,6 +10,7 @@ comment.setup {
 
         local status_utils_ok, utils = pcall(require, "ts_context_commentstring.utils")
         if not status_utils_ok then
+            print("Missing ts_context_commentstring.utils")
             return
         end
 
@@ -32,6 +33,23 @@ comment.setup {
         }
     end,
 }
+
+-- TODO fix ts_context_commentstring error message when opening up lua files
+--[[ Error detected while processing /Users/ger/.config/nvim/init.lua:
+E5113: Error while calling lua chunk: ...e/nvim/site/pack/packer/start/packer.nvim/lua/packer.lua:1026: ...ua/neorg/modules/core/integrations/treesitter/module.lua
+:50: Unable to load nvim-treesitter.ts_utils :(
+stack traceback:
+        [C]: in function 'error'
+        ...e/nvim/site/pack/packer/start/packer.nvim/lua/packer.lua:1026: in function 'startup'
+        /Users/ger/.config/nvim/lua/user/plugins.lua:265: in function 'setup'
+        /Users/ger/.config/nvim/init.lua:4: in main chunk
+Error detected while processing /Users/ger/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim:
+line    1:
+E5108: Error executing lua [string ":lua"]:1: attempt to index a boolean value
+stack traceback:
+        [string ":lua"]:1: in main chunk
+[packer.nvim] [ERROR 22:32:02] packer.lua:1025: Failure running setup function: "...ua/neorg/modules/core/integrations/treesitter/module.lua:50: Unable to load nvi
+m-treesitter.ts_utils :(" ]]
 
 
 -- https://github.com/numToStr/Comment.nvim
