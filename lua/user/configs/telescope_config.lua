@@ -1,95 +1,162 @@
 local M = {}
 
 function M.setup()
-    require("telescope").load_extension "fzf"
-    require("telescope").load_extension "project"
+	require("telescope").load_extension("fzf")
+	-- require("telescope").load_extension "project"
+	local browser = require("telescope").extensions.file_browser
+	local fb_actions = require("telescope").extensions.file_browser.actions
+	local bookmarks = require("telescope").extensions.bookmarks
+	local actions = require("telescope.actions")
+	local builtin = require("telescope.builtin")
+	local themes = require("telescope.themes")
 
-    local actions = require "telescope.actions"
+	require("telescope").setup({
+		find_command = {
+			"rg",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
+		use_less = true,
+		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+		extensions = {
+			fzf = {
+				fuzzy = true,
+				override_generic_sorter = false,
+				override_file_sorter = true,
+				case_mode = "smart_case",
+			},
+			media_files = {
+				filetypes = { "png", "jpg", "mp4", "webm", "pdf", "gif" },
+			},
+			bookmarks = {
+				selected_browser = "firefox",
+				url_open_command = "open",
+				full_path = true,
+				firefox_profile_name = nil,
+			},
+			file_browser = {
+				theme = "ivy",
+				mappings = {
+					["n"] = {
+						["a"] = fb_actions.toggle_all,
+						["n"] = fb_actions.create,
+						["r"] = fb_actions.rename,
+						["v"] = fb_actions.move,
+						["p"] = fb_actions.copy,
+						["d"] = fb_actions.remove,
+						["."] = fb_actions.toggle_hidden,
+						["t"] = fb_actions.sort_by_date,
+						["h"] = fb_actions.goto_parent_dir,
+					},
+				},
+				respect_gitignore = false,
+			},
+		},
+		pickers = {
+			buffers = { theme = "dropdown", previewer = false },
+			lsp_document_symbols = { theme = "ivy" },
+		},
+		defaults = {
+			mappings = {
+				i = {
+					["<C-j>"] = actions.move_selection_next,
+					["<C-k>"] = actions.move_selection_previous,
+					["<C-n>"] = actions.cycle_history_next,
+					["<C-p>"] = actions.cycle_history_prev,
+				},
+				n = {
+					["<C-f>"] = actions.results_scrolling_down,
+					["<C-b>"] = actions.results_scrolling_up,
+					["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+				},
+			},
+		},
+	})
 
-    require("telescope").setup {
-        find_command = {
-            "rg",
-            "--no-heading",
-            "--with-filename",
-            "--line-number",
-            "--column",
-            "--smart-case",
-        },
-        use_less = true,
-        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-        extensions = {
-            arecibo = {
-                ["selected_engine"] = "google",
-                ["url_open_command"] = "xdg-open",
-                ["show_http_headers"] = false,
-                ["show_domain_icons"] = false,
-            },
-            fzf = {
-                override_generic_sorter = false,
-                override_file_sorter = true,
-                case_mode = "smart_case",
-            },
-            media_files = {
-                filetypes = { "png", "jpg", "mp4", "webm", "pdf", "gif" },
-            },
-            bookmarks = {
-                selected_browser = "firefox",
-                url_open_command = "open",
-                full_path = true,
-                firefox_profile_name = nil,
-            },
-        },
-        defaults = {
-            mappings = {
-                i = {
-                    ["<C-j>"] = actions.move_selection_next,
-                    ["<C-k>"] = actions.move_selection_previous,
-                    ["<C-n>"] = actions.cycle_history_next,
-                    ["<C-p>"] = actions.cycle_history_prev,
-                },
-            },
-        },
-    }
+	require("telescope").load_extension("bookmarks")
+	require("telescope").load_extension("frecency")
+	require("telescope").load_extension("file_browser")
+	-- require('telescope').load_extension('snippets')
+	-- require("telescope").load_extension "neoclip"
+	-- require("telescope").load_extension "gkeep"
+	-- require("telescope").load_extension "ultisnips"
+	-- require("telescope").load_extension "repo"
+	-- require("telescope").load_extension "gh"
 
-    require("telescope").load_extension "bookmarks"
-    require("telescope").load_extension "zoxide"
-    require("telescope").load_extension "frecency"
-    require("telescope").load_extension "file_browser"
-    -- TODO integrate hop to telescope
-    -- require('telescope').load_extension('snippets')
-    -- require("telescope").load_extension "neoclip"
-    -- require("telescope").load_extension "gkeep"
-    -- require("telescope").load_extension "ultisnips"
-    -- require("telescope").load_extension "repo"
-    -- require("telescope").load_extension "gh"
+	M.search_dotfiles = function()
+		require("telescope.builtin").find_files({
+			prompt_title = "< search nvim config files >",
+			cwd = "$HOME/repositories/all-dotfiles/nvim/",
+		})
+	end
 
-    -- TODO build more telescope functions
-    M.search_dotfiles = function()
-        require("telescope.builtin").find_files {
-            prompt_title = "< all-dotfiles >",
-            cwd = "$HOME/repositories/all-dotfiles/",
-        }
-    end
+	M.search_neorg = function()
+		builtin.live_grep({
+			prompt_title = "< grep Neorg files >",
+			cwd = "$HOME/repositories/Neorg/",
+		})
+	end
 
-    M.switch_projects = function()
-        require("telescope.builtin").find_files {
-            prompt_title = "< Switch Project >",
-            cwd = "$HOME/repositories/",
-        }
-    end
+	M.search_notes = function()
+		builtin.live_grep({
+			prompt_title = "< grep notes files >",
+			cwd = "$HOME/repositories/notes/",
+		})
+	end
 
-    M.git_branches = function()
-        require("telescope.builtin").git_branches {
-            attach_mappings = function(prompt_bufnr, map)
-                map("i", "<c-d>", actions.git_delete_branch)
-                map("n", "<c-d>", actions.git_delete_branch)
-                return true
-            end,
-        }
-    end
+	M.grep_dotfiles = function()
+		builtin.live_grep({
+			prompt_title = "< grep nvim config files >",
+			cwd = "$HOME/repositories/all-dotfiles/nvim/",
+		})
+	end
 
+	M.switch_projects = function()
+		builtin.find_files({
+			prompt_title = "< Switch Project >",
+			cwd = "$HOME/repositories/",
+		})
+	end
+
+	M.git_branches = function()
+		builtin.git_branches({
+			attach_mappings = function(prompt_bufnr, map)
+				map("n", "<c-d>", actions.git_delete_branch)
+				return true
+			end,
+		})
+	end
+
+	M.file_browser = function()
+		browser.file_browser()
+	end
+
+	M.switch_buffers = function()
+		builtin.buffers({
+			attach_mappings = function(prompt_bufnr, map)
+				map("n", "d", actions.delete_buffer)
+				map("i", "<C-d>", actions.delete_buffer)
+				return true
+			end,
+		})
+	end
+
+	M.workspace_symbols = function()
+		builtin.lsp_dynamic_workspace_symbols()
+	end
+
+	M.document_symbols = function()
+		builtin.lsp_document_symbols()
+	end
+
+	M.firefox_bookmarks = function()
+		bookmarks.bookmarks(themes.get_ivy())
+	end
 end
 
 return M

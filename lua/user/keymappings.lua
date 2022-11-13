@@ -34,36 +34,18 @@ local keymappings = {
         ["zh"]          = "zH",     -- Moves left half screen
         ["zl"]          = "zL",     -- Moves right half screen
         ["Y"]           = "y$",
-        ["<leader>ps"]  = "<CMD>PackerSync<CR>",
-        -- ["<leader>S"]   = "<Plug>(SearchNormal)",
-        -- ["<c-w>k"] = "<c-w>K",
-        -- ["<c-w>j"] = "<c-w>J",
-        -- ["<c-w>h"] = "<c-w>H",
-        -- ["<c-w>l"] = "<c-w>L",
-        -- ["gx"] = "<Cmd>call OpenURLUnderCursor()<CR>",
+        ["<c-q>"]       = "<cmd>copen<cr>",
         ["<UP>"]        = "<c-w>3-",
         ["<DOWN>"]      = "<c-w>3+",
         ["<LEFT>"]      = "<c-w>3<",
         ["<RIGHT>"]     = "<c-w>3>",
         -- ["<leader>-"] = ":wincmd _<cr>:wincmd |<cr>",
         -- ["<leader>="] = ":wincmd =<cr>",
-        -- Vim-tmux-runner configs --
-        ["<leader>vxp"] = "<CMD>VtrAttachToPane<CR>",
-        ["<leader>vxl"] = "<CMD>VtrSendLinesToRunner<CR>",
-        ["<leader>vxo"] = "<CMD>VtrOpenRunner {'orientation': 'h', 'percentage': 50}<CR>",
         -- Easy Align --
         ["ga"]          = {
             "<Plug>(EasyAlign)",
             { noremap = false, silent = false },
         },
-        -- ["<A-,>"] = "<cmd>BufferPrevious<CR>",
-        -- ["<A-.>"] = "<cmd>BufferNext<CR>",
-        -- ["<A-<>"] = "<cmd>BufferMovePrevious<CR>",
-        -- ["<A->>"] = "<cmd>BufferMoveNext<CR>",
-        -- ["<A-c>"] = "<cmd>BufferClose<CR>",
-        -- ["<A-s>"] = "<cmd>BufferPick<CR>",
-        -- 'szw/vim-maximizer' mappings --
-        ["<leader>ld"]  = "<cmd>lua vim.lsp.util.show_line_diagnostics()<cr>",
     },
     visual_mode       = {
         [";"]         = ":",
@@ -72,7 +54,6 @@ local keymappings = {
         ["L"]         = "g_",
         ["H"]         = "^",
         ["p"]         = "pgvy",
-        -- ["<leader>S"]  = "<Plug>(SearchVisual)",
     },
     term_mode         = {
         -- ['<C-w><C-o>'] = '<C-\\><C-n> :MaximizerToggle!<CR>',
@@ -91,7 +72,6 @@ local keymappings = {
             'pumvisible() ? "\\<C-p>" : "\\<C-k>"',
             { expr = true, noremap = true }
         }
-        -- ["w!!"] = "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"
     },
     visual_block_mode = {
         ["ga"] = {
@@ -149,4 +129,3 @@ end
 
 M.setup()
 
--- return M

@@ -35,8 +35,13 @@ vim.cmd([[
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
-]])
 
+" highlight yanked text for 200ms using the "Visual" highlight group
+  augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=150})
+  augroup END
+]])
 function M.enable_transparent_mode()
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		pattern = "*",

@@ -183,7 +183,7 @@ function M.setup()
             -- { name = "ultisnips", max_item_count = 5 },
             { name = "vsnip", max_item_count = 5 },
             { name = "luasnip", max_item_count = 5 },
-            { name = "buffer", keyword_length = 5, max_item_count = 5 },
+            { name = "buffer", keyword_length = 4, max_item_count = 5 },
             { name = "path" },
             { name = "treesitter", max_item_count = 10 },
             -- { name = "crates" },
