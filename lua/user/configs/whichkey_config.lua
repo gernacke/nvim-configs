@@ -158,6 +158,21 @@ local mappings = {
 			"Workspace Symbols",
 		},
 	},
+	n = {
+		name = "+Neorg",
+		n = { "<CMD>NeorgStart<CR>", "Load Neorg" },
+		w = {
+			"<CMD>Neorg workspace neorg<CR>",
+			"Default Neorg workspace (Neorg/)",
+		},
+		r = { "<CMD>Neorg return<CR>", "Neorg return prev place" },
+		t = { "<CMD>Neorg toc toqflist<CR>", "Add ToC to quickfix list" },
+		f = { "<CMD>Telescope neorg insert_file_link<CR>", "Insert a file link" },
+		l = { "<CMD>Telescope neorg insert_link<CR>", "Insert a link" },
+		c = { "<CMD>Neorg gtd capture<CR>", "Capture a task" },
+		v = { "<CMD>Neorg gtd views<CR>", "View GTDs" },
+		e = { "<CMD>Neorg gtd edit<CR>", "Edit Tasks" },
+	},
 	o = {
 		name = "+Neovim",
 		f = {
