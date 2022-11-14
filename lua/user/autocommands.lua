@@ -41,7 +41,16 @@ vim.cmd([[
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=150})
   augroup END
+
+  function! QuickFixToggle()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+      copen
+    else
+      cclose
+    endif
+  endfunction
 ]])
+
 function M.enable_transparent_mode()
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		pattern = "*",

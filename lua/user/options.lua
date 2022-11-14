@@ -5,6 +5,7 @@ local options = {
     syntax = 'enabled',
     cursorline = true,
     wrap = false,
+    swapfile = false,
     termguicolors = true,
     autoindent = true,                  -- Copy indent from current line when starting a new line
     smartindent = true,                 -- Do smart autoindenting when starting a new line.

@@ -2,6 +2,8 @@ local M = {}
 
 -- local packer_bootstrap = false
 
+-- TODO look into JAB plugin
+-- TODO look into gcc comment
 local function packer_init()
 	local fn = vim.fn
 	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -96,9 +98,7 @@ function M.setup()
 			"dhruvmanila/telescope-bookmarks.nvim",
 			tag = "*",
 			-- Uncomment if the selected browser is Firefox, Waterfox or buku
-			requires = {
-				"kkharji/sqlite.lua",
-			},
+			requires = { "kkharji/sqlite.lua" },
 		})
 
 		-- Navigation Tree
@@ -121,9 +121,7 @@ function M.setup()
 			config = function()
 				require("user.configs.treesitter_config").setup()
 			end,
-			requires = {
-				{ "JoosepAlviste/nvim-ts-context-commentstring" },
-			},
+			requires = { { "JoosepAlviste/nvim-ts-context-commentstring" } },
 		})
 
 		-- Status line
@@ -133,19 +131,23 @@ function M.setup()
 				require("user.configs.lualine_config")
 			end,
 		})
-
+		use({
+			"SmiteshP/nvim-navic",
+			config = function()
+				require("user.configs.winbar_config")
+			end,
+		})
 		-- Notes taking
 		use({
 			"nvim-neorg/neorg",
 			run = ":Neorg sync-parsers",
 			config = require("user.configs.neorg_config").setup(),
 			-- after = "nvim-treesitter",
-			requires = {
-				"nvim-neorg/neorg-telescope",
-			},
+			requires = { "nvim-neorg/neorg-telescope" },
 		})
 
 		-- LSP
+		use("christianchiarulli/lua-dev.nvim")
 		use({ "neovim/nvim-lspconfig" }) -- enable LSP
 		use({ "RRethy/vim-illuminate" })
 		use({
@@ -159,7 +161,7 @@ function M.setup()
 
 		-- Miscellaneous
 		use({ "wellle/targets.vim" })
-        -- TODO checkout bqf for more information
+		-- TODO checkout bqf for more information
 		use({ "kevinhwang91/nvim-bqf" })
 		use({ "junegunn/vim-easy-align" })
 		use({
@@ -225,8 +227,7 @@ function M.setup()
 				"octaltree/cmp-look",
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-calc",
-				"f3fora/cmp-spell",
-				-- "hrsh7th/cmp-emoji",
+				"f3fora/cmp-spell", -- "hrsh7th/cmp-emoji",
 				-- "ray-x/cmp-treesitter",
 				"hrsh7th/cmp-cmdline",
 				-- "hrsh7th/cmp-nvim-lsp-document-symbol",
@@ -245,7 +246,10 @@ function M.setup()
 		})
 
 		-- Colorscheme
-		use({ "lunarvim/darkplus.nvim", commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83" })
+		use({
+			"lunarvim/darkplus.nvim",
+			commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83",
+		})
 		--[[ use {
             "ellisonleao/gruvbox.nvim",
             config = function()
