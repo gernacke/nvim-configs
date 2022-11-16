@@ -21,7 +21,8 @@ null_ls.setup {
     formatting.stylua,
     formatting.shfmt,
     formatting.google_java_format,
-    -- diagnostics.flake8,
+    diagnostics.flake8,
+    -- diagnostics.eslint,
     diagnostics.shellcheck,
   },
 }
@@ -31,7 +32,7 @@ local unwrap = {
   filetypes = { "rust" },
   generator = {
     fn = function(params)
-      local diagnostics = {}
+      -- local diagnostics = {}
       -- sources have access to a params object
       -- containing info about the current file and editor state
       for i, line in ipairs(params.content) do

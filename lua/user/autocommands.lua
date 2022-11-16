@@ -1,5 +1,6 @@
 local M = {}
 
+-- TODO reword autocommands
 vim.cmd([[
   augroup _general_settings
     autocmd!
@@ -51,6 +52,14 @@ vim.cmd([[
   endfunction
 ]])
 
+function M.link_illuminate_hlgroup()
+	vim.api.nvim_create_autocmd({ "VimEnter" }, {
+		callback = function()
+			vim.cmd("hi link illuminatedWord LspReferenceText")
+		end,
+	})
+end
+
 function M.enable_transparent_mode()
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		pattern = "*",
@@ -73,6 +82,7 @@ function M.enable_transparent_mode()
 end
 
 M.enable_transparent_mode()
+M.link_illuminate_hlgroup()
 -- Autoformat
 -- augroup _lsp
 --   autocmd!

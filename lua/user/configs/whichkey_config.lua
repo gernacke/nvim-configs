@@ -142,6 +142,7 @@ local mappings = {
 		d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
 		w = { "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics" },
 		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },

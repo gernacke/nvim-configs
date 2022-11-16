@@ -25,7 +25,7 @@ local options = {
     clipboard = "unnamed,unnamedplus",  -- A variant of the "unnamed" flag which uses the clipboard register '+' (|quoteplus|) instead of register '*' for all yank, delete, change and put operations which would normally go to the unnamed register.
     laststatus = 3,                     -- The value of this option influences when the last window will have a status line
     encoding = "utf-8",
-    guifont = "CaskaydiaCove Nerd Font:h20",
+    guifont = "FiraCode Nerd Font:h20",
     hidden = true,                      -- When off a buffer is unloaded (including loss of undo information) when it is abandoned. When on a buffer becomes hidden when it is abandoned.
     inccommand = "split",               -- When nonempty, shows the effects of |:substitute|, |:smagic|, |:snomagic|
     incsearch = true,
@@ -81,7 +81,6 @@ opt.formatoptions = opt.formatoptions
 
 cmd "syntax enable"
 cmd "filetype plugin indent on"
-
 cmd [[
     augroup spell
       " Remove all spell autocommands

@@ -1,5 +1,7 @@
 local M = {}
 
+-- TODO add an action to move up and down N lines of results :help telescope.actions.set
+-- TODO make the buffer list delete to use :Bdelete
 function M.setup()
 	require("telescope").load_extension("fzf")
 	-- require("telescope").load_extension "project"
@@ -7,6 +9,7 @@ function M.setup()
 	local fb_actions = require("telescope").extensions.file_browser.actions
 	local bookmarks = require("telescope").extensions.bookmarks
 	local actions = require("telescope.actions")
+	-- local action_set = require("telescope.actions.set")
 	local builtin = require("telescope.builtin")
 	local themes = require("telescope.themes")
 
@@ -66,6 +69,8 @@ function M.setup()
 				i = {
 					["<C-j>"] = actions.move_selection_next,
 					["<C-k>"] = actions.move_selection_previous,
+                    -- ["<M-J>"] = action_set.scroll_results(0, "descending"),
+                    -- ["<M-K>"] = action_set.scroll_results(0, "ascending"),
 					["<C-n>"] = actions.cycle_history_next,
 					["<C-p>"] = actions.cycle_history_prev,
 				},

@@ -149,7 +149,12 @@ function M.setup()
 		-- LSP
 		use("christianchiarulli/lua-dev.nvim")
 		use({ "neovim/nvim-lspconfig" }) -- enable LSP
-		use({ "RRethy/vim-illuminate" })
+		use({
+			"RRethy/vim-illuminate",
+			config = function()
+				require("user.configs.illuminate_config")
+			end,
+		})
 		use({
 			"folke/trouble.nvim",
 			cmd = "TroubleToggle",
@@ -160,6 +165,7 @@ function M.setup()
 		})
 
 		-- Miscellaneous
+		use("mortepau/codicons.nvim")
 		use({ "wellle/targets.vim" })
 		-- TODO checkout bqf for more information
 		use({ "kevinhwang91/nvim-bqf" })
@@ -246,6 +252,12 @@ function M.setup()
 		})
 
 		-- Colorscheme
+		use({
+			"NvChad/nvim-colorizer.lua",
+			config = function()
+				require("user.configs.colorizer_config")
+			end,
+		})
 		use({
 			"lunarvim/darkplus.nvim",
 			commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83",
