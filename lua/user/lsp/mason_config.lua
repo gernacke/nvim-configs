@@ -8,6 +8,7 @@ if not status_ok_1 then
 	return
 end
 
+-- TODO check out grammarly lsp server
 local servers = {
 	"sumneko_lua",
 	-- "cssls",

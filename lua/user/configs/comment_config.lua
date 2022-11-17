@@ -4,6 +4,7 @@ if not status_ok then
 	return
 end
 
+-- comments fix Chris@machine, start from 1:44:00 here: https://www.youtube.com/watch?v=HNQpLyRIreA&t=5162s
 comment.setup({
 	---Add a space b/w comment and the line
 	padding = true,

@@ -6,7 +6,7 @@ require("gruvbox").setup({
   bold = true,
   italic = true,
   strikethrough = true,
-  invert_selection = false,
+  invert_selection = true,
   invert_signs = false,
   invert_tabline = false,
   invert_intend_guides = false,
@@ -15,5 +15,5 @@ require("gruvbox").setup({
   palette_overrides = {},
   overrides = {},
   dim_inactive = false,
-  transparent_mode = false,
+  transparent_mode = true,
 })

@@ -100,6 +100,13 @@ function M.setup()
 		})
 	end
 
+	M.search_neorgfiles = function()
+		require("telescope.builtin").find_files({
+			prompt_title = "< search Neorg files >",
+			cwd = "$HOME/repositories/Neorg/",
+		})
+	end
+
 	M.search_neorg = function()
 		builtin.live_grep({
 			prompt_title = "< grep Neorg files >",
@@ -110,6 +117,13 @@ function M.setup()
 	M.search_notes = function()
 		builtin.live_grep({
 			prompt_title = "< grep notes files >",
+			cwd = "$HOME/repositories/notes/",
+		})
+	end
+
+	M.search_notefiles = function()
+		require("telescope.builtin").find_files({
+			prompt_title = "< search note files >",
 			cwd = "$HOME/repositories/notes/",
 		})
 	end

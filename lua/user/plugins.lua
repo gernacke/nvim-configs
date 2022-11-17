@@ -2,7 +2,6 @@ local M = {}
 
 -- local packer_bootstrap = false
 
--- TODO look into JABS plugin
 -- TODO look into gcc comment
 -- TODO set up simrat39/symbols-outline.nvim
 -- TODO set up ggandor/leap.nvim
@@ -103,6 +102,9 @@ function M.setup()
 			-- Uncomment if the selected browser is Firefox, Waterfox or buku
 			requires = { "kkharji/sqlite.lua" },
 		})
+		--
+		-- }
+		-- use({ "matbme/JABS.nvim", require("user.configs.jabs_config") })
 
 		-- Navigation Tree
 		use({
@@ -265,13 +267,13 @@ function M.setup()
 			"lunarvim/darkplus.nvim",
 			commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83",
 		})
-		--[[ use {
+		use {
             "ellisonleao/gruvbox.nvim",
-            config = function()
-                require("user.configs.gruvbox_config")
-            end
-        } ]]
-		use({ "morhetz/gruvbox" })
+           config = function()
+               require("user.configs.gruvbox_config")
+           end
+        }
+		-- use({ "morhetz/gruvbox" })
 	end
 
 	if PACKER_BOOTSTRAP then

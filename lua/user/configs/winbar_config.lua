@@ -70,7 +70,6 @@ local get_gps = function()
 		return ""
 	end
 
-	-- TODO fix color issue on winbar line, filename() is not called here
 	if not u.isempty(gps_location) then
 		return icons.ui.ChevronRight .. " " .. gps_location
 	else
