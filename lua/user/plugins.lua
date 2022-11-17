@@ -2,8 +2,11 @@ local M = {}
 
 -- local packer_bootstrap = false
 
--- TODO look into JAB plugin
+-- TODO look into JABS plugin
 -- TODO look into gcc comment
+-- TODO set up simrat39/symbols-outline.nvim
+-- TODO set up ggandor/leap.nvim
+
 local function packer_init()
 	local fn = vim.fn
 	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"

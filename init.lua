@@ -1,7 +1,7 @@
 require("user.options")
 require("user.keymappings")
 require("user.autocommands")
-require("user.navic")
 require("user.plugins").setup()
 require("user.lsp").setup()
 require("user.colorscheme")
+require("user.navic")
