@@ -1,11 +1,53 @@
 local status_ok, comment = pcall(require, "Comment")
 if not status_ok then
-    print("Missing Comment plugin")
-    return
+	print("Missing Comment plugin")
+	return
 end
 
-comment.setup {
-    pre_hook = function(ctx)
+comment.setup({
+	---Add a space b/w comment and the line
+	padding = true,
+	---Whether the cursor should stay at its position
+	sticky = true,
+	---Lines to be ignored while (un)comment
+	ignore = nil,
+	---LHS of toggle mappings in NORMAL mode
+	toggler = {
+		---Line-comment toggle keymap
+		line = "gcc",
+		---Block-comment toggle keymap
+		block = "gbc",
+	},
+	---LHS of operator-pending mappings in NORMAL and VISUAL mode
+	opleader = {
+		---Line-comment keymap
+		line = "gc",
+		---Block-comment keymap
+		block = "gb",
+	},
+	---LHS of extra mappings
+	extra = {
+		---Add comment on the line above
+		above = "gcO",
+		---Add comment on the line below
+		below = "gco",
+		---Add comment at the end of line
+		eol = "gcA",
+	},
+	---Enable keybindings
+	---NOTE: If given `false` then the plugin won't create any mappings
+	mappings = {
+		---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+		basic = true,
+		---Extra mapping; `gco`, `gcO`, `gcA`
+		extra = true,
+	},
+	--[[ ---Function to call before (un)comment
+	pre_hook = nil,
+	---Function to call after (un)comment
+	post_hook = nil, ]]
+
+	--[[ pre_hook = function(ctx)
         local U = require "Comment.utils"
 
         local status_utils_ok, utils = pcall(require, "ts_context_commentstring.utils")
@@ -31,26 +73,8 @@ comment.setup {
             key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
             location = location,
         }
-    end,
-}
-
--- TODO fix ts_context_commentstring error message when opening up lua files
---[[ Error detected while processing /Users/ger/.config/nvim/init.lua:
-E5113: Error while calling lua chunk: ...e/nvim/site/pack/packer/start/packer.nvim/lua/packer.lua:1026: ...ua/neorg/modules/core/integrations/treesitter/module.lua
-:50: Unable to load nvim-treesitter.ts_utils :(
-stack traceback:
-        [C]: in function 'error'
-        ...e/nvim/site/pack/packer/start/packer.nvim/lua/packer.lua:1026: in function 'startup'
-        /Users/ger/.config/nvim/lua/user/plugins.lua:265: in function 'setup'
-        /Users/ger/.config/nvim/init.lua:4: in main chunk
-Error detected while processing /Users/ger/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim:
-line    1:
-E5108: Error executing lua [string ":lua"]:1: attempt to index a boolean value
-stack traceback:
-        [string ":lua"]:1: in main chunk
-[packer.nvim] [ERROR 22:32:02] packer.lua:1025: Failure running setup function: "...ua/neorg/modules/core/integrations/treesitter/module.lua:50: Unable to load nvi
-m-treesitter.ts_utils :(" ]]
-
+    end, ]]
+})
 
 -- https://github.com/numToStr/Comment.nvim
 
