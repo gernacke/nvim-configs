@@ -52,6 +52,21 @@ vim.cmd([[
   endfunction
 ]])
 
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = vim.api.nvim_create_augroup("NvimTreeClose", { clear = true }),
+	pattern = "NvimTree_*",
+	callback = function()
+		local layout = vim.api.nvim_call_function("winlayout", {})
+		if
+			layout[1] == "leaf"
+			and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
+			and layout[3] == nil
+		then
+			vim.cmd("confirm quit")
+		end
+	end,
+})
+
 function M.link_illuminate_hlgroup()
 	vim.api.nvim_create_autocmd({ "VimEnter" }, {
 		callback = function()
@@ -66,6 +81,7 @@ function M.enable_transparent_mode()
 		callback = function()
 			local hl_groups = {
 				"Normal",
+				"WinbarNC",
 				"SignColumn",
 				"NormalNC",
 				"TelescopeBorder",
