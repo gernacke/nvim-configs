@@ -7,20 +7,19 @@ if not status_ok then
 end
 
 local icons = require("user.icons")
--- TODO change some navic icons
 
 navic.setup({
 	icons = {
 		File = " ",
-		Module = " ",
+		Module = " ",
 		Namespace = " ",
-		Package = " ",
+		Package = " ",
 		Class = " ",
-		Method = " ",
-		Property = " ",
+		Method = "m ",
+		Property = " ",
 		Field = " ",
 		Constructor = " ",
-		Enum = "練",
+		Enum = " ",
 		Interface = "練",
 		Function = " ",
 		Variable = " ",
@@ -33,7 +32,7 @@ navic.setup({
 		Key = " ",
 		Null = "ﳠ ",
 		EnumMember = " ",
-		Struct = " ",
+		Struct = " ",
 		Event = " ",
 		Operator = " ",
 		TypeParameter = " ",

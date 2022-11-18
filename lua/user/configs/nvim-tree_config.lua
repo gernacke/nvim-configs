@@ -3,8 +3,6 @@ if not status_ok then
 	return
 end
 
--- TODO close on last window
-
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
 	return
