@@ -39,13 +39,22 @@ local keymappings = {
         ["<DOWN>"]      = "<c-w>3+",
         ["<LEFT>"]      = "<c-w>3<",
         ["<RIGHT>"]     = "<c-w>3>",
-        -- ["<leader>-"] = ":wincmd _<cr>:wincmd |<cr>",
-        -- ["<leader>="] = ":wincmd =<cr>",
-        -- Easy Align --
+        ["gs"]          = {
+            "<Plug>(leap-cross-window)",
+            { noremap = false, silent = false },
+        },
         ["ga"]          = {
             "<Plug>(EasyAlign)",
             { noremap = false, silent = false },
         },
+        -- Hop keybindings
+        ["f"]           = "<cmd>HopChar1AC<cr>",
+        ["N"]           = "<cmd>HopPattern<cr>",
+        ["<LEADER>j"]   = "<cmd>HopLineAC<cr>",
+        ["<LEADER>k"]   = "<cmd>HopLineBC<cr>",
+        -- ["<leader>-"] = ":wincmd _<cr>:wincmd |<cr>",
+        -- ["<leader>="] = ":wincmd =<cr>",
+        -- Easy Align --
     },
     visual_mode       = {
         [";"]         = ":",
@@ -54,6 +63,8 @@ local keymappings = {
         ["L"]         = "g_",
         ["H"]         = "^",
         ["p"]         = "pgvy",
+        ["f"]         = "<cmd>HopChar1AC<cr>",
+        ["N"]         = "<cmd>HopPattern<cr>",
     },
     term_mode         = {
         -- ['<C-w><C-o>'] = '<C-\\><C-n> :MaximizerToggle!<CR>',

@@ -1,7 +1,6 @@
 local M = {}
 
--- TODO add an action to move up and down N lines of results :help telescope.actions.set
--- TODO make the buffer list delete to use :Bdelete
+-- WIP make the buffer list delete to use :Bdelete, actions.delete_buffer({prompt_bufnr})
 function M.setup()
 	require("telescope").load_extension("fzf")
 	-- require("telescope").load_extension "project"
@@ -69,15 +68,19 @@ function M.setup()
 				i = {
 					["<C-j>"] = actions.move_selection_next,
 					["<C-k>"] = actions.move_selection_previous,
-                    -- ["<M-J>"] = action_set.scroll_results(0, "descending"),
-                    -- ["<M-K>"] = action_set.scroll_results(0, "ascending"),
+					-- ["<M-J>"] = action_set.scroll_results(0, "descending"),
+					-- ["<M-K>"] = action_set.scroll_results(0, "ascending"),
 					["<C-n>"] = actions.cycle_history_next,
 					["<C-p>"] = actions.cycle_history_prev,
+					["<C-i>"] = actions.to_fuzzy_refine,
+					["<C-f>"] = actions.results_scrolling_down,
+					["<C-b>"] = actions.results_scrolling_up,
 				},
 				n = {
 					["<C-f>"] = actions.results_scrolling_down,
 					["<C-b>"] = actions.results_scrolling_up,
 					["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+					-- ["l"] = actions.file_edit + actions.center,
 				},
 			},
 		},
@@ -176,6 +179,7 @@ function M.setup()
 	M.firefox_bookmarks = function()
 		bookmarks.bookmarks(themes.get_ivy())
 	end
+
 end
 
 return M

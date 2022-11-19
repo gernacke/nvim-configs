@@ -4,7 +4,6 @@ local M = {}
 
 -- TODO look into gcc comment
 -- TODO set up simrat39/symbols-outline.nvim
--- TODO set up ggandor/leap.nvim
 
 local function packer_init()
 	local fn = vim.fn
@@ -99,7 +98,6 @@ function M.setup()
 		use({
 			"dhruvmanila/telescope-bookmarks.nvim",
 			tag = "*",
-			-- Uncomment if the selected browser is Firefox, Waterfox or buku
 			requires = { "kkharji/sqlite.lua" },
 		})
 		--
@@ -170,6 +168,7 @@ function M.setup()
 		})
 
 		-- Miscellaneous
+		-- use("tpope/vim-repeat")
 		use("mortepau/codicons.nvim")
 		use({ "wellle/targets.vim" })
 		-- TODO checkout bqf for more information
@@ -199,6 +198,7 @@ function M.setup()
 		use({
 			"numToStr/Comment.nvim",
 			keys = { "gc", "gcc", "gbc" },
+			event = "VimEnter",
 			config = function()
 				require("user.configs.comment_config")
 			end,
@@ -207,15 +207,23 @@ function M.setup()
 		use({ "rajasegar/vim-search-web" })
 
 		-- tmux related
-		use({ "christoomey/vim-sort-motion" })
+		-- use({ "christoomey/vim-sort-motion" })
 		use({ "christoomey/vim-tmux-navigator" })
 		use({ "christoomey/vim-tmux-runner" })
 
-		-- hop
+		-- Text Jumps
 		use({
 			"phaazon/hop.nvim",
 			config = function()
-				require("user.configs.hop_config")
+				require('hop').setup()
+			end,
+		})
+		use({
+			"ggandor/leap.nvim",
+			keys = { "s", "S" },
+			config = function()
+				local leap = require("leap")
+				leap.set_default_keymaps()
 			end,
 		})
 		-- cmp completion
@@ -267,12 +275,12 @@ function M.setup()
 			"lunarvim/darkplus.nvim",
 			commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83",
 		})
-		use {
-            "ellisonleao/gruvbox.nvim",
-           config = function()
-               require("user.configs.gruvbox_config")
-           end
-        }
+		use({
+			"ellisonleao/gruvbox.nvim",
+			config = function()
+				require("user.configs.gruvbox_config")
+			end,
+		})
 		-- use({ "morhetz/gruvbox" })
 	end
 

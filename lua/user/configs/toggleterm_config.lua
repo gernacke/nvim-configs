@@ -2,7 +2,6 @@ local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
     return
 end
--- TODO fix lg color issue in toggleterm
 toggleterm.setup({
     open_mapping = [[<c-\>]],
     hide_numbers = true,
