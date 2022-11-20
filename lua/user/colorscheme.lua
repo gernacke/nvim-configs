@@ -7,4 +7,3 @@ if not status_ok then
 end
 
 cmd([[ highlight Comment cterm=italic gui=italic ]])
-

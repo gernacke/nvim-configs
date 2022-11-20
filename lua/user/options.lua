@@ -3,7 +3,7 @@ local cmd = vim.cmd
 
 local options = {
     syntax = 'enabled',
-    cursorline = true,
+    cursorline = false,
     wrap = false,
     swapfile = false,
     termguicolors = true,
@@ -54,6 +54,7 @@ local options = {
     number = true,                      -- Print the line number in front of each line.
     relativenumber = true,
     pumblend = 17,                      -- Enables pseudo-transparency for the |popup-menu|.
+    title = true,
 }
 
 vim.g.mapleader = " "

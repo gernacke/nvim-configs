@@ -152,7 +152,7 @@ local mappings = {
 		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		s = { "<cmd>lua require('user.configs.telescope_config').document_symbols()<cr>", "Document Symbols", },
-		S = { "<cmd>lua require('user.configs.telescope_config').workspace_symbols()<cr>", "Workspace Symbols", },
+		-- S = { "<cmd>lua require('user.configs.telescope_config').workspace_symbols()<cr>", "Workspace Symbols", },
 	},
 	n = {
 		name = "+Neorg",

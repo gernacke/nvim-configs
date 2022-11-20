@@ -1,47 +1,85 @@
 local M = {}
 
 -- TODO reword autocommands
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = {
+		"Jaq",
+		"qf",
+		"help",
+		"man",
+		"lspinfo",
+		"spectre_panel",
+		"lir",
+		"DressingSelect",
+		"tsplayground",
+		"Markdown",
+	},
+	callback = function()
+		vim.cmd([[
+        nnoremap <silent> <buffer> q :close<CR> 
+        nnoremap <silent> <buffer> <esc> :close<CR> 
+        set nobuflisted 
+    ]])
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+	pattern = { "" },
+	callback = function()
+		vim.cmd([[ set formatoptions-=cro ]])
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "qf" },
+	callback = function()
+		vim.cmd([[ set nobuflisted ]])
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "gitcommit", "markdown", "norg" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.spell = true
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+	pattern = { "" },
+	callback = function()
+		vim.highlight.on_yank({ higroup = "Visual", timeout = 150 })
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = { "" },
+  callback = function()
+    local get_project_dir = function()
+      local cwd = vim.fn.getcwd()
+      local project_dir = vim.split(cwd, "/")
+      local project_name = project_dir[#project_dir]
+      return project_name
+    end
+
+    vim.opt.titlestring = get_project_dir() .. " - nvim"
+  end,
+})
+
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+--   callback = function()
+--     vim.cmd "hi link illuminatedWord CursorLine"
+--   end,
+-- })
+
 vim.cmd([[
-  augroup _general_settings
-    autocmd!
-    autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
-    autocmd BufWinEnter * :set formatoptions-=cro
-    autocmd FileType qf set nobuflisted
-  augroup end
-
-  augroup _git
-    autocmd!
-    autocmd FileType gitcommit setlocal wrap
-    autocmd FileType gitcommit setlocal spell
-  augroup end
-
-  augroup _markdown
-    autocmd!
-    autocmd FileType markdown setlocal wrap
-    autocmd FileType markdown setlocal spell
-  augroup end
-
-  augroup _neorg
-    autocmd!
-    autocmd FileType norg setlocal wrap
-    autocmd FileType norg setlocal spell
-  augroup end
-
-  " augroup _auto_resize
-  "   autocmd!
-  "   autocmd VimResized * tabdo wincmd =
-  " augroup end
-
-  augroup _alpha
-    autocmd!
-    autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
-  augroup end
 
 " highlight yanked text for 200ms using the "Visual" highlight group
-  augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=150})
-  augroup END
+  " augroup highlight_yank
+  "   autocmd!
+  "   au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=150})
+  " augroup END
 
   function! QuickFixToggle()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
@@ -50,6 +88,30 @@ vim.cmd([[
       cclose
     endif
   endfunction
+
+  " augroup _general_settings
+  "   autocmd!
+  "   autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
+  "   autocmd BufWinEnter * :set formatoptions-=cro
+  "   autocmd FileType qf set nobuflisted
+  " augroup end
+
+  " augroup _git
+  "   autocmd!
+  "   autocmd FileType gitcommit setlocal wrap
+  "   autocmd FileType gitcommit setlocal spell
+  " augroup end
+
+  " augroup _markdown
+  "   autocmd!
+  "   autocmd FileType markdown setlocal wrap
+  "   autocmd FileType markdown setlocal spell
+  " augroup end
+
+  " augroup _auto_resize
+  "   autocmd!
+  "   autocmd VimResized * tabdo wincmd =
+  " augroup end
 ]])
 
 vim.api.nvim_create_autocmd("BufEnter", {
