@@ -2,9 +2,6 @@ local M = {}
 
 -- local packer_bootstrap = false
 
--- TODO look into gcc comment
--- TODO set up simrat39/symbols-outline.nvim
-
 local function packer_init()
 	local fn = vim.fn
 	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -126,6 +123,7 @@ function M.setup()
 			end,
 			requires = { { "JoosepAlviste/nvim-ts-context-commentstring" } },
 		})
+		use({ "nvim-treesitter/nvim-treesitter-textobjects" })
 
 		-- Status line
 		use({
@@ -166,13 +164,33 @@ function M.setup()
 				require("trouble").setup({})
 			end,
 		})
+		use({
+			"simrat39/symbols-outline.nvim",
+			config = function()
+				require("user.configs.symbols-outline_config")
+			end,
+		})
 
 		-- Miscellaneous
 		-- use("tpope/vim-repeat")
 		use("mortepau/codicons.nvim")
 		use({ "wellle/targets.vim" })
-		-- TODO checkout bqf for more information
-		use({ "kevinhwang91/nvim-bqf" })
+		-- "p" toggle quickfix preview window
+		-- <c-f/b> for scrolling up and down preview.
+		-- "zo" go back to original preview position
+		-- "zp" toggle between max and min preview window size
+		-- "<tab>", "z<tab>" toggle and clear the signs
+		-- "zn", "zN": create a new list for signed items, unsigned items
+		use({
+			"kevinhwang91/nvim-bqf",
+			ft = "qf",
+			disable = false,
+			config = function()
+				require("bqf").setup({
+					auto_resize_height = true,
+				})
+			end,
+		})
 		use({ "junegunn/vim-easy-align" })
 		use({
 			"windwp/nvim-autopairs",
@@ -194,10 +212,9 @@ function M.setup()
 				require("nvim-surround").setup({})
 			end,
 		})
-		use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 		use({
 			"numToStr/Comment.nvim",
-			keys = { "gc", "gcc", "gbc" },
+			-- keys = { "gc", "gcc", "gbc" },
 			event = "VimEnter",
 			config = function()
 				require("user.configs.comment_config")
@@ -215,7 +232,7 @@ function M.setup()
 		use({
 			"phaazon/hop.nvim",
 			config = function()
-				require('hop').setup()
+				require("hop").setup()
 			end,
 		})
 		use({
