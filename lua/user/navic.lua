@@ -71,8 +71,12 @@ local hl_mappings = {
 	["NavicIconsEvent"]         = { fg = "#D67E00" },
 	["NavicIconsOperator"]      = { fg = "#414141" },
 	["NavicIconsTypeParameter"] = { fg = "#F57C00" },
-	-- ["NavicSeparator"]          = { fg = "#FFAB91" },
+	-- ["NavicSeparator"]         = { fg = "#FFAB91" },
+    ["IlluminatedWordText"]     = { link = "CursorLine" },
+    ["IlluminatedWordRead"]     = { link = "CursorLine" },
+    ["IlluminatedWordWrite"]    = { link = "CursorLine" },
 }
+
 
 function M.set_hl()
 	for k, v in pairs(hl_mappings) do
