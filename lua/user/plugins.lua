@@ -121,10 +121,11 @@ function M.setup()
 			config = function()
 				require("user.configs.treesitter_config").setup()
 			end,
-			requires = { { "JoosepAlviste/nvim-ts-context-commentstring" } },
+			requires = {
+				{ "JoosepAlviste/nvim-ts-context-commentstring" },
+				{ "nvim-treesitter/nvim-treesitter-textobjects" },
+			},
 		})
-		use({ "nvim-treesitter/nvim-treesitter-textobjects" })
-
 		-- Status line
 		use({
 			"nvim-lualine/lualine.nvim",
@@ -219,6 +220,7 @@ function M.setup()
 			config = function()
 				require("user.configs.comment_config")
 			end,
+			after = "nvim-treesitter",
 		})
 		use({ "kyazdani42/nvim-web-devicons" })
 		use({ "rajasegar/vim-search-web" })
@@ -237,10 +239,9 @@ function M.setup()
 		})
 		use({
 			"ggandor/leap.nvim",
-			keys = { "s", "S" },
+			event = "VimEnter",
 			config = function()
-				local leap = require("leap")
-				leap.set_default_keymaps()
+				require("user.configs.leap_config")
 			end,
 		})
 		-- cmp completion

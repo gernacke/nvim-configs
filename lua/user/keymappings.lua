@@ -22,8 +22,8 @@ local mode_adapters = {
 
 local keymappings = {
     insert_mode       = {
-        ["<c-j>"] = "<Plug>(completion_next_source)",
-        ["<c-k>"] = "<Plug>(completion_prev_source)"
+        -- ["<c-j>"] = "<Plug>(completion_next_source)",
+        -- ["<c-k>"] = "<Plug>(completion_prev_source)"
     },
     normal_mode       = {
         [";"]           = ":",
@@ -54,7 +54,6 @@ local keymappings = {
         ["<LEADER>k"]   = "<cmd>HopLineBC<cr>",
         -- ["<leader>-"] = ":wincmd _<cr>:wincmd |<cr>",
         -- ["<leader>="] = ":wincmd =<cr>",
-        -- Easy Align --
     },
     visual_mode       = {
         [";"]         = ":",

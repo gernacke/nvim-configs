@@ -1,7 +1,5 @@
 local M = {}
 
--- TODO reword autocommands
-
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = {
 		"Jaq",
@@ -54,23 +52,25 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = { "" },
-  callback = function()
-    local get_project_dir = function()
-      local cwd = vim.fn.getcwd()
-      local project_dir = vim.split(cwd, "/")
-      local project_name = project_dir[#project_dir]
-      return project_name
-    end
+	pattern = { "" },
+	callback = function()
+		local get_project_dir = function()
+			local cwd = vim.fn.getcwd()
+			local project_dir = vim.split(cwd, "/")
+			local project_name = project_dir[#project_dir]
+			return project_name
+		end
 
-    vim.opt.titlestring = get_project_dir() .. " - nvim"
-  end,
+		vim.opt.titlestring = get_project_dir() .. " - nvim"
+	end,
 })
 
--- vim.api.nvim_create_autocmd({ "VimEnter" }, {
---   callback = function()
---     vim.cmd "hi link illuminatedWord CursorLine"
---   end,
+-- Auto format on buffer write
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+-- 	pattern = { "" },
+-- 	callback = function()
+-- 		vim.lsp.buf.format({ async = true })
+-- 	end,
 -- })
 
 vim.cmd([[
@@ -161,8 +161,3 @@ end
 
 M.enable_transparent_mode()
 M.link_illuminate_hlgroup()
--- Autoformat
--- augroup _lsp
---   autocmd!
---   autocmd BufWritePre * lua vim.lsp.buf.formatting()
--- augroup end

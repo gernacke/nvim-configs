@@ -1,0 +1,16 @@
+@document.meta
+title: useful_keybindings
+description: 
+authors: ger
+categories: 
+created: 2022-11-20
+updated: 2022-11-20
+version: 0.0.15
+@end
+
+* nvim-surround
+** Normal Mode
+   - *yss* can be used to add line-wise delimiters.
+   - *ySS* adds the delimiter pair on new lines.
+** Insert Mode
+   - *<C-g>s|S* to add delimiter pairs.
