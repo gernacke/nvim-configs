@@ -108,8 +108,7 @@ local mappings = {
 		name = "+Packer",
 		c = { "<cmd>PackerCompile<cr>", "Compile" },
 		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
+		s = { "<cmd>PackerStatus<cr>", "Status" },
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
 	},
 
@@ -199,7 +198,7 @@ local mappings = {
 	s = {
 		name = "+Search",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+		C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
 		m = {
 			"<cmd>lua require('user.configs.telescope_config').firefox_bookmarks()<cr>",
@@ -209,7 +208,7 @@ local mappings = {
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-		C = { "<cmd>Telescope commands<cr>", "Commands" },
+		c = { "<cmd>Telescope commands<cr>", "Commands" },
 		f = {
 			"<cmd>lua require('user.configs.telescope_config').file_browser()<cr>",
 			"Open File Browser",
