@@ -240,6 +240,12 @@ local mappings = {
 		y = { "<cmd>%yank<CR>", "Yank page" },
 		d = { "<Cmd>%d<Cr>", "Delete buffer content" },
 	},
+    w = {
+        name = "+Window Resize",
+        h = { "<CMD>wincmd |<CR>", "Maximize Window Horizontally" },
+        v = { "<CMD>wincmd _<CR>", "Maximize Window Vertically" },
+        o = { "<CMD>wincmd =<CR>", "Reset Window Size" }
+    },
 }
 
 local vmappings = {
