@@ -1,35 +1,5 @@
 local M = {}
 
--- TODO FIX THE ERROR:
--- Error detected while processing /Users/ger/.config/nvim/init.lua:
--- E5113: Error while calling lua chunk: ...e/nvim/site/pack/packer/start/packer.nvim/lua/packer.lua:1026: ...ua/neorg/modules/core/integrations/treesitter/module.lua:50: Unable to load nvim-treesitter.ts_utils :(
--- stack traceback:
---         [C]: in function 'error'
---         ...e/nvim/site/pack/packer/start/packer.nvim/lua/packer.lua:1026: in function 'startup'
---         /Users/ger/.config/nvim/lua/user/plugins.lua:312: in function 'setup'
---         /Users/ger/.config/nvim/init.lua:4: in main chunk
--- Error detected while processing /Users/ger/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim:
--- line    3:
--- E5108: Error executing lua ...eesitter-textobjects/lua/nvim-treesitter-textobjects.lua:1: loop or previous error loading module 'nvim-treesitter.query'
--- stack traceback:
---         [C]: in function 'require'
---         ...eesitter-textobjects/lua/nvim-treesitter-textobjects.lua:1: in main chunk
---         [C]: in function 'require'
---         [string ":lua"]:1: in main chunk
--- Error detected while processing /Users/ger/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim:
--- line    1:
--- E5108: Error executing lua [string ":lua"]:1: attempt to index a boolean value
--- stack traceback:
---         [string ":lua"]:1: in main chunk
--- Error detected while processing BufReadPost Autocommands for "*":
--- E5108: Error executing lua ...m/site/pack/packer/start/packer.nvim/lua/packer/load.lua:171: Vim(echomsg):E114: Missing quote: "Error in packer_compiled: ...m/site/pack/packer/start/packer.nvim/lua/packer/load.lua:139: Vim(
--- packadd):E5113: Error while calling lua chunk: ...ck/packer/opt/nvim-treesitter/plugin/nvim-treesitter.lua:9: loop or previous error loading module 'nvim-treesitter'
--- stack traceback:
---         [C]: in function 'cmd'
---         ...m/site/pack/packer/start/packer.nvim/lua/packer/load.lua:171: in function <...m/site/pack/packer/start/packer.nvim/lua/packer/load.lua:167>
---         [string ":lua"]:1: in main chunk
--- [packer.nvim] [ERROR 09:20:31] packer.lua:1025: Failure running setup function: "...ua/neorg/modules/core/integrations/treesitter/module.lua:50: Unable to load nvim-treesitter.ts_utils :("
-
 function M.setup()
     -- local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
 
