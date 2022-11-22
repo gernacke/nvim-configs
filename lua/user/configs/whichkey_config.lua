@@ -132,7 +132,8 @@ local mappings = {
 			"Checkout branch",
 		},
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-		d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+		D = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+		d = { "<cmd>lua require'gitsigns'.toggle_deleted()<cr>", "Toggle Deleted Lines" },
 	},
 
 	l = {
@@ -227,6 +228,7 @@ local mappings = {
 		d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
 		l = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
 		w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+		s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
 	},
 	v = {
 		name = "+Tmux runner",
