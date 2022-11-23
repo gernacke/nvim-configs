@@ -195,6 +195,14 @@ local mappings = {
 			"<cmd>lua require('user.configs.telescope_config').search_notes()<cr>",
 			"Grep Notes",
 		},
+        b = {
+			"<cmd>lua require('user.configs.telescope_config').browse_nvim_configs()<cr>",
+			"File Browser Neorg",
+        },
+		t = {
+			"<cmd>lua require('user.configs.telescope_config').grep_prompt()<cr>",
+			"Search Neorg Files",
+		},
 	},
 	s = {
 		name = "+Search",

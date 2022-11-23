@@ -75,6 +75,8 @@ function M.setup()
 					["<C-i>"] = actions.to_fuzzy_refine,
 					["<C-f>"] = actions.results_scrolling_down,
 					["<C-b>"] = actions.results_scrolling_up,
+                    --TODO fix insert mode which_key
+                    ["<M-j>"] = actions.which_key,
 				},
 				n = {
 					["<C-f>"] = actions.results_scrolling_down,
@@ -95,47 +97,81 @@ function M.setup()
 	-- require("telescope").load_extension "ultisnips"
 	-- require("telescope").load_extension "repo"
 	-- require("telescope").load_extension "gh"
+	-- TODO browse through telescope functions from codesmells repo
+	M.browse_nvim_configs = function()
+		require("telescope").extensions.file_browser.file_browser({
+			prompt_title = " Browse Configs",
+			prompt_prefix = "﮷   ",
+			cwd = "~/.config/nvim/",
+			layout_strategy = "horizontal",
+			layout_config = { preview_width = 0.65, width = 0.75 },
+		})
+	end
 
 	M.search_dotfiles = function()
 		require("telescope.builtin").find_files({
-			prompt_title = "< search nvim config files >",
+			prompt_title = "< Search Nvim Config Files >",
+			prompt_prefix = " ﮷   ",
+			results_title = "Nvim Config Files",
+			path_display = { shorten = 3 },
+			layout_strategy = "horizontal",
+			layout_config = { preview_width = 0.65, width = 0.75 },
 			cwd = "$HOME/repositories/all-dotfiles/nvim/",
 		})
 	end
 
+	M.grep_dotfiles = function()
+		builtin.live_grep(themes.get_ivy({
+			prompt_title = "< Grep Nvim Configs >",
+			prompt_prefix = "    ",
+			results_title = "Nvim Config Files",
+			path_display = { shorten = 3 },
+			cwd = "$HOME/repositories/all-dotfiles/nvim/",
+		}))
+	end
+
 	M.search_neorgfiles = function()
 		require("telescope.builtin").find_files({
-			prompt_title = "< search Neorg files >",
+			prompt_title = "  Find Neorg Files",
+			prompt_prefix = " ﮷   ",
+			results_title = "Neorg Files",
+			path_display = { shorten = 3 },
+			layout_strategy = "horizontal",
+			layout_config = { preview_width = 0.65, width = 0.75 },
 			cwd = "$HOME/repositories/Neorg/",
 		})
 	end
 
 	M.search_neorg = function()
-		builtin.live_grep({
-			prompt_title = "< grep Neorg files >",
+		builtin.live_grep(themes.get_ivy({
+			prompt_title = "< Grep Neorg >",
+			prompt_prefix = "    ",
+			results_title = "Neorg Files",
+			path_display = { shorten = 3 },
 			cwd = "$HOME/repositories/Neorg/",
-		})
+		}))
 	end
 
 	M.search_notes = function()
-		builtin.live_grep({
-			prompt_title = "< grep notes files >",
+		builtin.live_grep(themes.get_ivy({
+			prompt_title = "< Grep Notes >",
+			prompt_prefix = "    ",
+			path_display = { shorten = 3 },
+			results_title = "Notes",
 			cwd = "$HOME/repositories/notes/",
-		})
+		}))
 	end
 
 	M.search_notefiles = function()
-		require("telescope.builtin").find_files({
-			prompt_title = "< search note files >",
-			cwd = "$HOME/repositories/notes/",
-		})
-	end
-
-	M.grep_dotfiles = function()
-		builtin.live_grep({
-			prompt_title = "< grep nvim config files >",
-			cwd = "$HOME/repositories/all-dotfiles/nvim/",
-		})
+		require("telescope.builtin").find_files(themes.get_ivy({
+			prompt_title = "  Search Note Files",
+			prompt_prefix = " ﮷   ",
+			path_display = { shorten = 3 },
+			layout_strategy = "horizontal",
+			results_title = "Notes",
+			layout_config = { preview_width = 0.65, width = 0.75 },
+			cwd = "~/repositories/notes/",
+		}))
 	end
 
 	M.switch_projects = function()
@@ -179,7 +215,21 @@ function M.setup()
 	M.firefox_bookmarks = function()
 		bookmarks.bookmarks(themes.get_ivy())
 	end
+	-- grep_string pre-filtered from grep_prompt
+	local function grep_filtered(opts)
+		opts = opts or {}
+		require("telescope.builtin").grep_string({
+			path_display = { "smart" },
+			search = opts.filter_word or "",
+		})
+	end
 
+	-- open vim.ui.input dressing prompt for initial filter
+	M.grep_prompt = function()
+		vim.ui.input({ prompt = "Rg " }, function(input)
+			grep_filtered({ filter_word = input })
+		end)
+	end
 end
 
 return M
