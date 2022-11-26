@@ -212,9 +212,9 @@ function M.setup()
         override_file_sorter = true,
         case_mode = "smart_case",
       },
-      media_files = {
-        filetypes = { "png", "jpg", "mp4", "webm", "pdf", "gif" },
-      },
+      -- media_files = {
+      --   filetypes = { "png", "jpg", "mp4", "webm", "pdf", "gif" },
+      -- },
       bookmarks = {
         selected_browser = "firefox",
         url_open_command = "open",
