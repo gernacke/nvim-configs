@@ -95,8 +95,8 @@ local mappings = {
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	["f"] = {
-		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes'))<cr>",
-		"Find files",
+		"<cmd>lua require('user.configs.telescope_config').project_files()<cr>",
+		"Find Files",
 	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = {

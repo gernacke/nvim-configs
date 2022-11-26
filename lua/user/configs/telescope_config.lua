@@ -2,101 +2,22 @@ local M = {}
 
 -- WIP make the buffer list delete to use :Bdelete, actions.delete_buffer({prompt_bufnr})
 function M.setup()
+    -- Loading extensions
 	require("telescope").load_extension("fzf")
-	-- require("telescope").load_extension "project"
+	require("telescope").load_extension("bookmarks")
+	require("telescope").load_extension("frecency")
+	require("telescope").load_extension("file_browser")
+
 	local browser = require("telescope").extensions.file_browser
 	local fb_actions = require("telescope").extensions.file_browser.actions
 	local bookmarks = require("telescope").extensions.bookmarks
 	local actions = require("telescope.actions")
-	-- local action_set = require("telescope.actions.set")
+	local transform_mod = require("telescope.actions.mt").transform_mod
 	local builtin = require("telescope.builtin")
 	local themes = require("telescope.themes")
+	local utils = require("telescope.utils")
 
-	require("telescope").setup({
-		find_command = {
-			"rg",
-			"--no-heading",
-			"--with-filename",
-			"--line-number",
-			"--column",
-			"--smart-case",
-		},
-		use_less = true,
-		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-		extensions = {
-			fzf = {
-				fuzzy = true,
-				override_generic_sorter = false,
-				override_file_sorter = true,
-				case_mode = "smart_case",
-			},
-			media_files = {
-				filetypes = { "png", "jpg", "mp4", "webm", "pdf", "gif" },
-			},
-			bookmarks = {
-				selected_browser = "firefox",
-				url_open_command = "open",
-				full_path = true,
-				firefox_profile_name = nil,
-			},
-			file_browser = {
-				theme = "ivy",
-				mappings = {
-					["n"] = {
-						["a"] = fb_actions.toggle_all,
-						["n"] = fb_actions.create,
-						["r"] = fb_actions.rename,
-						["v"] = fb_actions.move,
-						["p"] = fb_actions.copy,
-						["d"] = fb_actions.remove,
-						["."] = fb_actions.toggle_hidden,
-						["t"] = fb_actions.sort_by_date,
-						["h"] = fb_actions.goto_parent_dir,
-					},
-				},
-				respect_gitignore = false,
-			},
-		},
-		pickers = {
-			buffers = { theme = "dropdown", previewer = false },
-			lsp_document_symbols = { theme = "ivy" },
-		},
-		defaults = {
-			mappings = {
-				i = {
-					["<C-j>"] = actions.move_selection_next,
-					["<C-k>"] = actions.move_selection_previous,
-					-- ["<M-J>"] = action_set.scroll_results(0, "descending"),
-					-- ["<M-K>"] = action_set.scroll_results(0, "ascending"),
-					["<C-n>"] = actions.cycle_history_next,
-					["<C-p>"] = actions.cycle_history_prev,
-					["<C-i>"] = actions.to_fuzzy_refine,
-					["<C-f>"] = actions.results_scrolling_down,
-					["<C-b>"] = actions.results_scrolling_up,
-                    --TODO fix insert mode which_key
-                    ["<M-j>"] = actions.which_key,
-				},
-				n = {
-					["<C-f>"] = actions.results_scrolling_down,
-					["<C-b>"] = actions.results_scrolling_up,
-					["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-					-- ["l"] = actions.file_edit + actions.center,
-				},
-			},
-		},
-	})
 
-	require("telescope").load_extension("bookmarks")
-	require("telescope").load_extension("frecency")
-	require("telescope").load_extension("file_browser")
-	-- require('telescope').load_extension('snippets')
-	-- require("telescope").load_extension "neoclip"
-	-- require("telescope").load_extension "gkeep"
-	-- require("telescope").load_extension "ultisnips"
-	-- require("telescope").load_extension "repo"
-	-- require("telescope").load_extension "gh"
 	-- TODO browse through telescope functions from codesmells repo
 	M.browse_nvim_configs = function()
 		require("telescope").extensions.file_browser.file_browser({
@@ -174,6 +95,42 @@ function M.setup()
 		}))
 	end
 
+	M.project_files = function()
+		local _, ret, stderr = utils.get_os_command_output({
+			"git",
+			"rev-parse",
+			"--is-inside-work-tree",
+		})
+
+		local gopts = {}
+		local fopts = {}
+
+		gopts.prompt_title = " Find"
+		gopts.prompt_prefix = "   "
+		gopts.results_title = "  Repo Files"
+
+		fopts.hidden = true
+		fopts.file_ignore_patterns = {
+			".vim/",
+			".local/",
+			".cache/",
+			"Downloads/",
+			".git/",
+			"Dropbox/.*",
+			"Library/.*",
+			".rustup/.*",
+			"Movies/",
+			".cargo/registry/",
+		}
+
+		if ret == 0 then
+			builtin.git_files(gopts)
+		else
+			fopts.results_title = "CWD: " .. vim.fn.getcwd()
+			builtin.find_files(fopts)
+		end
+	end
+
 	M.switch_projects = function()
 		builtin.find_files({
 			prompt_title = "< Switch Project >",
@@ -230,6 +187,89 @@ function M.setup()
 			grep_filtered({ filter_word = input })
 		end)
 	end
+
+    -- Creating custom actions
+	local custom_actions = {}
+	function custom_actions.test1()
+		M.project_files()
+	end
+
+    custom_actions = transform_mod(custom_actions)
+
+    -- Set up telescope
+	require("telescope").setup({
+		find_command = {
+			"rg",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
+		use_less = true,
+		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+		extensions = {
+			fzf = {
+				fuzzy = true,
+				override_generic_sorter = false,
+				override_file_sorter = true,
+				case_mode = "smart_case",
+			},
+			media_files = {
+				filetypes = { "png", "jpg", "mp4", "webm", "pdf", "gif" },
+			},
+			bookmarks = {
+				selected_browser = "firefox",
+				url_open_command = "open",
+				full_path = true,
+				firefox_profile_name = nil,
+			},
+			file_browser = {
+				theme = "ivy",
+				mappings = {
+					["n"] = {
+						["a"] = fb_actions.toggle_all,
+						["n"] = fb_actions.create,
+						["r"] = fb_actions.rename,
+						["v"] = fb_actions.move,
+						["p"] = fb_actions.copy,
+						["d"] = fb_actions.remove,
+						["."] = fb_actions.toggle_hidden,
+						["t"] = fb_actions.sort_by_date,
+						["h"] = fb_actions.goto_parent_dir,
+					},
+				},
+				respect_gitignore = false,
+			},
+		},
+		pickers = {
+			buffers = { theme = "dropdown", previewer = false },
+			lsp_document_symbols = { theme = "ivy" },
+		},
+		defaults = {
+			mappings = {
+				i = {
+					["<C-j>"] = actions.move_selection_next,
+					["<C-k>"] = actions.move_selection_previous,
+					-- ["<M-J>"] = action_set.scroll_results(0, "descending"),
+					-- ["<M-K>"] = action_set.scroll_results(0, "ascending"),
+					["<C-n>"] = actions.cycle_history_next,
+					["<C-p>"] = actions.cycle_history_prev,
+					["<C-i>"] = actions.to_fuzzy_refine,
+					["<M-j>"] = actions.which_key,
+				},
+				n = {
+					["<C-f>"] = actions.results_scrolling_down,
+					["<C-b>"] = actions.results_scrolling_up,
+					["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+					["l"] = custom_actions.test1,
+				},
+			},
+		},
+	})
+
 end
 
 return M

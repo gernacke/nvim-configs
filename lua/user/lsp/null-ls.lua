@@ -10,22 +10,22 @@ local diagnostics = null_ls.builtins.diagnostics
 
 -- https://github.com/prettier-solidity/prettier-plugin-solidity
 -- npm install --save-dev prettier prettier-plugin-solidity
-null_ls.setup {
+null_ls.setup({
   debug = false,
   sources = {
-    formatting.prettier.with {
+    formatting.prettier.with({
       extra_filetypes = { "toml", "solidity" },
       extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-    },
-    formatting.black.with { extra_args = { "--fast" } },
-    formatting.stylua,
+    }),
+    formatting.black.with({ extra_args = { "--fast" } }),
+    formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
     formatting.shfmt,
     formatting.google_java_format,
     diagnostics.flake8,
     -- diagnostics.eslint,
     diagnostics.shellcheck,
   },
-}
+})
 
 local unwrap = {
   method = null_ls.methods.DIAGNOSTICS,
@@ -36,7 +36,7 @@ local unwrap = {
       -- sources have access to a params object
       -- containing info about the current file and editor state
       for i, line in ipairs(params.content) do
-        local col, end_col = line:find "unwrap()"
+        local col, end_col = line:find("unwrap()")
         if col and end_col then
           -- null-ls fills in undefined positions
           -- and converts source diagnostics into the required format
@@ -45,7 +45,7 @@ local unwrap = {
             col = col,
             end_col = end_col,
             source = "unwrap",
-            message = "hey " .. os.getenv("USER") .. ", don't forget to handle this" ,
+            message = "hey " .. os.getenv("USER") .. ", don't forget to handle this",
             severity = 2,
           })
         end
