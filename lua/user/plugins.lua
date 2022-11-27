@@ -207,6 +207,13 @@ function M.setup()
       end,
     })
     -- TODO set up matchup
+    use({
+      "andymass/vim-matchup",
+      setup = function()
+        -- may set any options here
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end,
+    })
     -- use({
     --   "andymass/vim-matchup",
     -- config = function()

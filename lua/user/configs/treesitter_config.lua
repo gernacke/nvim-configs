@@ -127,8 +127,8 @@ function M.setup()
         [";"] = "textsubjects-container-outer",
       },
     },
-    matchup = { enable = true, 
-            -- disable_virtual_text = false 
+    matchup = { enable = true,
+            -- disable_virtual_text = false
         },
   })
 end
