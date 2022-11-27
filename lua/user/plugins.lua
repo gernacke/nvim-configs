@@ -183,6 +183,12 @@ function M.setup()
     -- "<tab>", "z<tab>" toggle and clear the signs
     -- "zn", "zN": create a new list for signed items, unsigned items
     use({
+      "lukas-reineke/indent-blankline.nvim",
+      config = function()
+        require("user.configs.indent_config")
+      end,
+    })
+    use({
       "kevinhwang91/nvim-bqf",
       ft = "qf",
       disable = false,
@@ -200,6 +206,13 @@ function M.setup()
         require("user.configs.autopairs_config")
       end,
     })
+    -- TODO set up matchup
+    -- use({
+    --   "andymass/vim-matchup",
+    -- config = function()
+    --   require("user.configs.matchup_cofig")
+    -- end,
+    -- })
     use({
       "onsails/lspkind-nvim",
       config = function()
@@ -231,12 +244,12 @@ function M.setup()
     use({ "christoomey/vim-tmux-runner" })
 
     -- Text Jumps
-    use({
-      "phaazon/hop.nvim",
-      config = function()
-        require("hop").setup()
-      end,
-    })
+    -- use({
+    --   "phaazon/hop.nvim",
+    --   config = function()
+    --     require("hop").setup()
+    --   end,
+    -- })
     use({
       "ggandor/leap.nvim",
       event = "VimEnter",

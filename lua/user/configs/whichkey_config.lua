@@ -93,7 +93,7 @@ local mappings = {
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  ["h"] = { "<CMD>lua require('user.autocommands').toggle_crosshairs()<CR>", "Toggle Crosshairs" },
   ["f"] = {
     "<cmd>lua require('user.configs.telescope_config').project_files()<cr>",
     "Find Files",
@@ -214,7 +214,7 @@ local mappings = {
       "Firefox Bookmarks",
     },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    l = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     c = { "<cmd>Telescope commands<cr>", "Commands" },
@@ -254,8 +254,6 @@ local mappings = {
     h = { "<CMD>wincmd |<CR>", "Maximize Window Horizontally" },
     v = { "<CMD>wincmd _<CR>", "Maximize Window Vertically" },
     o = { "<CMD>wincmd =<CR>", "Reset Window Size" },
-    -- TODO to fix file reference
-    n = { "<CMD>lua require('user.autocommands').toggle_crosshairs()<CR>", "Toggle Crosshairs" },
   },
 }
 

@@ -30,7 +30,7 @@ local options = {
     inccommand = "split",               -- When nonempty, shows the effects of |:substitute|, |:smagic|, |:snomagic|
     incsearch = true,
     lazyredraw = true,                  -- When this option is set, the screen will not be redrawn while executing macros, registers and other commands that have not been typed.
-    listchars = "tab:⍿·,trail:-,extends:>,precedes:<,nbsp:+",
+    -- listchars = "tab:⍿·,trail:-,extends:>,precedes:<,nbsp:+,eol:↴",
                                         -- The character to show after the special character in the list.
 
     mouse = "nv",                       -- Enables mouse support. For example, to enable the mouse in Normal mode and Visual mode.
@@ -69,6 +69,13 @@ opt.runtimepath:append('~/.vim/after')
 opt.display:append('lastline')
 opt.nrformats:remove('octal')
 opt.viewoptions:remove('options')
+opt.listchars = opt.listchars
+    + "tab:⍿·"
+    + "trail:-"
+    + "extends:>"
+    + "precedes:<"
+    + "nbsp:+"
+    -- + "eol:↴"
 opt.formatoptions = opt.formatoptions
     - "a" -- Auto formatting is BAD.
     - "t" -- Don't auto format my code. I got linters for that.

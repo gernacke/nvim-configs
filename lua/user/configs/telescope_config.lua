@@ -8,7 +8,7 @@ function M.setup()
   require("telescope").load_extension("frecency")
   require("telescope").load_extension("file_browser")
 
-  local browser = require("telescope").extensions.file_browser
+  -- local browser = require("telescope").extensions.file_browser
   local fb_actions = require("telescope").extensions.file_browser.actions
   local bookmarks = require("telescope").extensions.bookmarks
   local actions = require("telescope.actions")
@@ -17,7 +17,6 @@ function M.setup()
   local themes = require("telescope.themes")
   local utils = require("telescope.utils")
 
-  -- TODO browse through telescope functions from codesmells repo
   M.browse_nvim_configs = function()
     require("telescope").extensions.file_browser.file_browser({
       prompt_title = " Browse Configs",
