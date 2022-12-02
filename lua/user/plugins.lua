@@ -43,7 +43,6 @@ function M.setup()
 
         use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
         use({ "williamboman/mason-lspconfig.nvim" })
-
         use({ "williamboman/mason.nvim" })
 
         -- Keymapping: whichkey
@@ -218,6 +217,8 @@ function M.setup()
                 vim.g.matchup_matchparen_offscreen = { method = nil }
             end,
         })
+        -- Rainbow braces
+        use("p00f/nvim-ts-rainbow")
         -- use({
         --   "andymass/vim-matchup",
         -- config = function()
