@@ -19,6 +19,7 @@ vim.g.indent_blankline_filetype_exclude = {
   "Trouble",
   "text",
   "markdown",
+  "norg",
 }
 
 vim.g.indent_blankline_char = "▏"

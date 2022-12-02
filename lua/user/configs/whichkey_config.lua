@@ -168,6 +168,7 @@ local mappings = {
     c = { "<CMD>Neorg gtd capture<CR>", "Capture a task" },
     v = { "<CMD>Neorg gtd views<CR>", "View GTDs" },
     e = { "<CMD>Neorg gtd edit<CR>", "Edit Tasks" },
+    s = { "<CMD>Neorg sync-parsers<CR>", "Sync Parsers" },
   },
   o = {
     name = "+Neovim",
@@ -215,7 +216,7 @@ local mappings = {
     },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     l = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-    R = { "<cmd>Telescope registers<cr>", "Registers" },
+    p = { "<cmd>Telescope registers<cr>", "Registers" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     c = { "<cmd>Telescope commands<cr>", "Commands" },
     f = {
