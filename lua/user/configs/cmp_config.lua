@@ -202,7 +202,12 @@ function M.setup()
         -- },
         window = {
 
-            completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
+            completion = {
+                completeopt = "menu,menuone,noinsert",
+                keyword_length = 1,
+                border = "rounded",
+                winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+            },
             documentation = cmp.config.window.bordered(),
         },
     })
