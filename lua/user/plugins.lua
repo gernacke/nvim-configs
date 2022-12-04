@@ -96,6 +96,13 @@ function M.setup()
             tag = "*",
             requires = { "kkharji/sqlite.lua" },
         })
+        -- TODO check out Registers plugin later after upgrades
+        -- use({
+        --     "tversteeg/registers.nvim",
+        --     config = function()
+        --         require("user.configs.registers_config")
+        --     end,
+        -- })
         --
         -- }
         -- use({ "matbme/JABS.nvim", require("user.configs.jabs_config") })
@@ -139,6 +146,7 @@ function M.setup()
             end,
         })
         -- Notes taking
+        -- TODO checkout zk (https://github.com/mickael-menu/zk)
         use({
             "nvim-neorg/neorg",
             run = ":Neorg sync-parsers",
@@ -155,6 +163,12 @@ function M.setup()
             config = function()
                 require("user.configs.illuminate_config")
             end,
+        })
+        use({
+            "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+            -- config = function()
+            --     require("lsp_lines").setup()
+            -- end,
         })
         use({
             "folke/trouble.nvim",
@@ -215,6 +229,13 @@ function M.setup()
             "andymass/vim-matchup",
             setup = function()
                 vim.g.matchup_matchparen_offscreen = { method = nil }
+            end,
+        })
+
+        use({
+            "karb94/neoscroll.nvim",
+            config = function()
+                require("user.configs.neoscroll_config").setup()
             end,
         })
         -- Rainbow braces
