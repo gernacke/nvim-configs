@@ -19,6 +19,7 @@ local servers = {
     "jsonls",
     "powershell_es",
     "yamlls",
+    "clangd",
 }
 
 local settings = {
@@ -63,6 +64,11 @@ for _, server in pairs(servers) do
     if server == "yamlls" then
         local yamlls_opts = require("user.lsp.settings.yamlls")
         opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+    end
+
+    if server == "zk" then
+        local zk_opts = require("user.lsp.settings.zk")
+        opts = vim.tbl_deep_extend("force", zk_opts, opts)
     end
 
     if server == "sumneko_lua" then

@@ -25,7 +25,6 @@ M.winbar_filetype_exclude = {
 	"dapui_console",
 	"lab",
 	"Markdown",
-	"",
 }
 
 M.get_filename = function()

@@ -146,7 +146,12 @@ function M.setup()
             end,
         })
         -- Notes taking
-        -- TODO checkout zk (https://github.com/mickael-menu/zk)
+        use({
+            "mickael-menu/zk-nvim",
+            config = function()
+                require("zk").setup()
+            end,
+        })
         use({
             "nvim-neorg/neorg",
             run = ":Neorg sync-parsers",
@@ -232,12 +237,12 @@ function M.setup()
             end,
         })
 
-        use({
-            "karb94/neoscroll.nvim",
-            config = function()
-                require("user.configs.neoscroll_config").setup()
-            end,
-        })
+        -- use({
+        --     "karb94/neoscroll.nvim",
+        --     config = function()
+        --         require("user.configs.neoscroll_config").setup()
+        --     end,
+        -- })
         -- Rainbow braces
         use("p00f/nvim-ts-rainbow")
         -- use({

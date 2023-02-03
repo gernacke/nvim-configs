@@ -185,6 +185,10 @@ local mappings = {
       "<cmd>lua require('user.configs.telescope_config').search_neorgfiles()<cr>",
       "Search Neorg Files",
     },
+    h = {
+      "<cmd>edit ~/repositories/workbench/help.md<cr>",
+      "Open Help.md",
+    },
     N = {
       "<cmd>lua require('user.configs.telescope_config').search_neorg()<cr>",
       "Grep Neorg",
