@@ -152,13 +152,13 @@ function M.setup()
                 require("zk").setup()
             end,
         })
-        use({
-            "nvim-neorg/neorg",
-            run = ":Neorg sync-parsers",
-            config = require("user.configs.neorg_config").setup(),
-            -- after = "nvim-treesitter",
-            requires = { "nvim-neorg/neorg-telescope" },
-        })
+        -- use({
+        --     "nvim-neorg/neorg",
+        --     run = ":Neorg sync-parsers",
+        --     config = require("user.configs.neorg_config").setup(),
+        --     -- after = "nvim-treesitter",
+        --     requires = { "nvim-neorg/neorg-telescope" },
+        -- })
 
         -- LSP
         use("christianchiarulli/lua-dev.nvim")

@@ -25,7 +25,7 @@ function M.setup()
             "java",
             "yaml",
             "norg",
-            "norg_meta",
+            -- "norg_meta",
         }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
         highlight = {
