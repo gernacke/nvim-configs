@@ -192,6 +192,12 @@ function M.setup()
 
         -- Miscellaneous
         -- use("tpope/vim-repeat")
+        use({
+            "ellisonleao/glow.nvim",
+            config = function()
+                require("glow").setup()
+            end,
+        })
         use("mortepau/codicons.nvim")
         use({ "wellle/targets.vim" })
         use({
