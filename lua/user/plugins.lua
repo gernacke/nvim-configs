@@ -131,6 +131,7 @@ function M.setup()
                 { "JoosepAlviste/nvim-ts-context-commentstring" },
                 { "nvim-treesitter/nvim-treesitter-textobjects" },
             },
+            tag = "v0.7.2",
         })
         -- Status line
         use({
@@ -192,6 +193,14 @@ function M.setup()
 
         -- Miscellaneous
         -- use("tpope/vim-repeat")
+        use({
+            "iamcco/markdown-preview.nvim",
+            run = "cd app && npm install",
+            setup = function()
+                vim.g.mkdp_filetypes = { "markdown" }
+            end,
+            ft = { "markdown" },
+        })
         use({
             "ellisonleao/glow.nvim",
             config = function()

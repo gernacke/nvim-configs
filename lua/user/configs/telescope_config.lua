@@ -119,6 +119,7 @@ function M.setup()
             ".rustup/.*",
             "Movies/",
             ".cargo/registry/",
+            "_root"
         }
 
         if ret == 0 then

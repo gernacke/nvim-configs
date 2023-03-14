@@ -261,6 +261,12 @@ local mappings = {
     v = { "<CMD>wincmd _<CR>", "Maximize Window Vertically" },
     o = { "<CMD>wincmd =<CR>", "Reset Window Size" },
   },
+  z = {
+    name = "+ZK",
+    n = { "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", "New ZK Note" },
+    c = { "<CMDZkCd<CR>", "CD into ZK Directory" },
+    o = { "<CMD>ZkNotes { sort = { 'modified' } }<CR>", "Open ZK Notes" },
+  },
 }
 
 local vmappings = {
