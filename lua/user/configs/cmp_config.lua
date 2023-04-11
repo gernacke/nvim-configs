@@ -189,7 +189,7 @@ function M.setup()
             -- { name = "crates" },
             -- { name = "cmp_openai_codex" },
             -- { name = "emoji" },
-            { name = "neorg" },
+            -- { name = "neorg" },
             -- { name = "look" },
             -- { name = "calc" },
             -- { name = "spell" },

@@ -185,6 +185,14 @@ local mappings = {
       "<cmd>lua require('user.configs.telescope_config').search_neorgfiles()<cr>",
       "Search Neorg Files",
     },
+    z = {
+      "<cmd>lua require('user.configs.telescope_config').search_zkfiles()<cr>",
+      "Search ZK Notes",
+    },
+    Z = {
+      "<cmd>lua require('user.configs.telescope_config').grep_zkfiles()<cr>",
+      "Grep ZK Notes",
+    },
     h = {
       "<cmd>edit ~/repositories/workbench/help.md<cr>",
       "Open Help.md",

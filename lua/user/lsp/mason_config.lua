@@ -56,6 +56,11 @@ for _, server in pairs(servers) do
 
     server = vim.split(server, "@")[1]
 
+    if server == "bashls" then
+        local bashls_opts = require("user.lsp.settings.bashls")
+        opts = vim.tbl_deep_extend("force", bashls_opts, opts)
+    end
+
     if server == "jsonls" then
         local jsonls_opts = require("user.lsp.settings.jsonls")
         opts = vim.tbl_deep_extend("force", jsonls_opts, opts)

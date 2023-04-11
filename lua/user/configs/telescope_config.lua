@@ -49,6 +49,28 @@ function M.setup()
         }))
     end
 
+    M.search_zkfiles = function()
+        require("telescope.builtin").find_files({
+            prompt_title = "  Find ZK Notes",
+            prompt_prefix = " ﮷   ",
+            results_title = "ZK Notes",
+            path_display = { shorten = 3 },
+            layout_strategy = "horizontal",
+            layout_config = { preview_width = 0.65, width = 0.75 },
+            cwd = "$HOME/Library/CloudStorage/Dropbox/zettelkasten/",
+        })
+    end
+
+    M.grep_zkfiles = function()
+        builtin.live_grep(themes.get_ivy({
+            prompt_title = "< Grep Zettelkasten >",
+            prompt_prefix = "    ",
+            results_title = "ZK Notes",
+            path_display = { shorten = 3 },
+            cwd = "$HOME/Library/CloudStorage/Dropbox/zettelkasten/",
+        }))
+    end
+
     M.search_neorgfiles = function()
         require("telescope.builtin").find_files({
             prompt_title = "  Find Neorg Files",
@@ -119,7 +141,7 @@ function M.setup()
             ".rustup/.*",
             "Movies/",
             ".cargo/registry/",
-            "_root"
+            "_root",
         }
 
         if ret == 0 then

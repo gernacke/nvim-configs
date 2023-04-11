@@ -24,7 +24,9 @@ function M.setup()
             "rust",
             "java",
             "yaml",
-            "norg",
+            "markdown",
+            "markdown_inline"
+            -- "norg",
             -- "norg_meta",
         }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 

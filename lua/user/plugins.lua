@@ -44,6 +44,7 @@ function M.setup()
         use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
         use({ "williamboman/mason-lspconfig.nvim" })
         use({ "williamboman/mason.nvim" })
+        use({ "godlygeek/tabular" })
 
         -- Keymapping: whichkey
         use({
@@ -347,6 +348,9 @@ function M.setup()
                 require("user.configs.gitsigns_config")
             end,
         })
+
+        -- Syntax Plugin
+        use({'preservim/vim-markdown'})
 
         -- Colorscheme
         use({
