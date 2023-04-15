@@ -1,0 +1,12 @@
+" markdownWikiLink is a new region
+syn region markdownWikiLink matchgroup=markdownLinkDelimiter start="\[\[" end="\]\]" contains=markdownUrl keepend oneline concealends
+" markdownLinkText is copied from runtime files with 'concealends' appended
+syn region markdownLinkText matchgroup=markdownLinkTextDelimiter start="!\=\[\%(\%(\_[^][]\|\[\_[^][]*\]\)*]\%( \=[[(]\)\)\@=" end="\]\%( \=[[(]\)\@=" nextgroup=markdownLink,markdownId skipwhite contains=@markdownInline,markdownLineStart concealends
+" markdownLink is copied from runtime files with 'conceal' appended
+syn region markdownLink matchgroup=markdownLinkDelimiter start="(" end=")" contains=markdownUrl keepend contained conceal
+
+highlight htmlH1 guifg=#50fa7b gui=bold
+highlight htmlH2 guifg=#1560BD gui=bold
+highlight htmlH3 guifg=#A45EE5 gui=bold
+highlight htmlH4 guifg=#8be9fd gui=bold
+highlight htmlH5 guifg=#f1fa8c gui=bold
