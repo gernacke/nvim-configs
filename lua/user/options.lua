@@ -48,6 +48,7 @@ local options = {
     splitright = true,
     timeoutlen = 500,                   -- Time in milliseconds to wait for a mapped sequence to complete.
     updatetime = 300,                   -- If this many milliseconds nothing is typed the swap file will be written to disk (see |crash-recovery|).
+    -- wildmenu = false,                -- Turns on and off for command line completion
     wildmode = "longest:full",          -- Completion mode that is used for the character specified with 'wildchar'.
     breakindent = true,                 -- Every wrapped line will continue visually indented (same amount of space as the beginning of that line), thus preserving horizontal blocks of text.
     list = true,                        -- List mode: By default, show tabs as ">", trailing spaces as "-", and non-breakable space characters as "+".
@@ -55,6 +56,7 @@ local options = {
     relativenumber = true,
     pumblend = 17,                      -- Enables pseudo-transparency for the |popup-menu|.
     title = true,
+    colorcolumn = "80",
 }
 
 vim.g.mapleader = " "
@@ -89,10 +91,11 @@ opt.formatoptions = opt.formatoptions
 
 cmd "syntax enable"
 cmd "filetype plugin indent on"
-cmd [[
-    augroup spell
-      " Remove all spell autocommands
-      autocmd!
-      au BufEnter *.md,*.norg set spell
-    augroup END
-]]
+cmd "nnoremap / /\v"
+-- cmd [[
+--     augroup spell
+--       " Remove all spell autocommands
+--       autocmd!
+--       au BufEnter *.md,*.norg set spell
+--     augroup END
+-- ]]

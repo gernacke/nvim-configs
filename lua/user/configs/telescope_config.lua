@@ -21,7 +21,7 @@ function M.setup()
         require("telescope").extensions.file_browser.file_browser({
             prompt_title = " Browse Configs",
             prompt_prefix = "﮷   ",
-            cwd = "~/.config/nvim/",
+            cwd = "$XDG_CONFIG_HOME/nvim/",
             layout_strategy = "horizontal",
             layout_config = { preview_width = 0.65, width = 0.75 },
         })
@@ -47,18 +47,6 @@ function M.setup()
             path_display = { shorten = 3 },
             cwd = "$HOME/repositories/all-dotfiles/nvim/",
         }))
-    end
-
-    M.search_zkfiles = function()
-        require("telescope.builtin").find_files({
-            prompt_title = "  Find ZK Notes",
-            prompt_prefix = " ﮷   ",
-            results_title = "ZK Notes",
-            path_display = { shorten = 3 },
-            layout_strategy = "horizontal",
-            layout_config = { preview_width = 0.65, width = 0.75 },
-            cwd = "$HOME/Library/CloudStorage/Dropbox/zettelkasten/",
-        })
     end
 
     M.grep_zkfiles = function()
@@ -99,7 +87,7 @@ function M.setup()
             prompt_prefix = "    ",
             path_display = { shorten = 3 },
             results_title = "Notes",
-            cwd = "$HOME/repositories/notes/",
+            cwd = "$HOME/Dropbox/notes/",
         }))
     end
 
@@ -111,7 +99,7 @@ function M.setup()
             layout_strategy = "horizontal",
             results_title = "Notes",
             layout_config = { preview_width = 0.65, width = 0.75 },
-            cwd = "~/repositories/notes/",
+            cwd = "$HOME/Dropbox/notes/",
         }))
     end
 

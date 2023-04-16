@@ -81,7 +81,7 @@ local keymappings = {
         ["<C-k>"] = {
             'pumvisible() ? "\\<C-p>" : "\\<C-k>"',
             { expr = true, noremap = true }
-        }
+        },
     },
     visual_block_mode = {
         ["ga"] = {
