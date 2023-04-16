@@ -24,15 +24,18 @@ function M.setup()
             "rust",
             "java",
             "yaml",
-            "markdown",
-            "markdown_inline"
+            -- "markdown",
+            -- "markdown_inline"
             -- "norg",
             -- "norg_meta",
         }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
         highlight = {
             enable = true,
-            disable = { "css" },
+            disable = {
+                "css",
+                "md"
+            },
             additional_vim_regex_highlighting = true,
             -- custom_captures = {["new_import"] = "CustomImportName"}
         },
