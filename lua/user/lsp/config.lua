@@ -101,7 +101,7 @@ return {
       ["gr"] = { vim.lsp.buf.references, "Goto references" },
       ["gI"] = { vim.lsp.buf.implementation, "Goto Implementation" },
       ["gs"] = { vim.lsp.buf.signature_help, "show signature help" },
-      ["gl"] = {
+      ["gh"] = {
         function()
           -- local config = lvim.lsp.diagnostics.float
           local config = require("lsp.config").diagnostics.float
