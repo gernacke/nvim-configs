@@ -225,6 +225,30 @@ function M.setup()
     })
 end
 
+function SetAutoCmp(mode)
+    local cmp = require("cmp")
+    if mode then
+        cmp.setup({
+            completion = {
+                autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
+            },
+        })
+    else
+        cmp.setup({
+            completion = {
+                autocomplete = false,
+            },
+        })
+    end
+end
+SetAutoCmp(true)
+
+-- enable automatic completion popup on typing
+vim.cmd("command AutoCmpOn lua SetAutoCmp(true)")
+
+-- disable automatic competion popup on typing
+vim.cmd("command AutoCmpOff lua SetAutoCmp(false)")
+
 return M
 
 --[[
