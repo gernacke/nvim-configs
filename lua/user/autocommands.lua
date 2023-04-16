@@ -11,7 +11,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "lir",
     "DressingSelect",
     "tsplayground",
-    "Markdown",
   },
   callback = function()
     vim.cmd([[
@@ -20,6 +19,24 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         set nobuflisted 
     ]])
   end,
+})
+
+-- General form of the atuocmd function
+-- vim.api.nvim_create_autocmd("BufReadPost,BufNewFile","*.md", {
+--   "setlocal wrap=false"
+-- })
+
+-- autocmd FileType markdown IndentLinesDisable
+-- Set conceal level when in markdown file for zk notes
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "Markdown", },
+    callback = function ()
+        vim.opt_local.conceallevel = 2
+        vim.opt_local.wrap = true
+        vim.opt_local.spell = true
+        vim.cmd([[ syn match markdownIgnore "\w\@<=\w\@=" ]])
+    end
+
 })
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
@@ -37,11 +54,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "gitcommit", "markdown", "norg" },
+  pattern = { "gitcommit" },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
-    vim.cmd([[ syn match markdownIgnore "\w\@<=\w\@=" ]])
   end,
 })
 
@@ -112,12 +128,6 @@ vim.cmd([[
   "   autocmd!
   "   autocmd FileType gitcommit setlocal wrap
   "   autocmd FileType gitcommit setlocal spell
-  " augroup end
-
-  " augroup _markdown
-  "   autocmd!
-  "   autocmd FileType markdown setlocal wrap
-  "   autocmd FileType markdown setlocal spell
   " augroup end
 
   " augroup _auto_resize
