@@ -30,7 +30,7 @@ function M.setup()
     M.search_dotfiles = function()
         require("telescope.builtin").find_files({
             prompt_title = "< Search Nvim Config Files >",
-            prompt_prefix = " ﮷   ",
+            prompt_prefix = "﮷   ",
             results_title = "Nvim Config Files",
             path_display = { shorten = 3 },
             layout_strategy = "horizontal",
@@ -42,7 +42,7 @@ function M.setup()
     M.grep_dotfiles = function()
         builtin.live_grep(themes.get_ivy({
             prompt_title = "< Grep Nvim Configs >",
-            prompt_prefix = "    ",
+            prompt_prefix = "   ",
             results_title = "Nvim Config Files",
             path_display = { shorten = 3 },
             cwd = "$HOME/repositories/all-dotfiles/nvim/",
@@ -52,7 +52,7 @@ function M.setup()
     M.grep_zkfiles = function()
         builtin.live_grep(themes.get_ivy({
             prompt_title = "< Grep Zettelkasten >",
-            prompt_prefix = "    ",
+            prompt_prefix = "   ",
             results_title = "ZK Notes",
             path_display = { shorten = 3 },
             cwd = "$HOME/Library/CloudStorage/Dropbox/zettelkasten/",
@@ -62,7 +62,7 @@ function M.setup()
     M.search_neorgfiles = function()
         require("telescope.builtin").find_files({
             prompt_title = "  Find Neorg Files",
-            prompt_prefix = " ﮷   ",
+            prompt_prefix = "﮷   ",
             results_title = "Neorg Files",
             path_display = { shorten = 3 },
             layout_strategy = "horizontal",
@@ -74,7 +74,7 @@ function M.setup()
     M.search_neorg = function()
         builtin.live_grep(themes.get_ivy({
             prompt_title = "< Grep Neorg >",
-            prompt_prefix = "    ",
+            prompt_prefix = "   ",
             results_title = "Neorg Files",
             path_display = { shorten = 3 },
             cwd = "$HOME/repositories/Neorg/",
@@ -84,7 +84,7 @@ function M.setup()
     M.search_notes = function()
         builtin.live_grep(themes.get_ivy({
             prompt_title = "< Grep Notes >",
-            prompt_prefix = "    ",
+            prompt_prefix = "   ",
             path_display = { shorten = 3 },
             results_title = "Notes",
             cwd = "$HOME/Dropbox/notes/",
@@ -94,7 +94,7 @@ function M.setup()
     M.search_notefiles = function()
         require("telescope.builtin").find_files(themes.get_ivy({
             prompt_title = "  Search Note Files",
-            prompt_prefix = " ﮷   ",
+            prompt_prefix = "﮷   ",
             path_display = { shorten = 3 },
             layout_strategy = "horizontal",
             results_title = "Notes",
@@ -144,7 +144,7 @@ function M.setup()
         local fopts = {}
 
         gopts.prompt_title = " Find"
-        gopts.prompt_prefix = "   "
+        gopts.prompt_prefix = "  "
         gopts.results_title = "  Repo Files"
 
         fopts.hidden = true
