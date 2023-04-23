@@ -145,14 +145,16 @@ vim.api.nvim_create_autocmd("ColorScheme *", {
 
 -- Enter TermMode (insert mode in terminal) automatically
 vim.api.nvim_create_autocmd("TermOpen *", {
-  group = vim.api.nvim_create_augroup("MyTerminal", { clear = true }),
+  group = vim.api.nvim_create_augroup("TerminalOpen", { clear = true }),
   callback = function()
     vim.cmd([[ startinsert ]])
+    vim.wo.number = false
+    vim.wo.relativenumber = false
   end,
 })
 
 vim.api.nvim_create_autocmd("TermLeave *", {
-  group = vim.api.nvim_create_augroup("MyTerminal", { clear = true }),
+  group = vim.api.nvim_create_augroup("TerminalLeave", { clear = true }),
   callback = function()
     vim.wo.number = true
     vim.wo.relativenumber = true
