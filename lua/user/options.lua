@@ -56,7 +56,6 @@ local options = {
     relativenumber = true,
     pumblend = 17,                      -- Enables pseudo-transparency for the |popup-menu|.
     title = true,
-    colorcolumn = "80",
 }
 
 vim.g.mapleader = " "
@@ -90,8 +89,6 @@ opt.formatoptions = opt.formatoptions
     - "2" -- I'm not in gradeschool anymore
 
 cmd "syntax enable"
-cmd "filetype plugin indent on"
-cmd "nnoremap / /\v"
 -- cmd [[
 --     augroup spell
 --       " Remove all spell autocommands
