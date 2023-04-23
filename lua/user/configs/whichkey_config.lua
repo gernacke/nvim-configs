@@ -256,13 +256,13 @@ local mappings = {
         s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
     },
     v = {
-        name = "+Tmux runner",
-        p = { "<CMD>VtrAttachToPane<CR>", "Attach to pane" },
-        l = { "<CMD>VtrSendLinesToRunner<CR>", "Send line to runner" },
-        o = {
-            "<CMD>VtrOpenRunner {'orientation': 'h', 'percentage': 50}<CR>",
-            "Open runner",
-        },
+    --     name = "+Tmux runner",
+    --     p = { "<CMD>VtrAttachToPane<CR>", "Attach to pane" },
+    --     l = { "<CMD>VtrSendLinesToRunner<CR>", "Send line to runner" },
+    --     o = {
+    --         "<CMD>VtrOpenRunner {'orientation': 'h', 'percentage': 50}<CR>",
+    --         "Open runner",
+    --     },
         y = { "<cmd>%yank<CR>", "Yank page" },
         d = { "<Cmd>%d<Cr>", "Delete buffer content" },
     },
