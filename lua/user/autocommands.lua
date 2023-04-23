@@ -151,6 +151,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- Toggles the color column at 80
+function _TOGGLE_COLOR_COLUMN()
+  if vim.wo.colorcolumn == "" then
+    vim.wo.colorcolumn = "80"
+  else
+    vim.wo.colorcolumn = ""
+  end
+end
+
 -- toggle search crosshairs
 function M.toggle_crosshairs()
   local current_win = vim.api.nvim_get_current_win()

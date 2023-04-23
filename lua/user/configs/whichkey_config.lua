@@ -175,6 +175,7 @@ local mappings = {
         name = "+Editing",
         a = { "<CMD>AutoCmpOn<CR>", "Auto-completion on" },
         d = { "<CMD>AutoCmpOff<CR>", "Auto-completion off" },
+        c = { "<CMD>lua _TOGGLE_COLOR_COLUMN()<CR>", "Toggle Color Column"},
     },
     o = {
         name = "+Neovim",
