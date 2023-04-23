@@ -33,9 +33,12 @@ local keymappings = {
         ["H"]           = "^",
         ["zh"]          = "zH",     -- Moves left half screen
         ["zl"]          = "zL",     -- Moves right half screen
-        ["z<cr>"]       = "zt",
-        ["z."]          = "zz",
-        ["z-"]          = "zb",
+
+        -- Retains column positions while moving
+        ["z<cr>"]       = "zt",     -- Moves the line to the top of the screen
+        ["z."]          = "zz",     -- Moves the line to the middle of the screen
+        ["z-"]          = "zb",     -- Moves the line to the bottom of the screen
+
         ["Y"]           = "y$",
         ["<c-q>"]       = ":call QuickFixToggle()<CR>",
         ["<UP>"]        = "<c-w>3-",
