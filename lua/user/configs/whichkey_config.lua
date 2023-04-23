@@ -191,6 +191,14 @@ local mappings = {
             "<cmd>edit ~/repositories/workbench/help.md<cr>",
             "Open Help.md",
         },
+        d = {
+            "<cmd>lua require('user.configs.telescope_config').search_all_dotfiles()<cr>",
+            "Search All Dot Files",
+        },
+        D = {
+            "<cmd>lua require('user.configs.telescope_config').grep_all_dotfiles()<cr>",
+            "Grep All Dot Files",
+        },
         n = {
             "<cmd>lua require('user.configs.telescope_config').search_neorgfiles()<cr>",
             "Search Neorg Files",

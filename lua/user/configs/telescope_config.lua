@@ -103,6 +103,36 @@ function M.setup()
         }))
     end
 
+    M.search_all_dotfiles = function()
+        local opts = {}
+        opts.prompt_title = "< Search All Dot Files >"
+        opts.prompt_prefix = "﮷   "
+        opts.hidden = true
+        opts.results_title = "All Dot Files"
+        opts.path_display = { shorten = 3 }
+        opts.layout_strategy = "horizontal"
+        opts.layout_config = { preview_width = 0.65, width = 0.75 }
+        opts.cwd = "$HOME/repositories/all-dotfiles/"
+        opts.file_ignore_patterns = {
+            "nvim/",
+            ".git/",
+            "nvim-legacy",
+            "lunarVim"
+        }
+
+        builtin.find_files(opts)
+    end
+
+    M.grep_all_dotfiles = function()
+        local opts = {}
+        opts.prompt_title = "< Grep All Dot Files >"
+        opts.prompt_prefix = "   "
+        opts.results_title = "Search Results"
+        opts.path_display = { shorten = 3 }
+        opts.cwd = "$HOME/repositories/all-dotfiles/"
+        builtin.live_grep(themes.get_ivy(opts))
+    end
+
     M.project_files = function()
         local _, ret, stderr = utils.get_os_command_output({
             "git",
