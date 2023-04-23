@@ -222,22 +222,23 @@ local mappings = {
     },
     s = {
         name = "+Search",
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-        h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-        m = {
-            "<cmd>lua require('user.configs.telescope_config').firefox_bookmarks()<cr>",
-            "Firefox Bookmarks",
-        },
         M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        l = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-        p = { "<cmd>Telescope registers<cr>", "Registers" },
-        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        c = { "<cmd>Telescope commands<cr>", "Commands" },
+        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         f = {
             "<cmd>lua require('user.configs.telescope_config').file_browser()<cr>",
             "Open File Browser",
         },
+        h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+        c = { "<cmd>Telescope commands<cr>", "Commands" },
+        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+        l = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+        m = {
+            "<cmd>lua require('user.configs.telescope_config').firefox_bookmarks()<cr>",
+            "Firefox Bookmarks",
+        },
+        p = { "<cmd>Telescope registers<cr>", "Registers" },
+        r = { "<cmd>Telescope command_history<cr>", "Command History" },
     },
     t = {
         name = "+Terminal",
