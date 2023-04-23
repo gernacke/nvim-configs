@@ -160,6 +160,8 @@ function M.setup()
             "Movies/",
             ".cargo/registry/",
             "_root",
+            "nvim/",
+            "nvim-legacy/"
         }
 
         if ret == 0 then
