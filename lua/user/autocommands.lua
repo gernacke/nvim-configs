@@ -136,6 +136,40 @@ vim.cmd([[
   " augroup end
 ]])
 
+vim.api.nvim_create_autocmd("ColorScheme *", {
+  group = vim.api.nvim_create_augroup("MyHighlights", { clear = true }),
+  callback = function()
+    vim.cmd([[ highlight VertSplit guifg=#665c54 guibg=NONE ]])
+  end,
+})
+
+-- Enter TermMode (insert mode in terminal) automatically
+vim.api.nvim_create_autocmd("TermOpen *", {
+  group = vim.api.nvim_create_augroup("MyTerminal", { clear = true }),
+  callback = function()
+    vim.cmd([[ startinsert ]])
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermLeave *", {
+  group = vim.api.nvim_create_augroup("MyTerminal", { clear = true }),
+  callback = function()
+    vim.wo.number = true
+    vim.wo.relativenumber = true
+  end,
+})
+-- Open a terminal in the split window below
+function _TOGGLE_HORIZONTAL_TERMINAL()
+    vim.cmd([[ 15sp ]])
+    vim.cmd([[ terminal ]])
+end
+
+-- Open a terminal in the vertical split window
+function _TOGGLE_VERTICAL_TERMINAL()
+    vim.cmd([[ 80vsp ]])
+    vim.cmd([[ terminal ]])
+end
+
 vim.api.nvim_create_autocmd("BufEnter", {
   group = vim.api.nvim_create_augroup("NvimTreeClose", { clear = true }),
   pattern = "NvimTree_*",

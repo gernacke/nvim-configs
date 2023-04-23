@@ -103,6 +103,9 @@ local mappings = {
         "<cmd>lua require('telescope').extensions.projects.projects()<cr>",
         "Projects",
     },
+    -- ["v"] = {
+    --     "<cmd>grep -R <cword> .<cr>", "grep current word"
+    -- },
 
     p = {
         name = "+Packer",
@@ -244,9 +247,12 @@ local mappings = {
         name = "+Terminal",
         u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
         t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-        f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-        h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-        v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+        m = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+        h = { "<cmd>ToggleTerm size=12 direction=horizontal<cr>", "Horizontal" },
+        -- o = { "<CMD>lua _TOGGLE_HORIZONTAL_TERMINAL()<CR>", "Horizontal" },
+        j = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+        -- j = { "<CMD>lua _TOGGLE_VERTICAL_TERMINAL()<CR>", "Vertical" },
+        -- m = { "<cmd>terminal<CR>", "Open Terminal" },
     },
     b = {
         name = "+Trouble",
