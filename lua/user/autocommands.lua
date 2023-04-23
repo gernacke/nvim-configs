@@ -94,7 +94,7 @@ vim.api.nvim_exec(
   [[
 augroup nvim-incsearch-cursorline
 	autocmd!
-	autocmd CmdlineEnter /,\? :set cursorline cursorcolumn hlsearch
+	autocmd CmdlineEnter /,\? :set cursorline hlsearch
 augroup END
 ]],
   false
@@ -166,8 +166,7 @@ function M.toggle_crosshairs()
   vim.api.nvim_set_option("hlsearch", not vim.api.nvim_get_option("hlsearch"))
   vim.cmd([[windo :lua vim.api.nvim_win_set_option(0, 'cursorline', vim.api.nvim_get_option 'hlsearch')
 ]])
-  vim.cmd([[windo :lua vim.api.nvim_win_set_option(0, 'cursorcolumn', vim.api.nvim_get_option 'hlsearch')
-]])
+  -- vim.cmd([[windo :lua vim.api.nvim_win_set_option(0, 'cursorcolumn', vim.api.nvim_get_option 'hlsearch') ]])
   vim.api.nvim_set_current_win(current_win)
 end
 
