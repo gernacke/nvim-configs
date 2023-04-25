@@ -103,9 +103,12 @@ local mappings = {
         "<cmd>lua require('telescope').extensions.projects.projects()<cr>",
         "Projects",
     },
-    -- ["v"] = {
-    --     "<cmd>grep -R <cword> .<cr>", "grep current word"
-    -- },
+    -- Grep the <WORD> under the cursor recursively from the current folder
+    [";"] = {
+        "<CMD>execute \"silent grep! -R \" . shellescape(expand(\"<cWORD>\"))" ..
+        " . \" .\"<CR>:copen<cr>",
+        "grep current word"
+    },
 
     p = {
         name = "+Packer",
