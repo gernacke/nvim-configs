@@ -97,7 +97,7 @@ function M.setup()
             tag = "*",
             requires = { "kkharji/sqlite.lua" },
         })
-        -- TODO check out Registers plugin later after upgrades
+        -- Check out Registers plugin later after upgrades
         -- use({
         --     "tversteeg/registers.nvim",
         --     config = function()

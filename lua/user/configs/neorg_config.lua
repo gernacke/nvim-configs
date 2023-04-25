@@ -1,6 +1,6 @@
 local M = {}
 -- aff734c
--- TODO fix requiring :Noerg sync-parsers every time when openinng a norg file
+-- fix requiring :Noerg sync-parsers every time when openinng a norg file
 function M.setup()
     require("neorg").setup({
         load = {
