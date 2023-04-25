@@ -24,6 +24,7 @@ function M.setup()
             "rust",
             "java",
             "yaml",
+            "vim",
             -- "markdown",
             -- "markdown_inline"
             -- "norg",
