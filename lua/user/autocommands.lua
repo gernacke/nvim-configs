@@ -143,7 +143,14 @@ vim.api.nvim_create_autocmd("ColorScheme *", {
   end,
 })
 
--- Enter TermMode (insert mode in terminal) automatically
+-- Delete the <CR> mapping (incremental_selection in treesitter configs)
+vim.api.nvim_create_autocmd("CmdwinEnter *", {
+  group = vim.api.nvim_create_augroup("CmdwinOpen", { clear = true }),
+  callback = function()
+        vim.keymap.del("n", "<CR>", { buffer = true })
+  end,
+})
+-- Enter `TermMode` and start `Insert` mode automatically
 vim.api.nvim_create_autocmd("TermOpen *", {
   group = vim.api.nvim_create_augroup("TerminalOpen", { clear = true }),
   callback = function()
