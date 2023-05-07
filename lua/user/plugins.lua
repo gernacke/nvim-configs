@@ -147,6 +147,36 @@ function M.setup()
                 require("user.configs.winbar_config")
             end,
         })
+        -- AI Coding
+        use({
+            "Exafunction/codeium.vim",
+            enabled = true,
+            event = "InsertEnter",
+            -- stylua: ignore
+            dependencies = {
+                { "jcdickinson/codeium.nvim", config = true },
+                {
+                    "jcdickinson/http.nvim",
+                    build = "cargo build --workspace --release",
+                },
+            },
+            config = function()
+                vim.g.codeium_disable_bindings = 1
+                vim.keymap.set("i", "<A-b>", function()
+                    return vim.fn["codeium#Accept"]()
+                end, { expr = true })
+                vim.keymap.set("i", "<A-f>", function()
+                    return vim.fn["codeium#CycleCompletions"](1)
+                end, { expr = true })
+                -- vim.keymap.set("i", "<A-b>", function() return vim.fn["codeium#CycleCompletions"](-1) end, { expr = true })
+                vim.keymap.set("i", "<C-x>", function()
+                    return vim.fn["codeium#Clear"]()
+                end, { expr = true })
+                vim.keymap.set("i", "<A-c>", function()
+                    return vim.fn["codeium#Complete"]()
+                end, { expr = true })
+            end,
+        })
         -- Notes taking
         use({
             "mickael-menu/zk-nvim",
@@ -359,6 +389,28 @@ function M.setup()
             config = function()
                 require("user.configs.cmp_config").setup()
             end,
+        })
+        -- sqlserver://'sa':'Xcv091'@appsvr51-test.cggs.act.edu.au:1433/Synergeti_AUACT_CGGS_TST
+        -- Database
+        use({
+            "tpope/vim-dadbod",
+            opt = true,
+            requires = {
+                "kristijanhusak/vim-dadbod-ui",
+                "kristijanhusak/vim-dadbod-completion",
+                --[[ "abenz1267/nvim-databasehelper", ]]
+            },
+            config = function()
+                require("user.configs.dadbod_config").setup()
+            end,
+            cmd = {
+                "DBUIToggle",
+                "DBUI",
+                "DBUIAddConnection",
+                "DBUIFindBuffer",
+                "DBUIRenameBuffer",
+                "DBUILastQueryInfo",
+            },
         })
 
         -- Git

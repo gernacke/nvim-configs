@@ -72,6 +72,7 @@ function M.setup()
                     buffer = "[Buffer]",
                     path = "[Path]",
                     treesitter = "[TreeSitter]",
+                    codeium = "[Codeium]",
                 })[entry.source.name]
                 return vim_item
             end,
@@ -186,6 +187,7 @@ function M.setup()
             { name = "buffer", keyword_length = 4, max_item_count = 5 },
             { name = "path" },
             { name = "treesitter", max_item_count = 10 },
+            { name = "codeium", max_item_count = 1 },
             -- { name = "crates" },
             -- { name = "cmp_openai_codex" },
             -- { name = "emoji" },
