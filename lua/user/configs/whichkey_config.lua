@@ -105,10 +105,18 @@ local mappings = {
         "Projects",
     },
     -- Grep the <WORD> under the cursor recursively from the current folder
-    [";"] = {
-        "<CMD>execute \"silent grep! -R \" . shellescape(expand(\"<cWORD>\"))" ..
-        " . \" .\"<CR>:copen<cr>",
-        "grep current word"
+    -- [";"] = {
+    --     "<CMD>execute \"silent grep! -R \" . shellescape(expand(\"<cWORD>\"))" ..
+    --     " . \" .\"<CR>:copen<cr>",
+    --     "grep current word"
+    -- },
+    -- Database
+    D = {
+        name = "Database",
+        u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
+        f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
+        r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
+        q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
     },
 
     p = {
@@ -182,7 +190,7 @@ local mappings = {
         name = "+Editing",
         a = { "<CMD>AutoCmpOn<CR>", "Auto-completion on" },
         d = { "<CMD>AutoCmpOff<CR>", "Auto-completion off" },
-        c = { "<CMD>lua _TOGGLE_COLOR_COLUMN()<CR>", "Toggle Color Column"},
+        c = { "<CMD>lua _TOGGLE_COLOR_COLUMN()<CR>", "Toggle Color Column" },
     },
     o = {
         name = "+Neovim",
@@ -266,13 +274,13 @@ local mappings = {
         s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
     },
     v = {
-    --     name = "+Tmux runner",
-    --     p = { "<CMD>VtrAttachToPane<CR>", "Attach to pane" },
-    --     l = { "<CMD>VtrSendLinesToRunner<CR>", "Send line to runner" },
-    --     o = {
-    --         "<CMD>VtrOpenRunner {'orientation': 'h', 'percentage': 50}<CR>",
-    --         "Open runner",
-    --     },
+        --     name = "+Tmux runner",
+        --     p = { "<CMD>VtrAttachToPane<CR>", "Attach to pane" },
+        --     l = { "<CMD>VtrSendLinesToRunner<CR>", "Send line to runner" },
+        --     o = {
+        --         "<CMD>VtrOpenRunner {'orientation': 'h', 'percentage': 50}<CR>",
+        --         "Open runner",
+        --     },
         y = { "<cmd>%yank<CR>", "Yank page" },
         d = { "<Cmd>%d<Cr>", "Delete buffer content" },
     },
