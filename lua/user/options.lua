@@ -1,5 +1,6 @@
 local opt = vim.opt
 local cmd = vim.cmd
+local indent = 2
 
 local options = {
     syntax = 'enabled',
@@ -12,9 +13,9 @@ local options = {
     modeline = true,                    -- If 'modeline' is on 'modelines' gives the number of lines that is checked for set commands.
     modelines = 2,
     expandtab = true,                   -- In Insert mode: Use the appropriate number of spaces to insert a <Tab>
-    shiftwidth = 4,                     -- Number of spaces to use for each step of (auto)indent.
+    shiftwidth = indent,                     -- Number of spaces to use for each step of (auto)indent.
     softtabstop = 4,                    -- Number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>.
-    tabstop = 4,                        -- Number of spaces that a <Tab> in the file counts for.
+    tabstop = indent,                        -- Number of spaces that a <Tab> in the file counts for.
     shiftround = true,                  -- Round indent to multiple of 'shiftwidth'.
     smarttab = true,                    -- When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'.
     synmaxcol = 240,                    -- Maximum column in which to search for syntax items.
@@ -35,7 +36,7 @@ local options = {
 
     mouse = "nv",                       -- Enables mouse support. For example, to enable the mouse in Normal mode and Visual mode.
     ruler = true,                       -- Show the line and column number of the cursor position, separated by a comma.
-    sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos,terminal",
+    sessionoptions = { "blank","buffers","curdir","folds","help","tabpages","winsize","resize","winpos","terminal" },
     showmatch = true,                   -- When a bracket is inserted, briefly jump to the matching one.
     showtabline = 0,                    -- never show the tab line at the top of the buffers
     matchtime = 1,                      -- Tenths of a second to show the matching paren, when 'showmatch' is set.
@@ -55,6 +56,7 @@ local options = {
     number = true,                      -- Print the line number in front of each line.
     relativenumber = true,
     pumblend = 17,                      -- Enables pseudo-transparency for the |popup-menu|.
+    pumheight = 10,                     -- Maximum height of the |popup-menu|.
     title = true,
 }
 
@@ -87,8 +89,10 @@ opt.formatoptions = opt.formatoptions
     + "n" -- Indent past the formatlistpat, not underneath it.
     + "j" -- Auto-remove comments if possible.
     - "2" -- I'm not in gradeschool anymore
-
-cmd "syntax enable"
+opt.shortmess = opt.shortmess
+    + "W"
+    + "c"
+    + "i"
 -- cmd [[
 --     augroup spell
 --       " Remove all spell autocommands

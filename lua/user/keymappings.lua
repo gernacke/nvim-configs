@@ -24,20 +24,40 @@ local keymappings = {
     insert_mode       = {
         -- ["<c-j>"] = "<Plug>(completion_next_source)",
         -- ["<c-k>"] = "<Plug>(completion_prev_source)"
+
+        -- Add undo break-points
+        [","]           = ",<c-g>u",
+        ["."]           = ".<c-g>u",
+        [";"]           = ";<c-g>u",
+        
+        -- Move lines
+        ["<A-j>"]       = "<Esc>:m .+1<CR>==gi",
+        ["<A-k>"]       = "<Esc>:m .-2<CR>==gi",
     },
     normal_mode       = {
+        -- Moving with wrap on
+        ["k"]           = { "v:count == 0 ? 'gk' : 'k'", { expr = true } },
+        ["j"]           = { "v:count == 0 ? 'gj' : 'j'", { expr = true } },
         [";"]           = ":",
         [":"]           = ";",
         ["<c-w>z"]      = "<c-w>_",
         ["L"]           = "g_",
         ["H"]           = "^",
-        ["zh"]          = "zH",     -- Moves left half screen
-        ["zl"]          = "zL",     -- Moves right half screen
+        ["zh"]          = "zH",   -- Moves left half screen
+        ["zl"]          = "zL",   -- Moves right half screen
 
         -- Retains column positions while moving
-        ["z<cr>"]       = "zt",     -- Moves the line to the top of the screen
-        ["z."]          = "zz",     -- Moves the line to the middle of the screen
-        ["z-"]          = "zb",     -- Moves the line to the bottom of the screen
+        ["z<cr>"]       = "zt",   -- Moves the line to the top of the screen
+        ["z."]          = "zz",   -- Moves the line to the middle of the screen
+        ["z-"]          = "zb",   -- Moves the line to the bottom of the screen
+
+        -- Centers the line on next search result
+        ["n"]           = "nzz",
+        ["N"]           = "Nzz",
+
+        -- Move lines
+        ["<A-j>"]       = ":m .+1<CR>==",
+        ["<A-k>"]       = ":m .-2<CR>==",
 
         ["Y"]           = "y$",
         ["<c-q>"]       = ":call QuickFixToggle()<CR>",
@@ -53,13 +73,6 @@ local keymappings = {
             "<Plug>(EasyAlign)",
             { noremap = false, silent = false },
         },
-        -- Hop keybindings
-        -- ["f"]           = "<cmd>HopChar1AC<cr>",
-        -- ["N"]           = "<cmd>HopPattern<cr>",
-        -- ["<LEADER>j"]   = "<cmd>HopLineAC<cr>",
-        -- ["<LEADER>k"]   = "<cmd>HopLineBC<cr>",
-        -- ["<leader>-"] = ":wincmd _<cr>:wincmd |<cr>",
-        -- ["<leader>="] = ":wincmd =<cr>",
     },
     visual_mode       = {
         [";"]         = ":",
@@ -68,8 +81,11 @@ local keymappings = {
         ["L"]         = "g_",
         ["H"]         = "^",
         ["p"]         = "pgvy",
-        ["f"]         = "<cmd>HopChar1AC<cr>",
-        ["N"]         = "<cmd>HopPattern<cr>",
+        ["<"]         = "<gv",
+        [">"]         = ">gv",
+        -- Move lines
+        ["<A-j>"]     = ":m '>+1<CR>gv=gv",
+        ["<A-k>"]     = ":m '<-2<CR>gv=gv",
     },
     term_mode         = {
         -- ['<C-w><C-o>'] = '<C-\\><C-n> :MaximizerToggle!<CR>',

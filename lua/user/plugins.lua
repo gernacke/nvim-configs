@@ -39,6 +39,7 @@ function M.setup()
             end,
         })
 
+        -- Packer to delete
         use({ "wbthomason/packer.nvim" })
 
         use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
@@ -64,7 +65,7 @@ function M.setup()
                 require("user.configs.toggleterm_config")
             end,
         })
-
+        use({"ckipp01/stylua-nvim"})
         use({ "nvim-lua/popup.nvim" })
         use({ "nvim-lua/plenary.nvim" })
         use({
@@ -118,20 +119,20 @@ function M.setup()
         })
         use({ "moll/vim-bbye" })
 
-        -- Treesitter
+        -- Treesitter migrated
         use({
             "nvim-treesitter/nvim-treesitter",
             as = "nvim-treesitter",
             event = "BufRead",
             -- opt = true,
             run = ":TSUpdate",
-            config = function()
-                require("user.configs.treesitter_config").setup()
-            end,
             requires = {
                 { "JoosepAlviste/nvim-ts-context-commentstring" },
                 { "nvim-treesitter/nvim-treesitter-textobjects" },
             },
+            config = function()
+                require("user.configs.treesitter_config").setup()
+            end,
             tag = "v0.7.2",
         })
         -- Status line
@@ -153,16 +154,16 @@ function M.setup()
             enabled = true,
             event = "InsertEnter",
             -- stylua: ignore
-            dependencies = {
-                { "jcdickinson/codeium.nvim", config = true },
-                {
-                    "jcdickinson/http.nvim",
-                    build = "cargo build --workspace --release",
-                },
-            },
+            -- dependencies = {
+            --     { "jcdickinson/codeium.nvim", config = true },
+            --     {
+            --         "jcdickinson/http.nvim",
+            --         build = "cargo build --workspace --release",
+            --     },
+            -- },
             config = function()
                 vim.g.codeium_disable_bindings = 1
-                vim.keymap.set("i", "<A-b>", function()
+                vim.keymap.set("i", "<A-c>", function()
                     return vim.fn["codeium#Accept"]()
                 end, { expr = true })
                 vim.keymap.set("i", "<A-f>", function()
@@ -172,9 +173,9 @@ function M.setup()
                 vim.keymap.set("i", "<C-x>", function()
                     return vim.fn["codeium#Clear"]()
                 end, { expr = true })
-                vim.keymap.set("i", "<A-c>", function()
-                    return vim.fn["codeium#Complete"]()
-                end, { expr = true })
+                -- vim.keymap.set("i", "<A-c>", function()
+                --     return vim.fn["codeium#Complete"]()
+                -- end, { expr = true })
             end,
         })
         -- Notes taking
@@ -212,8 +213,8 @@ function M.setup()
         --     requires = { "nvim-neorg/neorg-telescope" },
         -- })
 
-        -- LSP
-        use("christianchiarulli/lua-dev.nvim")
+    -- LSP
+        use("christianchiarulli/lua-dev.nvim") -- todelete it's broken
         use({ "neovim/nvim-lspconfig" }) -- enable LSP
         use({
             "RRethy/vim-illuminate",
@@ -227,6 +228,7 @@ function M.setup()
             --     require("lsp_lines").setup()
             -- end,
         })
+        -- Migrated
         use({
             "folke/trouble.nvim",
             cmd = "TroubleToggle",
@@ -252,12 +254,6 @@ function M.setup()
         --     end,
         --     ft = { "markdown" },
         -- })
-        use({
-            "ellisonleao/glow.nvim",
-            config = function()
-                require("glow").setup()
-            end,
-        })
         use("mortepau/codicons.nvim")
         use({ "wellle/targets.vim" })
         use({
@@ -296,6 +292,7 @@ function M.setup()
                 require("user.configs.autopairs_config")
             end,
         })
+    -- Migrated
         use({
             "andymass/vim-matchup",
             setup = function()
@@ -317,12 +314,14 @@ function M.setup()
         --   require("user.configs.matchup_cofig")
         -- end,
         -- })
+    -- migrated
         use({
             "onsails/lspkind-nvim",
             config = function()
                 require("lspkind").init()
             end,
         })
+    -- replaced with tpope vim-surround
         use({
             "kylechui/nvim-surround",
             tag = "*",
@@ -339,11 +338,14 @@ function M.setup()
             end,
             after = "nvim-treesitter",
         })
+    -- replaced with "nvim-tree/nvim-web-devicons"
         use({ "kyazdani42/nvim-web-devicons" })
+    -- Don't think this is needed anymore
         use({ "rajasegar/vim-search-web" })
 
         -- tmux related
         -- use({ "christoomey/vim-sort-motion" })
+-- Re-consider this
         use({ "christoomey/vim-tmux-navigator" })
         use({ "christoomey/vim-tmux-runner" })
 
