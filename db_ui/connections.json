@@ -1,1 +1,1 @@
-[{"url": "sqlserver://'sa':'Xcv091'@appsvr51-test.cggs.act.edu.au:1433/Synergeti_AUACT_CGGS_TST", "name": "Synergeti_AUACT_CGGS_TST"}]
+[{"url": "sqlserver://lukesa:Gern%401115@appsvr51-test.cggs.act.edu.au:1433/master", "name": "master(lukesa)"}, {"url": "sqlserver://lukesa:Gern%401115@appsvr51-test.cggs.act.edu.au:1433/Synergetic_AUACT_CGGS_TST", "name": "Synergetic_TST(lukesa)"}, {"url": "sqlserver://sa:Xcv091@appsvr51.cggs.act.edu.au:1433/Synergetic_AUACT_CGGS_PRD", "name": "Synergetic_PRD(sa)"}]

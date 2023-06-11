@@ -1,0 +1,73 @@
+[ERROR Sat 27 May 16:32:34 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/io.lua:87: could not open dir  /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/gscVKA/0codeium/manager :  ENOENT: no such file or directory: /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/gscVKA/0codeium/manager
+[WARN  Tue 30 May 19:49:08 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Tue 30 May 19:49:08 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Tue 30 May 19:49:08 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Tue 30 May 19:49:08 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Tue 30 May 19:49:08 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Tue 30 May 19:49:08 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Tue 30 May 19:49:08 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Tue 30 May 19:49:08 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Tue 30 May 19:49:08 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Mon  5 Jun 05:52:53 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Mon  5 Jun 05:52:53 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Mon  5 Jun 05:52:53 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Mon  5 Jun 05:52:53 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Mon  5 Jun 05:52:53 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Mon  5 Jun 05:52:53 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Mon  5 Jun 05:52:53 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[WARN  Mon  5 Jun 05:52:53 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/notify.lua:14: heartbeat failed:  {
+  code = 1,
+  err = <userdata 1>
+}
+[ERROR Sat 10 Jun 06:28:00 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/io.lua:87: could not open dir  /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/5TMp3Q/0codeium/manager :  ENOENT: no such file or directory: /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/5TMp3Q/0codeium/manager
+[ERROR Sat 10 Jun 07:08:16 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/io.lua:87: could not open dir  /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/WusOew/0codeium/manager :  ENOENT: no such file or directory: /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/WusOew/0codeium/manager
+[ERROR Sat 10 Jun 07:22:01 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/io.lua:87: could not open dir  /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/a43ypJ/0codeium/manager :  ENOENT: no such file or directory: /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/a43ypJ/0codeium/manager
+[ERROR Sat 10 Jun 07:44:58 2023] /Users/ger/.config/modern-neovim/share/nvim/lazy/codeium.nvim/lua/codeium/io.lua:87: could not open dir  /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/VSMBVw/0codeium/manager :  ENOENT: no such file or directory: /var/folders/7w/97fb3t297t37hzc0jy3d2xjr0000gn/T/nvim.ger/VSMBVw/0codeium/manager

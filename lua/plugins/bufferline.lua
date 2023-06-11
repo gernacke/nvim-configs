@@ -1,0 +1,50 @@
+return {
+  {
+    "akinsho/nvim-bufferline.lua",
+    event = "VeryLazy",
+    opts = {
+      options = {
+        mode = "buffers", -- tabs|buffers set to "tabs" to only show tabpages instead
+        numbers = "buffer_id",
+        diagnostics = "nvim_lsp",
+        always_show_bufferline = false,
+        separator_style = "thin", -- slant|padded_slant
+        close_command = function(bufnum)
+          require("mini.bufremove").delete(bufnum, false)
+        end,
+        show_tab_indicators = true,
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        color_icons = true,
+        enforce_regular_tabs = false,
+        custom_filter = function(buf_number, _)
+          local tab_num = 0
+          for _ in pairs(vim.api.nvim_list_tabpages()) do
+            tab_num = tab_num + 1
+          end
+
+          if tab_num > 1 then
+            if not not vim.api.nvim_buf_get_name(buf_number):find(vim.fn.getcwd(), 0, true) then
+              return true
+            end
+          else
+            return true
+          end
+        end,
+        sort_by = function(buffer_a, buffer_b)
+          local mod_a = ((vim.loop.fs_stat(buffer_a.path) or {}).mtime or {}).sec or 0
+          local mod_b = ((vim.loop.fs_stat(buffer_b.path) or {}).mtime or {}).sec or 0
+          return mod_a > mod_b
+        end,
+      },
+    },
+    keys = {
+      { "<c-down>", ":BufferLineCyclePrev<CR>", desc = "Previous Buffer" },
+      { "<c-up>", ":BufferLineCycleNext<CR>", desc = "Next Buffer" },
+      { "<leader>bj", "<cmd>BufferLinePick<CR>", desc = "Pick Buffer" },
+      { "<leader>bc", "<cmd>BufferLinePickClose<CR>", desc = "Pick Buffer to Close" },
+    },
+  },
+  -- scope buffers to tabs
+  { "tiagovla/scope.nvim", event = "VeryLazy", opts = {} },
+}

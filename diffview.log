@@ -1,0 +1,16 @@
+[INFO  2023-05-26 10:31:41.832 +1000] ...eovim/share/nvim/lazy/diffview.nvim/lua/diffview/lib.lua:24: [command call] :DiffviewOpen 
+[INFO  2023-05-26 10:31:41.928 +1000] ...iffview.nvim/lua/diffview/scene/views/diff/diff_view.lua:483: [DiffView] Completed update for 20 files successfully (28.263 ms)
+[INFO  2023-05-26 10:38:11.010 +1000] ...eovim/share/nvim/lazy/diffview.nvim/lua/diffview/lib.lua:24: [command call] :DiffviewOpen 
+[INFO  2023-05-26 10:38:11.111 +1000] ...iffview.nvim/lua/diffview/scene/views/diff/diff_view.lua:483: [DiffView] Completed update for 21 files successfully (30.627 ms)
+[INFO  2023-05-26 10:38:51.655 +1000] ...eovim/share/nvim/lazy/diffview.nvim/lua/diffview/lib.lua:74: [command call] :DiffviewFileHistory 
+[ERROR 2023-05-26 10:38:51.667 +1000] ...eovim/share/nvim/lazy/diffview.nvim/lua/diffview/job.lua:327: Job exited with a non-zero exit code: 128
+[ERROR 2023-05-26 10:38:51.668 +1000] ...azy/diffview.nvim/lua/diffview/vcs/adapters/git/init.lua:166: [job-info] Exit code: 128
+[ERROR 2023-05-26 10:38:51.668 +1000] ...azy/diffview.nvim/lua/diffview/vcs/adapters/git/init.lua:166:      [cmd] git 'rev-parse' '--path-format=absolute' '--show-toplevel'
+[ERROR 2023-05-26 10:38:51.668 +1000] ...azy/diffview.nvim/lua/diffview/vcs/adapters/git/init.lua:166:      [cwd] /Users/ger/.config
+[ERROR 2023-05-26 10:38:51.668 +1000] ...azy/diffview.nvim/lua/diffview/vcs/adapters/git/init.lua:166:   [stderr] fatal: not a git repository (or any of the parent directories): .git
+[ERROR 2023-05-26 10:38:51.672 +1000] ...lazy/diffview.nvim/lua/diffview/vcs/adapters/hg/init.lua:50: [HgAdapter] Configured `hg_cmd` is not executable: 'hg'
+[ERROR 2023-05-26 10:38:51.673 +1000] ...vim/share/nvim/lazy/diffview.nvim/lua/diffview/utils.lua:92: Not a repo (or any parent), or no supported VCS adapter!
+[INFO  2023-05-26 10:42:08.805 +1000] ...eovim/share/nvim/lazy/diffview.nvim/lua/diffview/lib.lua:24: [command call] :DiffviewOpen 
+[INFO  2023-05-26 10:42:08.886 +1000] ...iffview.nvim/lua/diffview/scene/views/diff/diff_view.lua:483: [DiffView] Completed update for 21 files successfully (26.583 ms)
+[INFO  2023-05-26 19:59:13.818 +1000] ...eovim/share/nvim/lazy/diffview.nvim/lua/diffview/lib.lua:24: [command call] :DiffviewOpen 
+[INFO  2023-05-26 19:59:13.897 +1000] ...iffview.nvim/lua/diffview/scene/views/diff/diff_view.lua:483: [DiffView] Completed update for 0 files successfully (16.141 ms)

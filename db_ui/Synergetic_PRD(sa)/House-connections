@@ -1,0 +1,45 @@
+WITH cte as (
+select distinct 
+    s.StudentID,
+    s.StudentNameInternal as 'Student',
+    s.StudentYearLevelDescription,
+    -- sa.StudentYearLevelDescription as 'Recipient Year level',
+    sa.StudentNameInternal,
+    sa.StudentHouseDescription,
+    r.Relationship,
+    r.RecipientNameExternal as 'Relation Name',
+    r.RecipientID as 'Relation ID'
+    -- r.RecipientDefaultEmail,
+from vStudents s inner join vStudentContactsAndRelations r on s.StudentID=r.StudentID
+  LEFT JOIN vStudentsAll sa on sa.StudentID = r.RecipientID
+where s.CurrentSemesterOnlyFlag=1 and sa.CurrentSemesterOnlyFlag=1
+  and sa.StudentCampus = 'S'
+        and s.StudentYearLevel = 6
+        and s.StudentStatusSynergyMeaning <> 'LEAVING'
+        and r.Relationship in ('Sister', 'Step Sister')
+
+UNION
+
+select distinct 
+    s.StudentID,
+    s.StudentNameInternal as 'Student',
+    s.StudentYearLevelDescription,
+    p.NameInternal,
+    p.LastHouseDescription,
+    r.Relationship,
+    r.RecipientNameExternal,
+    r.RecipientID
+    -- r.RecipientDefaultEmail,
+from vStudents s inner join vStudentContactsAndRelations r on s.StudentID=r.StudentID
+                left join vPastStudentAddress p on r.RecipientID=p.ID
+where s.CurrentSemesterOnlyFlag=1
+        and s.StudentYearLevel = 6
+        and s.StudentStatusSynergyMeaning <> 'LEAVING'
+        and r.Relationship in ('Mother','Aunt','Grandmother','Great Grandmother')
+       and r.RecipientID in 
+           ( SELECT
+               c.ID
+           FROM Constituencies c
+           where c.ConstitCode = '@SP')
+)
+SELECT * FROM cte
