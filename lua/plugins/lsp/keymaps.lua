@@ -3,6 +3,7 @@ local M = {}
 function M.on_attach(client, buffer)
   local self = M.new(client, buffer)
 
+  -- TODO: reduce the goto_definition highlight duration
   self:map("gd", "Lspsaga goto_definition", { desc = "Goto Definition" })
   self:map("gp", "Lspsaga peek_definition", { desc = "Peek Definition" })
   self:map("gh", "Lspsaga show_line_diagnostics", { desc = "Show Diagnostic" })

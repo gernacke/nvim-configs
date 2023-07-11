@@ -3,6 +3,7 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
 
+    -- cond = false,
     config = function()
       local components = require "plugins.statusline.components"
       local hide_in_width = function()
@@ -39,7 +40,7 @@ return {
           icons_enabled = true,
           theme = "auto",
           component_separators = {},
-          section_separators = {},
+          section_separators = {left = '', right = ''},
           disabled_filetypes = {
             statusline = { "alpha", "lazy", "Outline" },
             winbar = {

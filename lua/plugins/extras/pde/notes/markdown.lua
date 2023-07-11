@@ -41,7 +41,6 @@ return {
   --     { "<leader>zt", "<CMD>ZkTags<CR>", desc = "Select ZK Tags" },
   --   },
   -- },
-  -- TODO: add highlights for markdown headings in Telekasten
   {
     "renerocksai/telekasten.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },

@@ -1,47 +1,53 @@
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "sql" })
-    end,
-  },
-  {
-    "tpope/vim-dadbod",
-    dependencies = {
-      "kristijanhusak/vim-dadbod-ui",
-      "kristijanhusak/vim-dadbod-completion",
-    },
-    opts = {
-      db_competion = function()
-        require("cmp").setup.buffer { sources = { { name = "vim-dadbod-completion" } } }
-      end,
-    },
-    config = function(_, opts)
-      vim.g.db_ui_save_location = vim.fn.stdpath "config" .. require("plenary.path").path.sep .. "db_ui"
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = function(_, opts)
+			vim.list_extend(opts.ensure_installed, { "sql" })
+		end,
+	},
+	{
+		"tpope/vim-dadbod",
+		dependencies = {
+			"kristijanhusak/vim-dadbod-ui",
+			"kristijanhusak/vim-dadbod-completion",
+			"tpope/vim-dotenv",
+		},
+		opts = {
+			db_competion = function()
+				require("cmp").setup.buffer({ sources = { { name = "vim-dadbod-completion" } } })
+			end,
+		},
+		config = function(_, opts)
+			vim.g.db_ui_save_location = "~/Google Drive/My Drive/VScode/SQL-Queries"
+				.. require("plenary.path").path.sep
+				.. "DBUI"
+			vim.g.db_ui_execute_on_save = 0
+			vim.g.db_ui_show_database_icon = 1
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = {
+					"sql",
+				},
+				command = [[setlocal omnifunc=vim_dadbod_completion#omni]],
+			})
 
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = {
-          "sql",
-        },
-        command = [[setlocal omnifunc=vim_dadbod_completion#omni]],
-      })
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = {
-          "sql",
-          "mysql",
-          "plsql",
-        },
-        callback = function()
-          vim.schedule(opts.db_completion)
-        end,
-      })
-    end,
-    keys = {
-      { "<leader>Dt", "<cmd>DBUIToggle<cr>", desc = "Toggle UI" },
-      { "<leader>Df", "<cmd>DBUIFindBuffer<cr>", desc = "Find Buffer" },
-      { "<leader>Dr", "<cmd>DBUIRenameBuffer<cr>", desc = "Rename Buffer" },
-      { "<leader>Dq", "<cmd>DBUILastQueryInfo<cr>", desc = "Last Query Info" },
-    },
-  },
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = {
+					"sql",
+					"mysql",
+					"plsql",
+				},
+				callback = function()
+					vim.schedule(opts.db_completion)
+				end,
+			})
+		end,
+		keys = {
+			{ "<leader>et", "<cmd>DBUIToggle<cr>", desc = "Toggle UI" },
+			{ "<leader>el", "<Plug>(DBUI_ExecuteQuery)", desc = "Execute" },
+			{ "<leader>el", "<Plug>(DBUI_ExecuteQuery)", mode = "v", desc = "Execute" },
+			{ "<leader>ef", "<cmd>DBUIFindBuffer<cr>", desc = "Find Buffer" },
+			{ "<leader>er", "<cmd>DBUIRenameBuffer<cr>", desc = "Rename Buffer" },
+			{ "<leader>eq", "<cmd>DBUILastQueryInfo<cr>", desc = "Last Query Info" },
+		},
+	},
 }

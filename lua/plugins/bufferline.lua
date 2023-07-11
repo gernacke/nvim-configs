@@ -2,6 +2,7 @@ return {
   {
     "akinsho/nvim-bufferline.lua",
     event = "VeryLazy",
+    -- cond = false,
     opts = {
       options = {
         mode = "buffers", -- tabs|buffers set to "tabs" to only show tabpages instead
