@@ -108,6 +108,7 @@ return {
           { name = "buffer", keyword_length = 4, max_item_count = 5 },
           { name = "treesitter", max_item_count = 10 },
           { name = "codeium", group_index = 1 },
+          { name = "crates" },
         },
         formatting = {
           fields = { "kind", "abbr", "menu" },
@@ -140,6 +141,9 @@ return {
             elseif entry.source.name == "vim-dadbod-completion" then
               item.kind = ""
               item.menu = "(SQL)"
+            elseif entry.source.name == "crates" then
+              item.kind = " "
+              item.menu = "(CRATES)"
             end
             return item
           end,

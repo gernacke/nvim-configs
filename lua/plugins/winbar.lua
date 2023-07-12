@@ -45,6 +45,12 @@ return {
 				-- 		["TypeParameter"] = { "", "Type" },
 				-- 	},
 				-- },
+
+        -- The highlight animation when jumped to a definition
+				beacon = {
+					enable = true,
+					frequency = 20,
+				},
 				symbol_in_winbar = {
 					enable = true,
 					separator = " ",

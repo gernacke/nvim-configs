@@ -1,5 +1,4 @@
 local M = {}
--- TODO: investigate find files for git ignored files
 local builtin = require("telescope.builtin")
 local themes = require("telescope.themes")
 local utils = require("telescope.utils")
