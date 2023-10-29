@@ -30,6 +30,7 @@ return {
   {
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
+    module=false,
     --stylua: ignore
     keys = {
       { "zc" },

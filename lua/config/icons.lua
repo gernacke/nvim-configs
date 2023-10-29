@@ -76,7 +76,7 @@ return {
 		Array = " ",
 		Number = "",
 		String = " ",
-		Boolean = "",
+		Boolean = "",
 		Object = " ",
 	},
 	documents = {

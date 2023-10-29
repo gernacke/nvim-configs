@@ -20,6 +20,7 @@ local options = {
 	smarttab = true, -- When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'.
 	synmaxcol = 240, -- Maximum column in which to search for syntax items.
 	textwidth = 0, -- Maximum width of text that is being inserted. A longer line will be broken after white space to get this width. A zero value disables this.
+  signcolumn = "yes", -- Always show the gutter sign column
 	undofile = true, -- When on, Vim automatically saves undo history to an undo file when writing a buffer to a file, and restores undo history from the same file on buffer read.
 	autoread = true, -- When a file has been detected to have been changed outside of Vim and it has not been changed inside of Vim, automatically read it again.
 	backspace = "indent,eol,start", -- Influences the working of <BS>, <Del>, CTRL-W and CTRL-U in Insert mode.
@@ -51,7 +52,7 @@ local options = {
 	showmatch = true, -- When a bracket is inserted, briefly jump to the matching one.
 	showtabline = 0, -- never show the tab line at the top of the buffers
 	matchtime = 1, -- Tenths of a second to show the matching paren, when 'showmatch' is set.
-	showmode = true, -- If in Insert, Replace or Visual mode put a message on the last line.
+	showmode = false, -- If in Insert, Replace or Visual mode put a message on the last line.
 	sidescrolloff = 5, -- The minimal number of screen columns to keep to the left and to the right of the cursor if 'nowrap' is set.
 	scrolloff = 2,
 	ignorecase = true, -- Ignore case in search patterns.
@@ -61,7 +62,6 @@ local options = {
 	splitright = true,
 	timeoutlen = 500, -- Time in milliseconds to wait for a mapped sequence to complete.
 	updatetime = 300, -- If this many milliseconds nothing is typed the swap file will be written to disk (see |crash-recovery|).
-	wildmenu = false, -- Turns on and off for command line completion
 	wildmode = "longest:full", -- Completion mode that is used for the character specified with 'wildchar'.
 	breakindent = true, -- Every wrapped line will continue visually indented (same amount of space as the beginning of that line), thus preserving horizontal blocks of text.
 	list = true, -- List mode: By default, show tabs as ">", trailing spaces as "-", and non-breakable space characters as "+".
@@ -139,6 +139,7 @@ let g:db_ui_icons = {
 -- ]]
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+vim.cmd.highlight('default link IndentLine Comment')
 
 -- Remove deprecated commands from Neotree
 -- vim.g.neo_tree_remove_legacy_commands = 1

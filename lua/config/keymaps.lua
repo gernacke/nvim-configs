@@ -1,5 +1,4 @@
 local M = {}
-
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = false }
 
@@ -93,12 +92,13 @@ local keymappings = {
 	visual_mode = {
 		[";"] = ":",
 		[":"] = ";",
-		["<leader>h"] = "<cmd>noh<CR>",
+		["<leader>ch"] = "<cmd>noh<CR>",
 		["L"] = "g_",
 		["H"] = "^",
 		["p"] = "pgvy",
 		["<"] = "<gv",
 		[">"] = ">gv",
+    ["<tab>"] = "%",
 		-- Move lines
 		["<A-j>"] = ":m '>+1<CR>gv=gv",
 		["<A-k>"] = ":m '<-2<CR>gv=gv",
@@ -131,14 +131,14 @@ local keymappings = {
 			{ noremap = false, silent = false },
 		},
 		-- FIX: fix these mappings
-		["."] = {
-			"<CMD>normal .<CR>",
-			{ noremap = true, silent = false },
-		},
-		["@"] = {
-			"<cmd><C-u>echo '@'.getcmdline() | execute ':'<,'>normal @' . nr2char(getchar())<Cr>'",
-			{ noremap = false, silent = true },
-		},
+		-- ["."] = {
+		-- 	"<CMD>normal .<CR>",
+		-- 	{ noremap = true, silent = false },
+		-- },
+		-- ["@"] = {
+		-- 	"<cmd><C-u>echo '@'.getcmdline() | execute ':'<,'>normal @' . nr2char(getchar())<Cr>'",
+		-- 	{ noremap = false, silent = true },
+		-- },
 	},
 }
 

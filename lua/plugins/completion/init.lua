@@ -17,19 +17,20 @@ return {
       },
     },
     config = function()
-      local cmp = require "cmp"
-      local luasnip = require "luasnip"
-      local neogen = require "neogen"
-      local icons = require "config.icons"
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+      local neogen = require("neogen")
+      local icons = require("config.icons")
 
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+        return col ~= 0
+          and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      cmp.setup {
+      cmp.setup({
         completion = {
-          completeopt = "menu,menuone,noinsert",
+          -- completeopt = "menu,menuone,noinsert",
           keyword_length = 2,
         },
         window = {
@@ -41,25 +42,25 @@ return {
             require("luasnip").lsp_expand(args.body)
           end,
         },
-        mapping = cmp.mapping.preset.insert {
+        mapping = cmp.mapping.preset.insert({
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<C-y>"] = cmp.mapping.confirm {
+          ["<C-y>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
-          },
-          ["<TAB>"] = cmp.mapping {
-            i = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+          }),
+          ["<Tab>"] = cmp.mapping({
+            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
             c = function(fallback)
               if cmp.visible() then
-                cmp.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true }
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
               else
                 fallback()
               end
             end,
-          },
+          }),
           -- Complete common string (similar to shell completion behavior).
           ["<C-l>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -99,8 +100,8 @@ return {
             "s",
             "c",
           }),
-        },
-        sources = cmp.config.sources {
+        }),
+        sources = cmp.config.sources({
           -- { name = "nvim_lsp_signature_help" },
           { name = "nvim_lsp" },
           { name = "path" },
@@ -109,7 +110,7 @@ return {
           { name = "treesitter", max_item_count = 10 },
           { name = "codeium", group_index = 1 },
           { name = "crates" },
-        },
+        }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
@@ -148,7 +149,7 @@ return {
             return item
           end,
         },
-      }
+      })
 
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline({ "/", "?" }, {
@@ -169,22 +170,22 @@ return {
       })
 
       -- Auto pairs
-      local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 
       function SetAutoCmp(mode)
         if mode then
-          cmp.setup {
+          cmp.setup({
             completion = {
               autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
             },
-          }
+          })
         else
-          cmp.setup {
+          cmp.setup({
             completion = {
               autocomplete = false,
             },
-          }
+          })
         end
       end
 

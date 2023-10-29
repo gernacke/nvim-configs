@@ -253,7 +253,7 @@ _m_: Show Man Pages
       { "s", cmd "ChatGPTRun summarize", { desc = "Summarize Codes", silent = true } },
       { "g", cmd "ChatGPTRun grammar_correction", { desc = "Grammar Correction", silent = true } },
 
-      { "v", cmd "ToggleTerm direction=vertical", { desc = "Vertical Terminal", silent = true } },
+      { "v", cmd "ToggleTerm size=85 direction=vertical", { desc = "Vertical Terminal", silent = true } },
       { "h", cmd "ToggleTerm direction=horizontal", { desc = "Horizontal Terminal", silent = true } },
 
       { "q", nil, { desc = "quit", exit = true, nowait = true } },

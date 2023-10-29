@@ -41,10 +41,10 @@ return {
   --     { "<leader>zt", "<CMD>ZkTags<CR>", desc = "Select ZK Tags" },
   --   },
   -- },
+  -- TODO: code blocks are not syntax highlighted
   {
     "renerocksai/telekasten.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
-    lazy = false,
     opts = {
       home = vim.env.HOME .. "/Dropbox/zettelkasten",
       daily = vim.env.HOME .. "/Dropbox/zettelkasten/journal/daily",
@@ -71,9 +71,10 @@ return {
       { "<leader>z/", "<CMD>lua require('telekasten').find_notes({ with_live_grep = true })<CR>", desc = "Search ZK Notes" },
       { "<leader>zn", "<CMD>Telekasten new_note<CR>", desc = "New ZK Notes" },
       { "<leader>zt", "<CMD>Telekasten show_tags<CR>", desc = "List ZK Tags" },
+      { "<leader>zd", "<CMD>Telekasten follow_link<CR>", desc = "Follow Link" },
       { "<leader>zf", "<CMD>Telekasten find_notes<CR>", desc = "Find ZK Notes" },
       { "<leader>zl", "<CMD>Telekasten insert_link<CR>", desc = "Insert ZK Link" },
-      { "<leader>zT", "<CMD>lua require('telekasten').toggle_todo({ v = true })<CR>", desc = "Convert to TODO list" },
+      { "<leader>zT", "<CMD>lua require('telekasten').toggle_todo({ v = true })<CR>", desc = "Convert to TODO list", mode = { "n", "v" }},
       { "<leader>zI", "<CMD>lua require('telekasten').insert_img_link({ i=true })<CR>", desc = "Insert Image Link" },
       -- { "<leader>z/", "<CMD>lua require('telekasten').find_notes({with_live_grep:true})<CR>", desc = "Search ZK Notes" },
     },
