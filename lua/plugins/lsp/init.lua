@@ -54,10 +54,10 @@ return {
 			"bash-debug-adapter",
 			"bash-language-server",
 			"debugpy",
-			"codelldb",
 			"json-lsp",
 			"powershell-editor-services",
       "rust-analyzer",
+      "codelldb",
 		},
 		config = function(plugin)
 			require("mason").setup()
@@ -70,8 +70,14 @@ return {
 			end
 		end,
 	},
+  -- {
+  --   "stevearc/conform.nvim",
+  --   -- enabled = false,
+  --   event = "BufReadPre",
+  --   opts = {},
+  -- },
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		event = "BufReadPre",
 		dependencies = { "mason.nvim" },
 		config = function()
@@ -84,6 +90,7 @@ return {
 					}),
 					nls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
 					nls.builtins.formatting.stylua,
+          -- nls.builtins.formatting.rustfmt,
 					--   formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
 					nls.builtins.formatting.shfmt,
 					nls.builtins.formatting.google_java_format,

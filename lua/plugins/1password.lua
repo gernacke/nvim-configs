@@ -3,7 +3,6 @@ return {
 		"mrjones2014/op.nvim",
 		build = "make install",
 		enabled = false,
-		-- lazy = false,
 		opts = {
 			-- Whether to sign in on start.
 			signin_on_start = start,

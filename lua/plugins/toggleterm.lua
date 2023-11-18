@@ -1,6 +1,5 @@
 return {
   "akinsho/toggleterm.nvim",
-  lazy = false,
   keys = { [[<C-\>]] },
   cmd = { "ToggleTerm", "TermExec" },
   config = function(opts)

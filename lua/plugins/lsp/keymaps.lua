@@ -7,7 +7,7 @@ function M.on_attach(client, buffer)
   self:map("gp", "Lspsaga peek_definition", { desc = "Peek Definition" })
   self:map("gh", "Lspsaga show_line_diagnostics", { desc = "Show Diagnostic" })
   self:map("ga", "Lspsaga code_action", { desc = "Code Action" })
-  self:map("gr", "Telescope lsp_references", { desc = "References" })
+  self:map("gr", "Lspsaga finder", { desc = "References" })
   self:map("gD", "Telescope lsp_declarations", { desc = "Goto Declaration" })
   self:map("gI", "Telescope lsp_implementations", { desc = "Goto Implementation" })
   self:map("gb", "Telescope lsp_type_definitions", { desc = "Goto type Definition" })
@@ -28,7 +28,7 @@ function M.on_attach(client, buffer)
 
   self:map("<leader>cs", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
   self:map("<leader>cS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
-  self:map("<leader>cd", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
+  self:map("<leader>cD", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
 end
 
 function M.new(client, buffer)

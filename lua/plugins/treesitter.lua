@@ -38,15 +38,15 @@ return {
       highlight = { enable = true },
       indent = { enable = true, disable = { "python" } },
       context_commentstring = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "<BS>",
-        },
-      },
+      -- incremental_selection = {
+      --   enable = true,
+      --   keymaps = {
+      --     init_selection = "gnn",
+      --     node_incremental = "grn",
+      --     scope_incremental = "grc",
+      --     node_decremental = "<BS>",
+      --   },
+      -- },
       matchup = {
         textobjects = {
           select = {
