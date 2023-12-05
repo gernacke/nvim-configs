@@ -1,104 +1,135 @@
 return {
-	{ "smjonas/inc-rename.nvim", config = true },
-	{
-		"neovim/nvim-lspconfig",
-		event = "BufReadPre",
-		dependencies = {
-			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-			{
-				"folke/neodev.nvim",
-				opts = {
-					library = { plugins = { "neotest", "nvim-dap-ui" }, types = true },
-				},
-			},
-			{ "j-hui/fidget.nvim", config = true, tag = "legacy" },
-			{ "smjonas/inc-rename.nvim", config = true },
-			"simrat39/rust-tools.nvim",
-			"rust-lang/rust.vim",
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-		},
-		opts = {
-			servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							workspace = {
-								checkThirdParty = false,
-							},
-							completion = { callSnippet = "Replace" },
-							telemetry = { enable = false },
-							hint = {
-								enable = false,
-							},
-						},
-					},
-				},
-				dockerls = {},
-			},
-			setup = {},
-		},
-		config = function(plugin, opts)
-			require("plugins.lsp.servers").setup(plugin, opts)
-		end,
-	},
-	{
-		"williamboman/mason.nvim",
-		cmd = "Mason",
-		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
-		ensure_installed = {
-			"stylua",
-			"ruff",
-			"bash-debug-adapter",
-			"bash-language-server",
-			"debugpy",
-			"json-lsp",
-			"powershell-editor-services",
+  { "smjonas/inc-rename.nvim", config = true },
+  {
+    "neovim/nvim-lspconfig",
+    event = "BufReadPre",
+    dependencies = {
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+      {
+        "folke/neodev.nvim",
+        opts = {
+          library = { plugins = { "neotest", "nvim-dap-ui" }, types = true },
+        },
+      },
+      { "j-hui/fidget.nvim", config = true, tag = "legacy" },
+      { "smjonas/inc-rename.nvim", config = true },
+      "simrat39/rust-tools.nvim",
+      "rust-lang/rust.vim",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+    },
+    opts = {
+      servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              workspace = {
+                checkThirdParty = false,
+              },
+              completion = { callSnippet = "Replace" },
+              telemetry = { enable = false },
+              hint = {
+                enable = false,
+              },
+            },
+          },
+        },
+        dockerls = {},
+      },
+      setup = {},
+    },
+    config = function(plugin, opts)
+      require("plugins.lsp.servers").setup(plugin, opts)
+    end,
+  },
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    ensure_installed = {
+      "stylua",
+      "ruff",
+      "bash-debug-adapter",
+      "bash-language-server",
+      "debugpy",
+      "json-lsp",
+      "powershell-editor-services",
       "rust-analyzer",
       "codelldb",
-		},
-		config = function(plugin)
-			require("mason").setup()
-			local mr = require("mason-registry")
-			for _, tool in ipairs(plugin.ensure_installed) do
-				local p = mr.get_package(tool)
-				if not p:is_installed() then
-					p:install()
-				end
-			end
-		end,
-	},
+    },
+    config = function(plugin)
+      require("mason").setup()
+      local mr = require("mason-registry")
+      for _, tool in ipairs(plugin.ensure_installed) do
+        local p = mr.get_package(tool)
+        if not p:is_installed() then
+          p:install()
+        end
+      end
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local conform = require("conform")
+
+      conform.setup({
+        formatters_by_ft = {
+          javascript = { "prettier" },
+          typescript = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescriptreact = { "prettier" },
+          svelte = { "prettier" },
+          css = { "prettier" },
+          html = { "prettier" },
+          json = { "prettier" },
+          yaml = { "prettier" },
+          markdown = { "prettier" },
+          graphql = { "prettier" },
+          lua = { "stylua" },
+          python = { "isort", "black" },
+        },
+        format_on_save = {
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 500,
+        },
+      })
+      vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+        conform.format({
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 500,
+        })
+      end, { desc = "Format file or range (in visual mode)" })
+    end,
+  },
   -- {
-  --   "stevearc/conform.nvim",
-  --   -- enabled = false,
-  --   event = "BufReadPre",
-  --   opts = {},
+  -- 	"nvimtools/none-ls.nvim",
+  -- 	event = "BufReadPre",
+  -- 	dependencies = { "mason.nvim" },
+  -- 	config = function()
+  -- 		local nls = require("null-ls")
+  -- 		nls.setup({
+  -- 			sources = {
+  -- 				nls.builtins.formatting.prettier.with({
+  -- 					extra_filetypes = { "toml", "solidity" },
+  -- 					extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+  -- 				}),
+  -- 				nls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
+  -- 				nls.builtins.formatting.stylua,
+  --          -- nls.builtins.formatting.rustfmt,
+  -- 				--   formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
+  -- 				nls.builtins.formatting.shfmt,
+  -- 				nls.builtins.formatting.google_java_format,
+  -- 				nls.builtins.diagnostics.ruff.with({ extra_args = { "--max-line-length=180" } }),
+  -- 				nls.builtins.diagnostics.flake8,
+  -- 				nls.builtins.diagnostics.shellcheck,
+  -- 			},
+  -- 		})
+  -- 	end,
   -- },
-	{
-		"nvimtools/none-ls.nvim",
-		event = "BufReadPre",
-		dependencies = { "mason.nvim" },
-		config = function()
-			local nls = require("null-ls")
-			nls.setup({
-				sources = {
-					nls.builtins.formatting.prettier.with({
-						extra_filetypes = { "toml", "solidity" },
-						extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-					}),
-					nls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
-					nls.builtins.formatting.stylua,
-          -- nls.builtins.formatting.rustfmt,
-					--   formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
-					nls.builtins.formatting.shfmt,
-					nls.builtins.formatting.google_java_format,
-					nls.builtins.diagnostics.ruff.with({ extra_args = { "--max-line-length=180" } }),
-					nls.builtins.diagnostics.flake8,
-					nls.builtins.diagnostics.shellcheck,
-				},
-			})
-		end,
-	},
 }

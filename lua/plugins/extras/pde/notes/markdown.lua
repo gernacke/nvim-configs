@@ -14,6 +14,20 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
   },
+  {
+      "toppair/peek.nvim",
+      event = { "VeryLazy" },
+      build = "deno task --quiet build:fast",
+      config = function()
+          require("peek").setup({
+        app = "browser",
+        filetype = { 'md', 'markdown' },
+      })
+          -- refer to `configuration to change defaults`
+          vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+          vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+      end,
+  },
   { "mzlogin/vim-markdown-toc", ft = { "markdown" } },
   -- {
   --   "mickael-menu/zk-nvim",
@@ -64,6 +78,7 @@ return {
       tag_notation = ":tag:",
 
       show_tags_theme = "dropdown",
+      auto_set_filetype = false, -- Do not set .md files to telekasten filetype for syntax to work
     },
     enabled = true,
     ft = { "markdown" },
@@ -80,28 +95,47 @@ return {
     },
   },
   -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     -- make sure mason installs the server
-  --     servers = {
-  --       marksman = {},
-  --       zk = {
-  --         root_dir = require("lspconfig.util").root_pattern { ".git", ".zk" },
-  --       },
-  --     },
-  --   },
+  --   "folke/paint.nvim",
+  --     config = function()
+  --       require("paint").setup({
+  --         ---@type PaintHighlight[]
+  --         highlights = {
+  --           {
+  --             -- filter can be a table of buffer options that should match,
+  --             -- or a function called with buf as param that should return true.
+  --             -- The example below will paint @something in comments with Constant
+  --             filter = { filetype = "lua" },
+  --             pattern = "%s%-%-%-%s(@%w+)",
+  --             hl = "Constant",
+  --           },
+  --         },
+  --       })
+  --     end,
+  --   -- config = function()
+  --   --   local hlmap = {
+  --   --     ["^#%s+(.-)%s*$"] = "Operator",
+  --   --     ["^##%s+(.-)%s*$"] = "Type",
+  --   --     ["^###%s+(.-)%s*$"] = "String",
+  --   --     ["^####%s+(.-)%s*$"] = "Constant",
+  --   --     ["^#####%s+(.-)%s*$"] = "Number",
+  --   --     ["^######%s+(.-)%s*$"] = "Error",
+  --   --   }
+  --   --
+  --   --   local highlights = {}
+  --   --   for pattern, hl in pairs(hlmap) do
+  --   --     table.insert(highlights, {
+  --   --       filter = { filetype = "markdown" },
+  --   --       pattern = pattern,
+  --   --       hl = hl,
+  --   --     })
+  --   --   end
+  --   --
+  --   --   require("paint").setup({
+  --   --     ---@type PaintHighlight[]
+  --   --     highlights = highlights,
+  --   --   })
+  --   -- end,
+  --   filedtype = { "markdown" },
+  --   lazy = false,
   -- },
-  -- {
-  --   "epwalsh/obsidian.nvim",
-  --   opts = {
-  --     dir = vim.env.HOME .. "/obsidian",
-  --     completion = {
-  --       nvim_cmp = true,
-  --     },
-  --   },
-  --   ft = { "markdown" },
-  -- },
-  -- { "toppair/peek.nvim", run = "deno task --quiet build:fast" },
-  -- glow.nvim
-  -- https://github.com/rockerBOO/awesome-neovim#markdown-and-latex
 }

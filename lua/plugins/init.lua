@@ -154,6 +154,17 @@ return {
     config = true,
   },
   {
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker").setup({
+        disable_legacy_commands = true
+      })
+    end,
+    keys = {
+      { "<leader>ji", ":IconPickerNormal<CR>", desc = "Insert Icons" },
+    },
+  },
+  {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
     enabled = true,
