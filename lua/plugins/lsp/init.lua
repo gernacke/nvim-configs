@@ -46,6 +46,9 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    dependencies = {
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     ensure_installed = {
@@ -60,7 +63,29 @@ return {
       "codelldb",
     },
     config = function(plugin)
-      require("mason").setup()
+      require("mason").setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "❌",
+          },
+        },
+      })
+
+      local mason_tool_installer = require("mason-tool-installer")
+
+      mason_tool_installer.setup({
+        ensure_installed = {
+          "prettier", -- prettier formatter
+          "stylua", -- lua formatter
+          "black", -- python formatter
+          "pylint", -- python linter
+          "eslint_d", -- js linter
+          "shellcheck",
+        },
+      })
+
       local mr = require("mason-registry")
       for _, tool in ipairs(plugin.ensure_installed) do
         local p = mr.get_package(tool)

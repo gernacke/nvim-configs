@@ -52,7 +52,7 @@ return {
           { "<CMD>e ~/repositories/workbench/l2<CR>", "list 2" },
         },
         d = {
-          { "<CMD>e ~/repositories/workbench/l3<CR>", "list 3" },
+          { "<CMD>e ~/repositories/workbench/l3.md<CR>", "list 3" },
         },
       },
       l = {
@@ -122,7 +122,7 @@ return {
           "Reddit",
         },
       },
-      t = { 
+      t = {
         name = "+Test/Table",
         d = { name = "Table Delete" },
         i = { name = "Table Insert" },
