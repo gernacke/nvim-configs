@@ -1,5 +1,5 @@
 local function gitsigns_menu()
-  local gitsigns = require "gitsigns"
+  local gitsigns = require("gitsigns")
 
   local hint = [[
  _J_: Next hunk   _s_: Stage Hunk        _d_: Show Deleted   _b_: Blame Line
@@ -20,17 +20,17 @@ local function gitsigns_menu()
         position = "bottom",
       },
       on_enter = function()
-        vim.cmd "mkview"
-        vim.cmd "silent! %foldopen!"
+        vim.cmd("mkview")
+        vim.cmd("silent! %foldopen!")
         vim.bo.modifiable = false
         gitsigns.toggle_signs(true)
         gitsigns.toggle_linehl(true)
       end,
       on_exit = function()
         local cursor_pos = vim.api.nvim_win_get_cursor(0)
-        vim.cmd "loadview"
+        vim.cmd("loadview")
         vim.api.nvim_win_set_cursor(0, cursor_pos)
-        vim.cmd "normal zv"
+        vim.cmd("normal zv")
         gitsigns.toggle_signs(true)
         gitsigns.toggle_linehl(false)
         gitsigns.toggle_deleted(false)
@@ -73,7 +73,7 @@ local function gitsigns_menu()
       {
         "B",
         function()
-          gitsigns.blame_line { full = true }
+          gitsigns.blame_line({ full = true })
         end,
         { desc = "Blame Show Full" },
       },
@@ -85,9 +85,9 @@ local function gitsigns_menu()
 end
 
 local function dap_menu()
-  local dap = require "dap"
-  local dapui = require "dapui"
-  local dap_widgets = require "dap.ui.widgets"
+  local dap = require("dap")
+  local dapui = require("dapui")
+  local dap_widgets = require("dap.ui.widgets")
 
   local hint = [[
  _t_: Toggle Breakpoint             _R_: Run to Cursor
@@ -180,22 +180,22 @@ _;_/_q_/_<Esc>_: Exit Hydra
 ]],
     body = "<A-m>",
     heads = {
-      { "s", cmd "TroubleToggle lsp_definitions", { desc = "Jump to Definition", silent = true } },
-      { "h", cmd "Lspsaga hover_doc", { desc = "Show Hover Doc", silent = true } },
-      { "o", cmd "TroubleToggle lsp_implementations", { desc = "Show Implementations", silent = true } },
+      { "s", cmd("TroubleToggle lsp_definitions"), { desc = "Jump to Definition", silent = true } },
+      { "h", cmd("Lspsaga hover_doc"), { desc = "Show Hover Doc", silent = true } },
+      { "o", cmd("TroubleToggle lsp_implementations"), { desc = "Show Implementations", silent = true } },
       { "j", vim.lsp.buf.signature_help, { desc = "Show Sig Help", silent = true } },
-      { "r", cmd "TroubleToggle lsp_references", { desc = "Show References", silent = true } },
+      { "r", cmd("TroubleToggle lsp_references"), { desc = "Show References", silent = true } },
       {
         "f",
         function()
-          vim.lsp.buf.format { async = true }
+          vim.lsp.buf.format({ async = true })
         end,
         { desc = "Format Buffer", silent = true },
       },
       { "a", vim.lsp.buf.code_action, { desc = "Show Code Actions", silent = true } },
-      { "d", cmd "TroubleToggle document_diagnostics", { desc = "Show Diagnostics", silent = true } },
-      { "w", cmd "TroubleToggle workspace_diagnostics", { desc = "Show Workspace Diagnostics", silent = true } },
-      { "D", cmd "TroubleToggle lsp_definitions", { desc = "Show Type Definition", silent = true } },
+      { "d", cmd("TroubleToggle document_diagnostics"), { desc = "Show Diagnostics", silent = true } },
+      { "w", cmd("TroubleToggle workspace_diagnostics"), { desc = "Show Workspace Diagnostics", silent = true } },
+      { "D", cmd("TroubleToggle lsp_definitions"), { desc = "Show Type Definition", silent = true } },
       { "e", vim.lsp.buf.declaration, { desc = "Show Declaration", silent = true } },
       { ";", nil, { desc = "quit", exit = true, nowait = true } },
       { "q", nil, { desc = "quit", exit = true, nowait = true } },
@@ -242,19 +242,31 @@ _m_: Show Man Pages
     body = "<A-b>",
     heads = {
       { "k", ":lua require('telescope.builtin').keymaps()<CR>", { desc = "Open Neovim Keymaps", silent = true } },
-      { "c", cmd "Telescope commands", { desc = "Open Available Telescope Commands", silent = true } },
-      { "m", cmd "Telescope man_pages", { desc = "Opens Man Pages", silent = true } },
+      { "c", cmd("Telescope commands"), { desc = "Open Available Telescope Commands", silent = true } },
+      { "m", cmd("Telescope man_pages"), { desc = "Opens Man Pages", silent = true } },
 
-      { "b", cmd "Telescope current_buffer_fuzzy_find skip_empty_lines=true", { desc = "Fuzzy find in current buffer", silent = true } },
-      { "o", cmd 'lua require("nvim-navbuddy").open()', { desc = "Opens Symbols Outline", exit = true, silent = true } },
+      {
+        "b",
+        cmd("Telescope current_buffer_fuzzy_find skip_empty_lines=true"),
+        { desc = "Fuzzy find in current buffer", silent = true },
+      },
+      {
+        "o",
+        cmd('lua require("nvim-navbuddy").open()'),
+        { desc = "Opens Symbols Outline", exit = true, silent = true },
+      },
 
-      { "x", cmd "ChatGPTRun explain_code", { desc = "Explains Code", silent = true } },
-      { "e", cmd ":lua require'chatgpt'.edit_with_instructions()<cr>", { desc = "Edit Codes With Instructions", silent = true } },
-      { "s", cmd "ChatGPTRun summarize", { desc = "Summarize Codes", silent = true } },
-      { "g", cmd "ChatGPTRun grammar_correction", { desc = "Grammar Correction", silent = true } },
+      { "x", cmd("ChatGPTRun explain_code"), { desc = "Explains Code", silent = true } },
+      {
+        "e",
+        cmd(":lua require'chatgpt'.edit_with_instructions()<cr>"),
+        { desc = "Edit Codes With Instructions", silent = true },
+      },
+      { "s", cmd("ChatGPTRun summarize"), { desc = "Summarize Codes", silent = true } },
+      { "g", cmd("ChatGPTRun grammar_correction"), { desc = "Grammar Correction", silent = true } },
 
-      { "v", cmd "ToggleTerm size=85 direction=vertical", { desc = "Vertical Terminal", silent = true } },
-      { "h", cmd "ToggleTerm direction=horizontal", { desc = "Horizontal Terminal", silent = true } },
+      { "v", cmd("ToggleTerm size=85 direction=vertical"), { desc = "Vertical Terminal", silent = true } },
+      { "h", cmd("ToggleTerm direction=horizontal"), { desc = "Horizontal Terminal", silent = true } },
 
       { "q", nil, { desc = "quit", exit = true, nowait = true } },
       { "<Esc>", nil, { desc = "quit", exit = true, nowait = true } },
@@ -267,7 +279,7 @@ return {
     "anuvyklack/hydra.nvim",
     event = "VeryLazy",
     config = function(_, _)
-      local hydra = require "hydra"
+      local hydra = require("hydra")
       hydra(gitsigns_menu())
       hydra(dap_menu())
       hydra(quick_menu())
