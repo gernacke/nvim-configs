@@ -10,7 +10,16 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "f3fora/cmp-spell",
-      { "jcdickinson/codeium.nvim", config = true },
+      {
+        "Exafunction/codeium.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+          "hrsh7th/nvim-cmp",
+        },
+        config = function()
+          require("codeium").setup({})
+        end,
+      },
       {
         "jcdickinson/http.nvim",
         build = "cargo build --workspace --release",
@@ -24,8 +33,7 @@ return {
 
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0
-          and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
       cmp.setup({

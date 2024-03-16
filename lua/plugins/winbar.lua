@@ -47,10 +47,10 @@ return {
         -- },
 
         -- The highlight animation when jumped to a definition
-        -- beacon = {
-          -- enable = true,
-          -- frequency = 20,
-        -- },
+        beacon = {
+          enable = true,
+          frequency = 20,
+        },
         symbol_in_winbar = {
           enable = true,
           separator = " ",
@@ -69,7 +69,7 @@ return {
           },
         },
         outline = {
-          layout = 'float',
+          layout = "float",
         },
       })
     end,

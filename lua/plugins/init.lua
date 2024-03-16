@@ -55,7 +55,6 @@ return {
         backdrop = 0.9,
       },
       plugins = {
-        -- tmux = { enabled = true },
         lualine = { enabled = false },
       },
     },
@@ -130,7 +129,7 @@ return {
         indent = { char = "▏" },
         scope = {
           -- Shows an underline on the first line of the scope
-        show_start = false,
+          show_start = false,
         },
       })
     end,
@@ -157,7 +156,7 @@ return {
     "ziontee113/icon-picker.nvim",
     config = function()
       require("icon-picker").setup({
-        disable_legacy_commands = true
+        disable_legacy_commands = true,
       })
     end,
     keys = {
