@@ -147,10 +147,10 @@ return {
         end,
       },
       mappings = {
-        comment = 'gc',
-        comment_line = '<leader>;;',
-        comment_visual = '<leader>;',
-        textobject = 'gc',
+        comment = "gc",
+        comment_line = "gcc",
+        comment_visual = "gc",
+        textobject = "gc",
       },
       hooks = {
         pre = function()
@@ -188,7 +188,7 @@ return {
     "echasnovski/mini.animate",
     event = "VeryLazy",
     enabled = false,
-    config = function(_, _)
+    config = function()
       require("mini.animate").setup({})
     end,
   },
