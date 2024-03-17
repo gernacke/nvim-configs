@@ -67,6 +67,37 @@ M.search_nvim_configs = function()
   builtin.find_files(opts)
 end
 
+M.workspace_symbol = function()
+  local _, ret, stderr = utils.get_os_command_output({
+    "git",
+    "rev-parse",
+    "--is-inside-work-tree",
+  })
+
+  local fopts = {}
+
+  -- fopts.layout_strategy = "horizontal"
+  -- fopts.layout_config = { height = 0.8 }
+
+  fopts.prompt_title = "🗃️ Workspace Symbols"
+  fopts.prompt_prefix = "  "
+  fopts.results_title = "🗃️ Workspace Symbols"
+
+  fopts.no_ignore = false
+  fopts.file_ignore_patterns = {
+    ".vim/",
+    ".local/",
+    ".cache/",
+    "Downloads/",
+    ".git/",
+    ".rustup/.*",
+    "_root",
+    "target/",
+  }
+  fopts.results_title = "CWD: " .. vim.fn.getcwd()
+  builtin.lsp_dynamic_workspace_symbols(fopts)
+end
+
 M.grep_nvim_configs = function()
   local opts = {}
   opts.prompt_title = "< Grep Nvim Files >"
@@ -164,7 +195,7 @@ M.project_files = function()
   end
 end
 
-M.fine_all_files = function ()
+M.fine_all_files = function()
   local fopts = {}
 
   fopts.layout_strategy = "horizontal"

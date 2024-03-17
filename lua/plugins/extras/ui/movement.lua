@@ -17,11 +17,11 @@ return {
       local t = {}
       -- Syntax: t[keys] = {function, {function arguments}}
       -- Use the "sine" easing function
-      t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "120", [['circular']] } }
-      t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "120", [['circular']] } }
+      t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "80", [['circular']] } }
+      t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "80", [['circular']] } }
       -- Use the "circular" easing function
-      t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "100", [['circular']] } }
-      t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "100", [['circular']] } }
+      t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "80", [['circular']] } }
+      t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "80", [['circular']] } }
       -- Pass "nil" to disable the easing animation (constant scrolling speed)
       t["<C-y>"] = { "scroll", { "-0.10", "false", "50", nil } }
       t["<C-e>"] = { "scroll", { "0.10", "false", "50", nil } }

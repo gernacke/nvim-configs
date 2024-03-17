@@ -27,7 +27,7 @@ function M.on_attach(client, buffer)
   self:map("<leader>cr", M.rename, { expr = true, desc = "Rename", has = "rename" })
 
   self:map("<leader>cs", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
-  self:map("<leader>cS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
+  self:map("<leader>cS", require("utils.telescope").workspace_symbol, { desc = "Workspace Symbols" })
   self:map("<leader>cD", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
 end
 
@@ -55,7 +55,7 @@ end
 
 function M.rename()
   if pcall(require, "inc_rename") then
-    return ":IncRename " .. vim.fn.expand "<cword>"
+    return ":IncRename " .. vim.fn.expand("<cword>")
   else
     vim.lsp.buf.rename()
   end
@@ -65,7 +65,7 @@ function M.diagnostic_goto(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
-    go { severity = severity }
+    go({ severity = severity })
   end
 end
 
