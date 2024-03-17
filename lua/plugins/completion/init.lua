@@ -167,6 +167,12 @@ return {
         },
       })
 
+      -- Use buffer source only in Command History ('q:') window
+      cmp.setup.filetype({ "vim" }, {
+        sources = {
+          { name = "buffer" },
+        },
+      })
       -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
