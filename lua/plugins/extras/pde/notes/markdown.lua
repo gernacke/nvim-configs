@@ -15,18 +15,18 @@ return {
     end,
   },
   {
-      "toppair/peek.nvim",
-      event = { "VeryLazy" },
-      build = "deno task --quiet build:fast",
-      config = function()
-          require("peek").setup({
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+      require("peek").setup({
         app = "browser",
-        filetype = { 'md', 'markdown' },
+        filetype = { "md", "markdown" },
       })
-          -- refer to `configuration to change defaults`
-          vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-          vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-      end,
+      -- refer to `configuration to change defaults`
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    end,
   },
   { "mzlogin/vim-markdown-toc", ft = { "markdown" } },
   -- {
@@ -83,16 +83,40 @@ return {
     enabled = true,
     ft = { "markdown" },
     keys = {
-      { "<leader>z/", "<CMD>lua require('telekasten').find_notes({ with_live_grep = true })<CR>", desc = "Search ZK Notes" },
+      {
+        "<leader>z/",
+        "<CMD>lua require('telekasten').find_notes({ with_live_grep = true })<CR>",
+        desc = "Search ZK Notes",
+      },
       { "<leader>zn", "<CMD>Telekasten new_note<CR>", desc = "New ZK Notes" },
       { "<leader>zt", "<CMD>Telekasten show_tags<CR>", desc = "List ZK Tags" },
       { "<leader>zd", "<CMD>Telekasten follow_link<CR>", desc = "Follow Link" },
       { "<leader>zf", "<CMD>Telekasten find_notes<CR>", desc = "Find ZK Notes" },
       { "<leader>zl", "<CMD>Telekasten insert_link<CR>", desc = "Insert ZK Link" },
-      { "<leader>zT", "<CMD>lua require('telekasten').toggle_todo({ v = true })<CR>", desc = "Convert to TODO list", mode = { "n", "v" }},
+      {
+        "<leader>zT",
+        "<CMD>lua require('telekasten').toggle_todo({ v = true })<CR>",
+        desc = "Convert to TODO list",
+        mode = { "n", "v" },
+      },
       { "<leader>zI", "<CMD>lua require('telekasten').insert_img_link({ i=true })<CR>", desc = "Insert Image Link" },
       -- { "<leader>z/", "<CMD>lua require('telekasten').find_notes({with_live_grep:true})<CR>", desc = "Search ZK Notes" },
     },
+  },
+  --  [markdown markmap]
+  --  https://github.com/Zeioth/markmap.nvim
+  {
+    "Zeioth/markmap.nvim",
+    build = "yarn global add markmap-cli",
+    cmd = { "MarkmapOpen", "MarkmapSave", "MarkmapWatch", "MarkmapWatchStop" },
+    opts = {
+      html_output = "/tmp/markmap.html", -- (default) Setting a empty string "" here means: [Current buffer path].html
+      hide_toolbar = false, -- (default)
+      grace_period = 3600000, -- (default) Stops markmap watch after 60 minutes. Set it to 0 to disable the grace_period.
+    },
+    config = function(_, opts)
+      require("markmap").setup(opts)
+    end,
   },
   -- {
   --   "folke/paint.nvim",
