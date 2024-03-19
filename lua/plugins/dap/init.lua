@@ -2,6 +2,7 @@ local M = {
   "mfussenegger/nvim-dap",
   dependencies = {
     { "rcarriga/nvim-dap-ui" },
+    { "nvim-neotest/nvim-nio" },
     { "theHamsta/nvim-dap-virtual-text" },
     { "nvim-telescope/telescope-dap.nvim" },
     { "jbyuki/one-small-step-for-vimkind" },
@@ -37,12 +38,12 @@ local M = {
     },
   },
   config = function(plugin, opts)
-    require("nvim-dap-virtual-text").setup {
+    require("nvim-dap-virtual-text").setup({
       commented = true,
-    }
+    })
 
-    local dap, dapui = require "dap", require "dapui"
-    dapui.setup {}
+    local dap, dapui = require("dap"), require("dapui")
+    dapui.setup({})
 
     dap.listeners.after.event_initialized["dapui_config"] = function()
       dapui.open()
