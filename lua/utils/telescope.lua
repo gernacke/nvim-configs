@@ -68,16 +68,10 @@ M.search_nvim_configs = function()
 end
 
 M.workspace_symbol = function()
-  local _, ret, stderr = utils.get_os_command_output({
-    "git",
-    "rev-parse",
-    "--is-inside-work-tree",
-  })
-
   local fopts = {}
 
   -- fopts.layout_strategy = "horizontal"
-  -- fopts.layout_config = { height = 0.8 }
+  -- fopts.layout_config = { height = 0.8, prompt_position = "top" }
 
   fopts.prompt_title = "🗃️ Workspace Symbols"
   fopts.prompt_prefix = "  "
@@ -95,7 +89,7 @@ M.workspace_symbol = function()
     "target/",
   }
   fopts.results_title = "CWD: " .. vim.fn.getcwd()
-  builtin.lsp_dynamic_workspace_symbols(fopts)
+  builtin.lsp_dynamic_workspace_symbols(themes.get_ivy(fopts))
 end
 
 M.grep_nvim_configs = function()
