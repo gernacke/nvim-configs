@@ -17,7 +17,11 @@ end)()
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects", "JoosepAlviste/nvim-ts-context-commentstring", "RRethy/nvim-treesitter-endwise" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      "RRethy/nvim-treesitter-endwise",
+    },
     build = ":TSUpdate",
     event = "BufReadPost",
     opts = {
@@ -37,7 +41,6 @@ return {
       },
       highlight = { enable = true },
       indent = { enable = true, disable = { "python" } },
-      context_commentstring = { enable = true },
       -- incremental_selection = {
       --   enable = true,
       --   keymaps = {
@@ -102,8 +105,8 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = function()
-      local npairs = require "nvim-autopairs"
-      npairs.setup {
+      local npairs = require("nvim-autopairs")
+      npairs.setup({
         check_ts = true,
         fast_wrap = {
           map = "<C-l>",
@@ -115,7 +118,7 @@ return {
           highlight = "Search",
           highlight_grey = "Comment",
         },
-      }
+      })
     end,
   },
 }
