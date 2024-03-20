@@ -168,11 +168,11 @@ vim.cmd([[
   " augroup end
 ]])
 
--- vim.api.nvim_create_autocmd("ColorScheme *", {
--- 	group = vim.api.nvim_create_augroup("MyHighlights", { clear = true }),
--- 	callback = function()
--- 		vim.cmd([[ highlight VertSplit guifg=#665c54 guibg=NONE ]])
--- 	end,
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   group = vim.api.nvim_create_augroup("MyHighlights", { clear = true }),
+--   callback = function()
+--     vim.cmd([[ highlight VertSplit guifg=#665c54 guibg=NONE ]])
+--   end,
 -- })
 
 -- Delete the <CR> mapping (clear incremental_selection in treesitter configs)
@@ -183,14 +183,22 @@ vim.cmd([[
 --   end,
 -- })
 -- Enter `TermMode` and start `Insert` mode automatically
-vim.api.nvim_create_autocmd("TermOpen *", {
-  group = vim.api.nvim_create_augroup("TerminalOpen", { clear = true }),
-  callback = function()
-    vim.cmd([[ startinsert ]])
-    vim.wo.number = false
-    vim.wo.relativenumber = false
-  end,
-})
+-- vim.api.nvim_create_autocmd("TermOpen", {
+--   group = vim.api.nvim_create_augroup("TerminalOpen", { clear = true }),
+--   callback = function()
+--     vim.cmd([[ startinsert ]])
+--     vim.wo.number = false
+--     vim.wo.relativenumber = false
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd("TermLeave", {
+--   group = vim.api.nvim_create_augroup("TerminalLeave", { clear = true }),
+--   callback = function()
+--     vim.wo.number = true
+--     vim.wo.relativenumber = true
+--   end,
+-- })
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -213,14 +221,6 @@ vim.api.nvim_create_autocmd("TermEnter", {
 vim.api.nvim_create_autocmd("VimLeave", {
   callback = function()
     vim.cmd([[set guicursor=a:ver25]])
-  end,
-})
-
-vim.api.nvim_create_autocmd("TermLeave *", {
-  group = vim.api.nvim_create_augroup("TerminalLeave", { clear = true }),
-  callback = function()
-    vim.wo.number = true
-    vim.wo.relativenumber = true
   end,
 })
 
