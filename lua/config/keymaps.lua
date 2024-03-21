@@ -56,9 +56,9 @@ local keymappings = {
     ["zl"] = "zL", -- Moves right half screen
 
     -- Retains column positions while moving
-    ["z<cr>"] = "zt", -- Moves the line to the top of the screen
-    ["z."] = "zz8<C-e>", -- Moves the line to the middle of the screen
-    ["z-"] = "zb", -- Moves the line to the bottom of the screen
+    -- ["z<cr>"] = "zt", -- Moves the line to the top of the screen
+    -- ["z."] = "zz8<C-e>", -- Moves the line to the middle of the screen
+    -- ["z-"] = "zb", -- Moves the line to the bottom of the screen
     -- ["<c-u>"] = "<c-u>zz",
     -- ["<c-d>"] = "<c-d>zz",
 

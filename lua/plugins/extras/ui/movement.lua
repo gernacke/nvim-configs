@@ -12,6 +12,7 @@ return {
     config = function()
       require("neoscroll").setup({
         easing_function = "quadratic",
+        hide_cursor = true,
         respect_scrolloff = true, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
       })
       local t = {}
@@ -26,9 +27,9 @@ return {
       t["<C-y>"] = { "scroll", { "-0.10", "false", "50", nil } }
       t["<C-e>"] = { "scroll", { "0.10", "false", "50", nil } }
       -- When no easing function is provided the default easing function (in this case "quadratic") will be used
-      t["zt"] = { "zt", { "100" } }
-      t["zz"] = { "zz", { "100" } }
-      t["zb"] = { "zb", { "100" } }
+      t["z<cr>"] = { "zt", { "70" } }
+      t["z."] = { "zz", { "70" } }
+      t["z-"] = { "zb", { "70" } }
 
       require("neoscroll.config").set_mappings(t)
     end,
