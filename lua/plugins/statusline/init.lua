@@ -5,7 +5,7 @@ return {
 
     -- cond = false,
     config = function()
-      local components = require "plugins.statusline.components"
+      local components = require("plugins.statusline.components")
       local hide_in_width = function()
         return vim.fn.winwidth(0) > 80
       end
@@ -35,12 +35,12 @@ return {
         symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
         cond = hide_in_width,
       }
-      require("lualine").setup {
+      require("lualine").setup({
         options = {
           icons_enabled = true,
           theme = "auto",
           component_separators = {},
-          section_separators = {left = '', right = ''},
+          section_separators = {},
           disabled_filetypes = {
             statusline = { "alpha", "lazy", "Outline" },
             winbar = {
@@ -82,7 +82,7 @@ return {
           lualine_z = {},
         },
         extensions = { "nvim-tree", "toggleterm", "quickfix" },
-      }
+      })
     end,
   },
 }
