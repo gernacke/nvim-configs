@@ -146,6 +146,8 @@ return {
           buffers = {
             theme = "dropdown",
             previewer = false,
+            -- path_display = { shorten = { len = 2, exclude = { 1, -1 } } },
+            path_display = { "tail" },
           },
         },
         extensions = {
