@@ -1,6 +1,7 @@
 return {
   {
     "ThePrimeagen/harpoon",
+    enabled = false,
     --stylua: ignore
     keys = {
       { "<leader>ja", function() require("harpoon.mark").add_file() end, desc = "Add File" },
