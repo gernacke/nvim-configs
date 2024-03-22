@@ -46,10 +46,10 @@ return {
           { "<CMD>e ~/repositories/workbench/help.md<CR>", "help notes" },
         },
         a = {
-          { "<CMD>e ~/repositories/workbench/l1<CR>", "list 1" },
+          { "<CMD>e ~/repositories/workbench/l1.md<CR>", "list 1" },
         },
         s = {
-          { "<CMD>e ~/repositories/workbench/l2<CR>", "list 2" },
+          { "<CMD>e ~/repositories/workbench/l2.md<CR>", "list 2" },
         },
         d = {
           { "<CMD>e ~/repositories/workbench/l3.md<CR>", "list 3" },
