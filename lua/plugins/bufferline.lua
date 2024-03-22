@@ -2,6 +2,7 @@ return {
   {
     "akinsho/nvim-bufferline.lua",
     event = "VeryLazy",
+    enabled = false,
     -- cond = false,
     opts = {
       options = {
