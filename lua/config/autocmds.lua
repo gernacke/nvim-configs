@@ -300,27 +300,27 @@ function M.link_illuminate_hlgroup()
   })
 end
 
-function M.enable_transparent_mode()
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = "*",
-    callback = function()
-      local hl_groups = {
-        "Normal",
-        "WinbarNC",
-        "SignColumn",
-        "NormalNC",
-        "TelescopeBorder",
-        "NvimTreeNormal",
-        "EndOfBuffer",
-        "MsgArea",
-      }
-      for _, name in ipairs(hl_groups) do
-        vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
-      end
-    end,
-  })
-  vim.opt.fillchars = "eob: "
-end
+-- function M.enable_transparent_mode()
+--   vim.api.nvim_create_autocmd("ColorScheme", {
+--     pattern = "*",
+--     callback = function()
+--       local hl_groups = {
+--         "Normal",
+--         "WinbarNC",
+--         "SignColumn",
+--         "NormalNC",
+--         "TelescopeBorder",
+--         "NvimTreeNormal",
+--         "EndOfBuffer",
+--         "MsgArea",
+--       }
+--       for _, name in ipairs(hl_groups) do
+--         vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
+--       end
+--     end,
+--   })
+--   vim.opt.fillchars = "eob: "
+-- end
 
 -- M.enable_transparent_mode()
 M.link_illuminate_hlgroup()
