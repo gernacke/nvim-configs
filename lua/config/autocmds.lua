@@ -200,6 +200,18 @@ vim.cmd([[
 --   end,
 -- })
 
+-- Define a Lua function to center the cursor ignoring scrolloff
+function CenterCursorWithoutScrolloff()
+  -- Save the current value of 'scrolloff'
+  local old_scrolloff = vim.o.scrolloff
+  -- Set 'scrolloff' to zero
+  vim.o.scrolloff = 0
+  -- Execute 'zz' to center the cursor
+  vim.cmd("normal! zz")
+  -- Restore the original value of 'scrolloff'
+  vim.o.scrolloff = old_scrolloff
+end
+
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = augroup("auto_create_dir"),
