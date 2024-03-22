@@ -3,21 +3,21 @@ return {
     "folke/styler.nvim",
     event = "VeryLazy",
     config = function()
-      require("styler").setup {
+      require("styler").setup({
         themes = {
           -- markdown = { colorscheme = "gruvbox" },
           -- help = { colorscheme = "tokyonight-night" },
         },
-      }
+      })
     end,
   },
   {
     "ellisonleao/gruvbox.nvim",
     -- priority = 1000,
     config = function()
-      require("gruvbox").setup {
+      require("gruvbox").setup({
         contrast = "hard",
-      }
+      })
       -- vim.cmd [[colorscheme gruvbox]]
     end,
   },
@@ -34,7 +34,7 @@ return {
     },
     -- enabled = false,
     config = function(_, opts)
-      local tokyonight = require "tokyonight"
+      local tokyonight = require("tokyonight")
       tokyonight.setup(opts)
       -- tokyonight.load()
       -- vim.cmd [[colorscheme tokyonight-moon]]
@@ -65,6 +65,19 @@ return {
           -- set their background accordingly if you wish to keep them dark and borderless
           LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
           MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+          TelescopeTitle = { fg = theme.ui.special, bold = true },
+          TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+          TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+          TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+          TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+          TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+          TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+
+          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+          PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+          PmenuSbar = { bg = theme.ui.bg_m1 },
+          PmenuThumb = { bg = theme.ui.bg_p2 },
         }
       end,
       colors = {
@@ -76,11 +89,12 @@ return {
           },
         },
       },
-      -- transparent = true,
+      transparent = true,
+      -- dimInactive = true, -- dim inactive window `:h hl-NormalNC`
     },
     name = "kanagawa",
     config = function(_, opts)
-      local kanagawa = require "kanagawa"
+      local kanagawa = require("kanagawa")
       require("kanagawa").setup(opts)
       kanagawa.load()
     end,
