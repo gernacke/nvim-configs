@@ -67,11 +67,30 @@ M.search_nvim_configs = function()
   builtin.find_files(opts)
 end
 
-M.workspace_symbol = function()
+M.document_symbol = function()
   local fopts = {}
 
-  -- fopts.layout_strategy = "horizontal"
-  -- fopts.layout_config = { height = 0.8, prompt_position = "top" }
+  fopts.prompt_title = " Document Symbols"
+  fopts.prompt_prefix = "  "
+  fopts.results_title = " Document Symbols"
+
+  fopts.no_ignore = false
+  fopts.file_ignore_patterns = {
+    ".vim/",
+    ".local/",
+    ".cache/",
+    "Downloads/",
+    ".git/",
+    ".rustup/.*",
+    "_root",
+    "target/",
+  }
+  fopts.results_title = "CWD: " .. vim.fn.getcwd()
+  builtin.lsp_document_symbols(themes.get_dropdown(fopts))
+end
+
+M.workspace_symbol = function()
+  local fopts = {}
 
   fopts.prompt_title = "🗃️ Workspace Symbols"
   fopts.prompt_prefix = "  "
