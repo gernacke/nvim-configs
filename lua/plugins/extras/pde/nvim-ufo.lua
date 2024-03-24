@@ -31,6 +31,7 @@ return {
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
     module = false,
+    event = "BufEnter",
     --stylua: ignore
     keys = {
       { "zc" },
