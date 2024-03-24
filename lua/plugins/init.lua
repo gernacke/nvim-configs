@@ -76,19 +76,22 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     -- dependencies = { "DaikyXendo/nvim-material-icon" },
-    -- config = function()
-    --   require("nvim-web-devicons").setup({
-    --     override = require("nvim-material-icon").get_icons(),
-    --   })
-    --   require("nvim-web-devicons").set_icon({
-    --     bash = {
-    --       icon = "",
-    --       color = "#428850",
-    --       cterm_color = "65",
-    --       name = "Zsh",
-    --     },
-    --   })
-    -- end,
+    config = function()
+      require("nvim-web-devicons").setup({
+        override_by_extension = {
+          ["log"] = {
+            icon = "",
+            color = "#81e043",
+            name = "Log",
+          },
+          -- ["toml"] = {
+          --   icon = "󰬛",
+          --   color = "#81e043",
+          --   name = "toml",
+          -- },
+        },
+      })
+    end,
   },
   {
     "andymass/vim-matchup",

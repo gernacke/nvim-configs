@@ -130,15 +130,6 @@ local keymappings = {
       "<Plug>(EasyAlign)",
       { noremap = false, silent = false },
     },
-    -- FIX: fix these mappings
-    -- ["."] = {
-    -- 	"<CMD>normal .<CR>",
-    -- 	{ noremap = true, silent = false },
-    -- },
-    -- ["@"] = {
-    -- 	"<cmd><C-u>echo '@'.getcmdline() | execute ':'<,'>normal @' . nr2char(getchar())<Cr>'",
-    -- 	{ noremap = false, silent = true },
-    -- },
   },
 }
 
