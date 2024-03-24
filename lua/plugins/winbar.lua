@@ -46,6 +46,9 @@ return {
         --   },
         -- },
 
+        lightbulb = {
+          enable = false,
+        },
         -- The highlight animation when jumped to a definition
         beacon = {
           enable = true,
