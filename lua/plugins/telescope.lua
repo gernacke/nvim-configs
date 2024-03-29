@@ -23,7 +23,6 @@ return {
     cmd = "Telescope",
     keys = {
       { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Grep CrnBuffer" },
-      { "<leader>fB", "<cmd>lua require('utils.telescope').firefox_bookmarks()<cr>", desc = "Find Bookmarks" },
       { "<leader>co", "<cmd>Telescope aerial<cr>", desc = "Code Outline" },
       { "<leader><space>", "<cmd>lua require('utils.telescope').project_files()<cr>", desc = "Find Git Files" },
       { "<leader>ff", "<cmd>lua require('utils.telescope').fine_all_files()<cr>", desc = "Find All Files" },
@@ -157,12 +156,6 @@ return {
             hijack_netrw = true,
             mappings = mappings,
           },
-          bookmarks = {
-            selected_browser = "firefox",
-            url_open_command = "open",
-            full_path = true,
-            firefox_profile_name = nil,
-          },
           project = {
             hidden_files = false,
             theme = "dropdown",
@@ -188,7 +181,6 @@ return {
       telescope.load_extension("conventional_commits")
       telescope.load_extension("lazy")
       telescope.load_extension("media_files")
-      telescope.load_extension("bookmarks")
     end,
   },
   {
