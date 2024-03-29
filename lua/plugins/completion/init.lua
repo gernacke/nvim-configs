@@ -50,9 +50,17 @@ return {
           -- completeopt = "menu,menuone,noinsert",
           keyword_length = 2,
         },
+        -- how to set up boarder in nvim-cmp preview window
         window = {
-          border = "rounded",
-          winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+          completion = cmp.config.window.bordered({
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+            col_offset = -4,
+          }),
+          documentation = cmp.config.window.bordered({
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+          }),
+          -- border = "rounded",
+          -- winhighlight = "Normal:MyPmenu,NormalFloat:yPmenu,CursorLine:PmenuSel,Search:None",
         },
         snippet = {
           expand = function(args)
@@ -126,21 +134,72 @@ return {
           }),
         }),
         sources = cmp.config.sources({
+          --           /**
+          --  * The kind of a completion entry.
+          --  */
+          -- export namespace CompletionItemKind {
+          -- 	export const Text = 1;
+          -- 	export const Method = 2;
+          -- 	export const Function = 3;
+          -- 	export const Constructor = 4;
+          -- 	export const Field = 5;
+          -- 	export const Variable = 6;
+          -- 	export const Class = 7;
+          -- 	export const Interface = 8;
+          -- 	export const Module = 9;
+          -- 	export const Property = 10;
+          -- 	export const Unit = 11;
+          -- 	export const Value = 12;
+          -- 	export const Enum = 13;
+          -- 	export const Keyword = 14;
+          -- 	export const Snippet = 15;
+          -- 	export const Color = 16;
+          -- 	export const File = 17;
+          -- 	export const Reference = 18;
+          -- 	export const Folder = 19;
+          -- 	export const EnumMember = 20;
+          -- 	export const Constant = 21;
+          -- 	export const Struct = 22;
+          -- 	export const Event = 23;
+          -- 	export const Operator = 24;
+          -- 	export const TypeParameter = 25;
+          -- }
           -- { name = "nvim_lsp_signature_help" },
           { name = "copilot", keyword_length = 1 },
-          { name = "nvim_lsp" },
-          { name = "path" },
-          { name = "luasnip", max_item_count = 5 },
+          { name = "luasnip", max_item_count = 3, group_index = 2 },
+          {
+            name = "nvim_lsp",
+            entry_filter = function(entry, context)
+              local kind = entry:get_kind()
+              local line = context.cursor_line
+              local col = context.cursor.col
+              local char_before_cursor = string.sub(line, col - 1, col - 1)
+
+              if char_before_cursor == "." then
+                if kind == 2 or kind == 5 then
+                  return true
+                else
+                  return false
+                end
+              elseif string.match(line, "^%s*%w*$") then
+                if kind == 3 or kind == 6 then
+                  return true
+                else
+                  return false
+                end
+              end
+
+              return true
+            end,
+            group_index = 1,
+            max_item_count = 3,
+          },
+          { name = "path", max_item_count = 3 },
           { name = "buffer", keyword_length = 4, max_item_count = 3 },
           { name = "treesitter", max_item_count = 5 },
           -- { name = "codeium", group_index = 1 },
           { name = "crates" },
         }),
-        -- how to set up boarder in nvim-cmp preview window
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
         formatting = {
           -- fields = { "kind", "abbr" },
           -- format = function(_, vim_item)
@@ -163,7 +222,7 @@ return {
               buffer = 1,
               path = 1,
               nvim_lsp = 0,
-              luasnip = 1,
+              luasnip = 0,
             }
             local duplicates_default = 0
             if max_width ~= 0 and #item.abbr > max_width then
@@ -271,14 +330,14 @@ return {
     -- stylua: ignore
     keys = {
       {
-        "<C-j>",
+        "<A-j>",
         function()
           return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
         end,
         expr = true, remap = true, silent = true, mode = "i",
       },
-      { "<C-j>", function() require("luasnip").jump(1) end, mode = "s" },
-      { "<C-k>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      { "<A-j>", function() require("luasnip").jump(1) end, mode = "s" },
+      { "<A-k>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
   },
 }
