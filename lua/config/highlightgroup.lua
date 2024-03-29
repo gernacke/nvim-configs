@@ -32,6 +32,24 @@ local hl_mappings = {
   ["IlluminatedWordText"] = { link = "CursorLine" },
   ["IlluminatedWordRead"] = { link = "CursorLine" },
   ["IlluminatedWordWrite"] = { link = "CursorLine" },
+
+  -- VSCODE Codicon icon themes
+  -- light blue
+  ["CmpItemKindVariable"] = { bg = "NONE", fg = "#9CDCFE" },
+  ["CmpItemKindInterface"] = { link = "CmpItemKindVariable" },
+  ["CmpItemKindText"] = { link = "CmpItemKindVariable" },
+  -- pink
+  ["CmpItemKindFunction"] = { bg = "NONE", fg = "#C586C0" },
+  ["CmpItemKindMethod"] = { link = "CmpItemKindFunction" },
+  -- front
+  ["CmpItemKindKeyword"] = { bg = "NONE", fg = "#D4D4D4" },
+  ["CmpItemKindProperty"] = { link = "CmpItemKindKeyword" },
+  ["CmpItemKindUnit"] = { link = "CmpItemKindKeyword" },
+  -- gray
+  ["CmpItemAbbrDeprecated"] = { bg = "NONE", strikethrough = true, fg = "#808080" },
+  -- blue
+  ["CmpItemAbbrMatch"] = { bg = "NONE", fg = "#569CD6" },
+  ["cmpItemAbbrMatchFuzzy"] = { link = "CmpItemAbbrMatch" },
 }
 
 function M.set_hl()
