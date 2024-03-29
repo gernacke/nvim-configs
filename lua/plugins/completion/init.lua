@@ -142,17 +142,22 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         formatting = {
-          fields = { "abbr", "kind", "menu" },
+          -- fields = { "kind", "abbr" },
+          -- format = function(_, vim_item)
+          --   vim_item.kind = cmp_kinds[vim_item.kind] or ""
+          --   return vim_item
+          -- end,
+          fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
             local max_width = 0
             local source_names = {
-              nvim_lsp = "(LSP)",
-              path = "(Path)",
-              luasnip = "(Snippet)",
-              buffer = "(Buffer)",
-              treesitter = "(TreeSitter)",
-              codeium = "(Codeium)",
-              copilot = "(Copilot)",
+              nvim_lsp = "(lsp)",
+              path = "(path)",
+              luasnip = "(snippet)",
+              buffer = "(buffer)",
+              treesitter = "(treesitter)",
+              codeium = "(codeium)",
+              copilot = "(copilot)",
             }
             local duplicates = {
               buffer = 1,
@@ -170,10 +175,10 @@ return {
 
             if entry.source.name == "vim-daddod-completion" then
               item.kind = ""
-              item.menu = "(SQL)"
+              item.menu = "(sql)"
             elseif entry.source.name == "crates" then
               item.kind = " "
-              item.menu = "(CRATES)"
+              item.menu = "(crates)"
             end
             return item
           end,

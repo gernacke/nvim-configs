@@ -50,6 +50,8 @@ local hl_mappings = {
   -- blue
   ["CmpItemAbbrMatch"] = { bg = "NONE", fg = "#569CD6" },
   ["cmpItemAbbrMatchFuzzy"] = { link = "CmpItemAbbrMatch" },
+  -- Cmp Menu
+  ["CmpItemMenu"] = { fg = "#C792EA", italic = true },
 }
 
 function M.set_hl()
