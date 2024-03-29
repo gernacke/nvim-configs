@@ -30,10 +30,19 @@ return {
       local luasnip = require("luasnip")
       local neogen = require("neogen")
       local icons = require("config.icons")
+      local lspkind = require("lspkind")
+
+      -- local has_words_before = function()
+      --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      -- end
 
       local has_words_before = function()
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+          return false
+        end
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
       end
 
       cmp.setup({
@@ -69,6 +78,13 @@ return {
               end
             end,
           }),
+          -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
+          --   if cmp.visible() and has_words_before() then
+          --     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          --   else
+          --     fallback()
+          --   end
+          -- end),
           -- Complete common string (similar to shell completion behavior).
           ["<C-l>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -111,16 +127,22 @@ return {
         }),
         sources = cmp.config.sources({
           -- { name = "nvim_lsp_signature_help" },
+          { name = "copilot", keyword_length = 1 },
           { name = "nvim_lsp" },
           { name = "path" },
           { name = "luasnip", max_item_count = 5 },
-          { name = "buffer", keyword_length = 4, max_item_count = 5 },
-          { name = "treesitter", max_item_count = 10 },
-          { name = "codeium", group_index = 1 },
+          { name = "buffer", keyword_length = 4, max_item_count = 3 },
+          { name = "treesitter", max_item_count = 5 },
+          -- { name = "codeium", group_index = 1 },
           { name = "crates" },
         }),
+        -- how to set up boarder in nvim-cmp preview window
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
         formatting = {
-          fields = { "kind", "abbr", "menu" },
+          fields = { "abbr", "kind", "menu" },
           format = function(entry, item)
             local max_width = 0
             local source_names = {
@@ -130,6 +152,7 @@ return {
               buffer = "(Buffer)",
               treesitter = "(TreeSitter)",
               codeium = "(Codeium)",
+              copilot = "(Copilot)",
             }
             local duplicates = {
               buffer = 1,
@@ -145,9 +168,7 @@ return {
             item.menu = source_names[entry.source.name]
             item.dup = duplicates[entry.source.name] or duplicates_default
 
-            if entry.source.name == "codeium" then
-              item.kind = ""
-            elseif entry.source.name == "vim-dadbod-completion" then
+            if entry.source.name == "vim-daddod-completion" then
               item.kind = ""
               item.menu = "(SQL)"
             elseif entry.source.name == "crates" then

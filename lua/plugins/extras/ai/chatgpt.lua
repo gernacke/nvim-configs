@@ -1,9 +1,10 @@
+local home = vim.fn.expand("$HOME")
 return {
   "jackMort/ChatGPT.nvim",
   cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
   enabled = true,
   opts = {
-    api_key_cmd = "gpg --decrypt ~/repositories/all-dotfiles/chatgpt/api-key.gpg 2>/dev/null",
+    api_key_cmd = "gpg --decrypt " .. home .. "/repositories/all-dotfiles/chatgpt/api-key.gpg",
     popup_layout = {
       default = "center",
       center = {
