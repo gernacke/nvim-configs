@@ -32,6 +32,35 @@ return {
       local icons = require("config.icons")
       local lspkind = require("lspkind")
 
+      local kind_mapper = require("cmp.types").lsp.CompletionItemKind
+      local kind_score = {
+        Text = 1,
+        Field = 2,
+        Method = 3,
+        Function = 4,
+        Constructor = 5,
+        Variable = 6,
+        Class = 7,
+        Interface = 8,
+        Module = 9,
+        Property = 10,
+        Unit = 11,
+        Value = 12,
+        Enum = 13,
+        Keyword = 14,
+        Snippet = 15,
+        Color = 16,
+        File = 17,
+        Reference = 18,
+        Folder = 19,
+        EnumMember = 20,
+        Constant = 21,
+        Struct = 22,
+        Event = 23,
+        Operator = 24,
+        TypeParameter = 25,
+      }
+
       -- local has_words_before = function()
       --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
       --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -55,9 +84,11 @@ return {
           completion = cmp.config.window.bordered({
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
             col_offset = -4,
+            -- border = { " ", "▔", " ", "▕", " ", "▁", " ", "▏" },
           }),
           documentation = cmp.config.window.bordered({
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+            -- border = { " ", "▔", " ", "▕", " ", "▁", " ", "▏" },
           }),
           -- border = "rounded",
           -- winhighlight = "Normal:MyPmenu,NormalFloat:yPmenu,CursorLine:PmenuSel,Search:None",
@@ -133,73 +164,64 @@ return {
             "c",
           }),
         }),
+        --  * The kind of a completion entry.
+        -- export namespace CompletionItemKind {
+        -- 	export const Text = 1;
+        -- 	export const Method = 2;
+        -- 	export const Function = 3;
+        -- 	export const Constructor = 4;
+        -- 	export const Field = 5;
+        -- 	export const Variable = 6;
+        -- 	export const Class = 7;
+        -- 	export const Interface = 8;
+        -- 	export const Module = 9;
+        -- 	export const Property = 10;
+        -- 	export const Unit = 11;
+        -- 	export const Value = 12;
+        -- 	export const Enum = 13;
+        -- 	export const Keyword = 14;
+        -- 	export const Snippet = 15;
+        -- 	export const Color = 16;
+        -- 	export const File = 17;
+        -- 	export const Reference = 18;
+        -- 	export const Folder = 19;
+        -- 	export const EnumMember = 20;
+        -- 	export const Constant = 21;
+        -- 	export const Struct = 22;
+        -- 	export const Event = 23;
+        -- 	export const Operator = 24;
+        -- 	export const TypeParameter = 25;
+        -- }
         sources = cmp.config.sources({
-          --           /**
-          --  * The kind of a completion entry.
-          --  */
-          -- export namespace CompletionItemKind {
-          -- 	export const Text = 1;
-          -- 	export const Method = 2;
-          -- 	export const Function = 3;
-          -- 	export const Constructor = 4;
-          -- 	export const Field = 5;
-          -- 	export const Variable = 6;
-          -- 	export const Class = 7;
-          -- 	export const Interface = 8;
-          -- 	export const Module = 9;
-          -- 	export const Property = 10;
-          -- 	export const Unit = 11;
-          -- 	export const Value = 12;
-          -- 	export const Enum = 13;
-          -- 	export const Keyword = 14;
-          -- 	export const Snippet = 15;
-          -- 	export const Color = 16;
-          -- 	export const File = 17;
-          -- 	export const Reference = 18;
-          -- 	export const Folder = 19;
-          -- 	export const EnumMember = 20;
-          -- 	export const Constant = 21;
-          -- 	export const Struct = 22;
-          -- 	export const Event = 23;
-          -- 	export const Operator = 24;
-          -- 	export const TypeParameter = 25;
-          -- }
           -- { name = "nvim_lsp_signature_help" },
-          { name = "copilot", keyword_length = 1 },
-          { name = "luasnip", max_item_count = 3, group_index = 2 },
           {
             name = "nvim_lsp",
-            entry_filter = function(entry, context)
-              local kind = entry:get_kind()
-              local line = context.cursor_line
-              local col = context.cursor.col
-              local char_before_cursor = string.sub(line, col - 1, col - 1)
-
-              if char_before_cursor == "." then
-                if kind == 2 or kind == 5 then
-                  return true
-                else
-                  return false
-                end
-              elseif string.match(line, "^%s*%w*$") then
-                if kind == 3 or kind == 6 then
-                  return true
-                else
-                  return false
-                end
-              end
-
-              return true
-            end,
+            keyword_length = 2,
             group_index = 1,
-            max_item_count = 3,
+            -- max_item_count = 3,
           },
-          { name = "path", max_item_count = 3 },
-          { name = "buffer", keyword_length = 4, max_item_count = 3 },
-          { name = "treesitter", max_item_count = 5 },
+          { name = "copilot", keyword_length = 2, group_index = 2 },
+          { name = "luasnip", max_item_count = 5, group_index = 2 },
+          { name = "path", max_item_count = 3, group_index = 3 },
+          { name = "buffer", keyword_length = 4, max_item_count = 3, group_index = 2 },
+          { name = "treesitter", max_item_count = 5, group_index = 2 },
           -- { name = "codeium", group_index = 1 },
-          { name = "crates" },
+          { name = "crates", group_index = 2 },
         }),
+        sorting = {
+          comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            function(entry1, entry2)
+              local kind1 = kind_score[kind_mapper[entry1:get_kind()]] or 100
+              local kind2 = kind_score[kind_mapper[entry2:get_kind()]] or 100
+
+              if kind1 < kind2 then
+                return true
+              end
+            end,
+          },
+        },
         formatting = {
           -- fields = { "kind", "abbr" },
           -- format = function(_, vim_item)
@@ -221,7 +243,7 @@ return {
             local duplicates = {
               buffer = 1,
               path = 1,
-              nvim_lsp = 0,
+              nvim_lsp = 1,
               luasnip = 0,
             }
             local duplicates_default = 0
@@ -330,14 +352,14 @@ return {
     -- stylua: ignore
     keys = {
       {
-        "<A-j>",
+        "<A-k>",
         function()
           return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
         end,
         expr = true, remap = true, silent = true, mode = "i",
       },
-      { "<A-j>", function() require("luasnip").jump(1) end, mode = "s" },
-      { "<A-k>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      { "<A-k>", function() require("luasnip").jump(1) end, mode = "s" },
+      { "<A-j>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
   },
 }

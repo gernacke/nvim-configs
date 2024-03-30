@@ -10,6 +10,7 @@ return {
       triggers = "auto",
     })
     wk.register({
+      a = { name = "+AI", p = { "<CMD>Copilot panel<CR>", "Copilot panel" } },
       b = { name = "+Buffers" },
       c = {
         name = "+Code",

@@ -100,19 +100,19 @@ return {
         desc = "Inner Indentation",
       },
       {
-        "ai",
+        "aI",
         "<cmd>lua require('various-textobjs').indentation('outer', 'inner')<CR>",
         mode = { "o", "x" },
         desc = "Outer Indentation",
       },
       {
         "iI",
-        "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>",
+        "<cmd>lua require('various-textobjs').indentation('inner', 'outer')<CR>",
         mode = { "o", "x" },
         desc = "Inner Indentation",
       },
       {
-        "aI",
+        "ai",
         "<cmd>lua require('various-textobjs').indentation('outer', 'outer')<CR>",
         mode = { "o", "x" },
         desc = "Outer Indentation",
@@ -196,13 +196,13 @@ return {
       { "g;", "<cmd>lua require('various-textobjs').lastChange()<CR>", mode = { "o", "x" }, desc = "Last Change" },
 
       {
-        "i_",
+        "iv",
         "<cmd>lua require('various-textobjs').lineCharacterwise('inner')<CR>",
         mode = { "o", "x" },
         desc = "Line Characterwise (Inner)",
       },
       {
-        "a_",
+        "av",
         "<cmd>lua require('various-textobjs').lineCharacterwise('outer')<CR>",
         mode = { "o", "x" },
         desc = "Line Characterwise (Outer)",
@@ -220,8 +220,8 @@ return {
       -- { "iN", "<cmd>lua require('various-textobjs').notebookCell('inner')<CR>", mode = { "o", "x" }, desc = "Notebook Cell (Inner)" },
       -- { "aN", "<cmd>lua require('various-textobjs').notebookCell('outer')<CR>", mode = { "o", "x" }, desc = "Notebook Cell (Outer)" },
 
-      { "iv", "<cmd>lua require('various-textobjs').value('inner')<CR>", mode = { "o", "x" }, desc = "Value (Inner)" },
-      { "av", "<cmd>lua require('various-textobjs').value('outer')<CR>", mode = { "o", "x" }, desc = "Value (Outer)" },
+      { "i_", "<cmd>lua require('various-textobjs').value('inner')<CR>", mode = { "o", "x" }, desc = "Value (Inner)" },
+      { "a_", "<cmd>lua require('various-textobjs').value('outer')<CR>", mode = { "o", "x" }, desc = "Value (Outer)" },
 
       { "ik", "<cmd>lua require('various-textobjs').key('inner')<CR>", mode = { "o", "x" }, desc = "Key (Inner)" },
       { "ak", "<cmd>lua require('various-textobjs').key('outer')<CR>", mode = { "o", "x" }, desc = "Key (Outer)" },
