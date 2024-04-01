@@ -84,7 +84,7 @@ return {
         -- },
       },
       view = {
-        width = 18,
+        width = 30,
         side = "left",
         float = {
           enable = false,

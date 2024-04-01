@@ -4,7 +4,7 @@ local function gitsigns_menu()
   local hint = [[
  _J_: Next hunk   _s_: Stage Hunk        _d_: Show Deleted   _b_: Blame Line
  _K_: Prev hunk   _u_: Undo Last Stage   _p_: Preview Hunk   _B_: Blame Show Full 
- ^ ^              _S_: Stage Buffer      ^ ^                 _/_: Show Base File
+ _r_: Reset Hunk  _S_: Stage Buffer      ^ ^                 _/_: Show Base File
  ^
  ^ ^              _<Enter>_: Neogit              _q_: Exit
 ]]
@@ -22,7 +22,7 @@ local function gitsigns_menu()
       on_enter = function()
         vim.cmd("mkview")
         vim.cmd("silent! %foldopen!")
-        vim.bo.modifiable = false
+        vim.bo.modifiable = true
         gitsigns.toggle_signs(true)
         gitsigns.toggle_linehl(true)
       end,
@@ -67,6 +67,7 @@ local function gitsigns_menu()
       { "s", ":Gitsigns stage_hunk<CR>", { silent = true, desc = "Stage Hunk" } },
       { "u", gitsigns.undo_stage_hunk, { desc = "Undo Last Stage" } },
       { "S", gitsigns.stage_buffer, { desc = "Stage Buffer" } },
+      { "r", gitsigns.reset_hunk, { desc = "Reset Hunk" } },
       { "p", gitsigns.preview_hunk, { desc = "Preview Hunk" } },
       { "d", gitsigns.toggle_deleted, { nowait = true, desc = "Toggle Deleted" } },
       { "b", gitsigns.blame_line, { desc = "Blame" } },

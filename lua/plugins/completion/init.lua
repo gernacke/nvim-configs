@@ -10,6 +10,8 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "f3fora/cmp-spell",
+      "octaltree/cmp-look",
+      "hrsh7th/cmp-emoji",
       {
         "Exafunction/codeium.nvim",
         dependencies = {
@@ -31,7 +33,6 @@ return {
       local neogen = require("neogen")
       local icons = require("config.icons")
       local lspkind = require("lspkind")
-
       local kind_mapper = require("cmp.types").lsp.CompletionItemKind
       local kind_score = {
         Text = 1,
@@ -60,6 +61,9 @@ return {
         Operator = 24,
         TypeParameter = 25,
       }
+      local feedkey = function(key, mode)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+      end
 
       -- local has_words_before = function()
       --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -76,7 +80,7 @@ return {
 
       cmp.setup({
         completion = {
-          -- completeopt = "menu,menuone,noinsert",
+          completeopt = "menu,menuone,noinsert,noselect",
           keyword_length = 2,
         },
         -- how to set up boarder in nvim-cmp preview window
@@ -107,9 +111,21 @@ return {
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
           }),
+          -- ["<Tab>"] = cmp.mapping({
+          --   -- If you didn't select any item and the option table contains `select = true`
+          --   -- nvim-cmp will automatically select the first item.
+          --   i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
+          --   c = function(fallback)
+          --     if cmp.visible() then
+          --       cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+          --     else
+          --       fallback()
+          --     end
+          --   end,
+          -- }),
           ["<Tab>"] = cmp.mapping({
-            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-            c = function(fallback)
+            -- i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
+            i = function(fallback)
               if cmp.visible() then
                 cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
               else
@@ -117,6 +133,17 @@ return {
               end
             end,
           }),
+          -- If you didn't select any item and the option table contains `select = true`
+          -- nvim-cmp will automatically select the first item.
+          --   i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
+          --   c = function(fallback)
+          --     if cmp.visible() then
+          --       cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+          --     else
+          --       fallback()
+          --     end
+          --   end,
+          -- }),
           -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
           --   if cmp.visible() and has_words_before() then
           --     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
@@ -125,15 +152,15 @@ return {
           --   end
           -- end),
           -- Complete common string (similar to shell completion behavior).
-          ["<C-l>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              return cmp.complete_common_string()
-            end
-            fallback()
-          end, { "i", "c" }),
+          -- ["<C-l>"] = cmp.mapping(function(fallback)
+          --   if cmp.visible() then
+          --     return cmp.complete_common_string()
+          --   end
+          --   fallback()
+          -- end, { "i", "c" }),
           ["<C-j>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_next_item()
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             elseif neogen.jumpable() then
@@ -143,14 +170,11 @@ return {
             else
               fallback()
             end
-          end, {
-            "i",
-            "s",
-            "c",
-          }),
+          end, { "i", "s", "c" }),
+
           ["<C-k>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_prev_item()
+              cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
             elseif luasnip.jumpable(-1) then
               luasnip.jump(-1)
             elseif neogen.jumpable(true) then
@@ -158,11 +182,15 @@ return {
             else
               fallback()
             end
-          end, {
-            "i",
-            "s",
-            "c",
-          }),
+          end, { "i", "s", "c" }),
+
+          -- ["<C-g>"] = cmp.mapping(function(fallback)
+          --   vim.api.nvim_feedkeys(
+          --     vim.fn["copilot#Accept"](vim.api.nvim_replace_termcodes("<Tab>", true, true, true)),
+          --     "n",
+          --     true
+          --   )
+          -- end),
         }),
         --  * The kind of a completion entry.
         -- export namespace CompletionItemKind {
@@ -200,7 +228,7 @@ return {
             group_index = 1,
             -- max_item_count = 3,
           },
-          { name = "copilot", keyword_length = 2, group_index = 2 },
+          { name = "copilot", keyword_length = 1, group_index = 2 },
           { name = "luasnip", max_item_count = 5, group_index = 2 },
           { name = "path", max_item_count = 3, group_index = 3 },
           { name = "buffer", keyword_length = 4, max_item_count = 3, group_index = 2 },
@@ -245,6 +273,7 @@ return {
               path = 1,
               nvim_lsp = 1,
               luasnip = 0,
+              copilot = 0,
             }
             local duplicates_default = 0
             if max_width ~= 0 and #item.abbr > max_width then
