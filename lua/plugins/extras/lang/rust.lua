@@ -28,6 +28,24 @@ return {
   --   end,
   -- },
   {
+    "michaelb/sniprun",
+    branch = "master",
+    cmd = "SnipRun",
+    build = "sh install.sh",
+    -- do 'sh install.sh 1' if you want to force compile locally
+    -- (instead of fetching a binary from the github release). Requires Rust >= 1.65
+
+    config = function()
+      require("sniprun").setup({
+        interpreter_options = {
+          Rust_original = {
+            compiler = "rustc",
+          },
+        },
+      })
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = { "simrat39/rust-tools.nvim", "rust-lang/rust.vim" },
     opts = {
@@ -66,12 +84,7 @@ return {
               if desc then
                 desc = desc
               end
-              vim.keymap.set(
-                mode,
-                lhs,
-                rhs,
-                { silent = true, desc = desc, buffer = buffer, noremap = true }
-              )
+              vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = buffer, noremap = true })
             end
             -- stylua: ignore
             if client.name == "rust_analyzer" then
@@ -97,28 +110,13 @@ return {
                 if desc then
                   desc = desc
                 end
-                vim.keymap.set(
-                  mode,
-                  lhs,
-                  rhs,
-                  { silent = true, desc = desc, buffer = bufnr, noremap = true }
-                )
+                vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
               end
               map("n", "<leader>lcy", "<cmd>lua require'crates'.open_repository()<cr>", "Open Repository")
               map("n", "<leader>lcp", "<cmd>lua require'crates'.show_popup()<cr>", "Show Popup")
               map("n", "<leader>lci", "<cmd>lua require'crates'.show_crate_popup()<cr>", "Show Info")
-              map(
-                "n",
-                "<leader>lcf",
-                "<cmd>lua require'crates'.show_features_popup()<cr>",
-                "Show Features"
-              )
-              map(
-                "n",
-                "<leader>lcd",
-                "<cmd>lua require'crates'.show_dependencies_popup()<cr>",
-                "Show Dependencies"
-              )
+              map("n", "<leader>lcf", "<cmd>lua require'crates'.show_features_popup()<cr>", "Show Features")
+              map("n", "<leader>lcd", "<cmd>lua require'crates'.show_dependencies_popup()<cr>", "Show Dependencies")
             end,
           })
 

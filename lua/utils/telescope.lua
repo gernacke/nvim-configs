@@ -62,6 +62,15 @@ M.search_nvim_configs = function()
   builtin.find_files(opts)
 end
 
+M.search_current_buffer = function()
+  local fopts = {}
+
+  fopts.layout_strategy = "vertical"
+  fopts.layout_config = { width = 0.5, height = 40, preview_height = 0.7, prompt_position = "top", mirror = true }
+
+  builtin.current_buffer_fuzzy_find(themes.get_dropdown(fopts))
+end
+
 M.document_symbol = function()
   local fopts = {}
 

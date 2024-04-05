@@ -158,19 +158,19 @@ return {
         desc = "To Next Quotation Mark",
       },
 
-      {
-        "iq",
-        "<cmd>lua require('various-textobjs').anyQuote('inner')<CR>",
-        mode = { "o", "x" },
-        desc = "Any Quote (Inner)",
-      },
-      {
-        "aq",
-        "<cmd>lua require('various-textobjs').anyQuote('outer')<CR>",
-        mode = { "o", "x" },
-        desc = "Any Quote (Outer)",
-      },
-
+      -- {
+      --   "iq",
+      --   "<cmd>lua require('various-textobjs').anyQuote('inner')<CR>",
+      --   mode = { "o", "x" },
+      --   desc = "Any Quote (Inner)",
+      -- },
+      -- {
+      --   "aq",
+      --   "<cmd>lua require('various-textobjs').anyQuote('outer')<CR>",
+      --   mode = { "o", "x" },
+      --   desc = "Any Quote (Outer)",
+      -- },
+      --
       {
         "io",
         "<cmd>lua require('various-textobjs').anyBracket('inner')<CR>",

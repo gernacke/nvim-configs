@@ -9,7 +9,10 @@ return {
           enabled = false,
           auto_trigger = false,
         },
-        panel = { enabled = false },
+        panel = { enabled = true, auto_refresh = false },
+        filetypes = {
+          lua = true,
+        },
       })
     end,
   },
