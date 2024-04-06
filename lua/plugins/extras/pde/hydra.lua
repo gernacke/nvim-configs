@@ -85,6 +85,36 @@ local function gitsigns_menu()
   }
 end
 
+local function window_resize()
+  local hint = [[
+_h_: ⬅  _H_: half screen ⬅
+_l_: ➡  _L_: half screen ➡
+]]
+
+  return {
+    name = "Side scroll",
+    -- hint = hint,
+    config = {
+      color = "pink",
+      invoke_on_body = true,
+      hint = {
+        border = "rounded",
+        position = "bottom",
+      },
+    },
+    mode = "n",
+    body = "<A-d>",
+    heads = {
+      { "h", "5zh" },
+      { "l", "5zl", { desc = "←/→" } },
+      { "H", "zH" },
+      { "L", "zL", { desc = "half screen ←/→" } },
+      { "<ESC>/q", nil, { exit = true, nowait = true, desc = "Exit" } },
+      { "<ESC>", nil, { exit = true, nowait = true, desc = false } },
+    },
+  }
+end
+
 local function dap_menu()
   local dap = require("dap")
   local dapui = require("dapui")
@@ -116,7 +146,7 @@ local function dap_menu()
       },
     },
     mode = "n",
-    body = "<A-d>",
+    -- body = "<A-d>",
     -- stylua: ignore
     heads = {
       { "C", function() dap.set_breakpoint(vim.fn.input "[Condition] > ") end, desc = "Conditional Breakpoint", },
@@ -285,6 +315,7 @@ return {
       hydra(dap_menu())
       hydra(quick_menu())
       hydra(lsp_menu())
+      hydra(window_resize())
     end,
   },
 }
