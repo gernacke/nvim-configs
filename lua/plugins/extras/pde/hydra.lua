@@ -41,11 +41,14 @@ local function gitsigns_menu()
       {
         "J",
         function()
+          local opts = {
+            navigation_message = true,
+          }
           if vim.wo.diff then
             return "]c"
           end
           vim.schedule(function()
-            gitsigns.next_hunk()
+            gitsigns.nav_hunk("next", opts)
           end)
           return "<Ignore>"
         end,
@@ -54,11 +57,14 @@ local function gitsigns_menu()
       {
         "K",
         function()
+          local opts = {
+            navigation_message = true,
+          }
           if vim.wo.diff then
             return "[c"
           end
           vim.schedule(function()
-            gitsigns.prev_hunk()
+            gitsigns.nav_hunk("prev", opts)
           end)
           return "<Ignore>"
         end,
@@ -86,14 +92,8 @@ local function gitsigns_menu()
 end
 
 local function window_resize()
-  local hint = [[
-_h_: ⬅  _H_: half screen ⬅
-_l_: ➡  _L_: half screen ➡
-]]
-
   return {
     name = "Side scroll",
-    -- hint = hint,
     config = {
       color = "pink",
       invoke_on_body = true,
