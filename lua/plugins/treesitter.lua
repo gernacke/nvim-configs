@@ -51,6 +51,29 @@ return {
       --   },
       -- },
       textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["aa"] = "@parameter.outer",
+            ["ia"] = "@parameter.inner",
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            -- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
+            ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+            ["i="] = "@assignment.lhs",
+            ["i-"] = "@assignment.rhs",
+            ["i_"] = "@assignment.outer",
+            ["a;"] = "@comment.outer",
+            ["io"] = "@conditional.inner",
+            ["ao"] = "@conditional.outer",
+            ["il"] = "@loop.inner",
+            ["al"] = "@loop.outer",
+            ["iN"] = "@number.inner",
+          },
+        },
         swap = {
           enable = true,
           swap_next = swap_next,
@@ -74,6 +97,14 @@ return {
           goto_previous_end = {
             ["[M"] = "@function.outer",
             ["[]"] = "@class.outer",
+          },
+          goto_next = {
+            ["]l"] = "@loop.*",
+            ["]o"] = "@conditional.inner",
+          },
+          goto_previous = {
+            ["[l"] = "@loop.*",
+            ["[o"] = "@conditional.inner",
           },
         },
       },

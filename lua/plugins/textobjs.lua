@@ -158,32 +158,6 @@ return {
         desc = "To Next Quotation Mark",
       },
 
-      -- {
-      --   "iq",
-      --   "<cmd>lua require('various-textobjs').anyQuote('inner')<CR>",
-      --   mode = { "o", "x" },
-      --   desc = "Any Quote (Inner)",
-      -- },
-      -- {
-      --   "aq",
-      --   "<cmd>lua require('various-textobjs').anyQuote('outer')<CR>",
-      --   mode = { "o", "x" },
-      --   desc = "Any Quote (Outer)",
-      -- },
-      --
-      {
-        "io",
-        "<cmd>lua require('various-textobjs').anyBracket('inner')<CR>",
-        mode = { "o", "x" },
-        desc = "Any Bracket (Inner)",
-      },
-      {
-        "ao",
-        "<cmd>lua require('various-textobjs').anyBracket('outer')<CR>",
-        mode = { "o", "x" },
-        desc = "Any Bracket (Outer)",
-      },
-
       {
         "r",
         "<cmd>lua require('various-textobjs').restOfParagraph()<CR>",
@@ -216,32 +190,6 @@ return {
         mode = { "o", "x" },
         desc = "Multi-Commented Lines",
       },
-
-      -- { "iN", "<cmd>lua require('various-textobjs').notebookCell('inner')<CR>", mode = { "o", "x" }, desc = "Notebook Cell (Inner)" },
-      -- { "aN", "<cmd>lua require('various-textobjs').notebookCell('outer')<CR>", mode = { "o", "x" }, desc = "Notebook Cell (Outer)" },
-
-      { "i_", "<cmd>lua require('various-textobjs').value('inner')<CR>", mode = { "o", "x" }, desc = "Value (Inner)" },
-      { "a_", "<cmd>lua require('various-textobjs').value('outer')<CR>", mode = { "o", "x" }, desc = "Value (Outer)" },
-
-      { "ik", "<cmd>lua require('various-textobjs').key('inner')<CR>", mode = { "o", "x" }, desc = "Key (Inner)" },
-      { "ak", "<cmd>lua require('various-textobjs').key('outer')<CR>", mode = { "o", "x" }, desc = "Key (Outer)" },
-
-      -- { "ie", "<cmd>lua require('various-textobjs').url()<CR>", mode = { "o", "x" }, desc = "URL" },
-
-      {
-        "iN",
-        "<cmd>lua require('various-textobjs').number('inner')<CR>",
-        mode = { "o", "x" },
-        desc = "Number (Inner)",
-      },
-      {
-        "aN",
-        "<cmd>lua require('various-textobjs').number('outer')<CR>",
-        mode = { "o", "x" },
-        desc = "Number (Outer)",
-      },
-
-      -- { "ie", "<cmd>lua require('various-textobjs').diagnostic()<CR>", mode = { "o", "x" }, desc = "Diagnostic" },
 
       {
         "iz",
