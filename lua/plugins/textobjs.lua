@@ -159,6 +159,18 @@ return {
       },
 
       {
+        "iq",
+        "<cmd>lua require('various-textobjs').anyQuote('inner')<CR>",
+        mode = { "o", "x" },
+        desc = "Any Quote (Inner)",
+      },
+      {
+        "aq",
+        "<cmd>lua require('various-textobjs').anyQuote('outer')<CR>",
+        mode = { "o", "x" },
+        desc = "Any Quote (Outer)",
+      },
+      {
         "r",
         "<cmd>lua require('various-textobjs').restOfParagraph()<CR>",
         mode = { "o", "x" },
