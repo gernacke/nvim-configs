@@ -283,7 +283,7 @@ return {
             item.menu = source_names[entry.source.name]
             item.dup = duplicates[entry.source.name] or duplicates_default
 
-            if entry.source.name == "vim-daddod-completion" then
+            if entry.source.name == "vim-dadbod-completion" then
               item.kind = ""
               item.menu = "(sql)"
             elseif entry.source.name == "crates" then
@@ -302,7 +302,15 @@ return {
           { name = "buffer" },
         },
       })
-
+      -- autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+      cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "copilot" },
+        },
+      })
       -- Use buffer source only in Command History ('q:') window
       cmp.setup.filetype({ "vim" }, {
         sources = {
@@ -345,7 +353,6 @@ return {
       vim.api.nvim_exec(
         [[
           autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
-          autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
         ]],
         false
       )
