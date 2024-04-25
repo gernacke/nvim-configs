@@ -77,7 +77,18 @@ return {
       install_syntax = false,
       tag_notation = ":tag:",
 
-      show_tags_theme = "dropdown",
+      show_tags_theme = "cursor",
+      media_extensions = {
+        ".png",
+        ".jpg",
+        ".bmp",
+        ".gif",
+        ".pdf",
+        ".mp4",
+        ".webm",
+        ".webp",
+      },
+      filename_space_subst = "_",
       auto_set_filetype = false, -- Do not set .md files to telekasten filetype for syntax to work
     },
     enabled = true,
