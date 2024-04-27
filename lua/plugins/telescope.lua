@@ -11,7 +11,6 @@ return {
       "stevearc/aerial.nvim",
       -- "nvim-telescope/telescope-frecency.nvim",
       "kkharji/sqlite.lua",
-      "aaronhallaert/advanced-git-search.nvim",
       "benfowler/telescope-luasnip.nvim",
       "olacin/telescope-cc.nvim",
       "tsakirist/telescope-lazy.nvim",
