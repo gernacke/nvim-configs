@@ -207,33 +207,6 @@ return {
     { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
   },
   },
-  -- {
-  --   "unblevable/quick-scope",
-  --   -- lazy = false,
-  --   config = function()
-  --     vim.cmd([[
-  --        let g:qs_max_chars = 160
-  --        let g:qs_buftype_blacklist = ['NvimTree', 'nofile']
-  --        let g:qs_enable = 0
-  --        " let g:qs_buftype_blacklist = ['terminal', 'nofile']
-  --        ]])
-  --   end,
-  --   keys = {
-  --     { "<leader>a", "<plug>(QuickScopeToggle)", mode = { "x", "n" }, desc = "Quick Scope" },
-  --   },
-  -- },
-  -- {
-  --   "ggandor/leap.nvim",
-  --   event = "VimEnter",
-  --   config = function()
-  --     local keymap = vim.keymap
-  --
-  --     require("leap").set_default_keymaps()
-  --
-  --     keymap.set({ "n", "x", "o" }, "<leader>/", "<Plug>(leap-forward-to)")
-  --     keymap.set({ "n", "x", "o" }, "<leader>?", "<Plug>(leap-backward-to)")
-  --   end,
-  -- },
   {
     "monaqa/dial.nvim",
     event = "BufReadPre",

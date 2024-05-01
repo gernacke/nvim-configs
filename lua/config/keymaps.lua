@@ -49,6 +49,10 @@ local keymappings = {
     ["<C-k>"] = "<C-w>k",
     ["<C-j>"] = "<C-w>j",
 
+    -- Buffer movement
+    ["<C-UP>"] = "<CMD>bnext<CR>",
+    ["<C-DOWN>"] = "<CMD>bprevious<CR>",
+
     ["<c-w>z"] = "<c-w>_",
     ["L"] = "g_",
     ["H"] = "^",

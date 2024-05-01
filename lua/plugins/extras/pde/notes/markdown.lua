@@ -55,7 +55,6 @@ return {
   --     { "<leader>zt", "<CMD>ZkTags<CR>", desc = "Select ZK Tags" },
   --   },
   -- },
-  -- TODO: code blocks are not syntax highlighted
   {
     "renerocksai/telekasten.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
