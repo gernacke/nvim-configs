@@ -116,12 +116,13 @@ return {
           "<CMD>lua require('utils.telescope').grep_sqlfiles()<CR>",
           "Grep SQL Scripts",
         },
-        r = {
-          function()
-            require("utils.coding").reddit()
-          end,
-          "Reddit",
-        },
+        -- FIX:
+        -- r = {
+        --   function()
+        --     require("utils.coding").reddit()
+        --   end,
+        --   "Reddit",
+        -- },
       },
       t = {
         name = "+Test/Table",

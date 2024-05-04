@@ -8,6 +8,7 @@ return {
     Constructor = "",
     Copilot = " ",
     Codeium = "  ",
+    crates = "",
     Enum = "",
     EnumMember = "",
     Event = " ",

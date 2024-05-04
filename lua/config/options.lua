@@ -82,6 +82,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+opt.runtimepath:append("/opt/homebrew/opt/fzf/")
 opt.iskeyword:append("-") -- treats abcd-edfd as one single word in motion
 opt.runtimepath:prepend("~/.vim")
 opt.runtimepath:append("~/.vim/after")

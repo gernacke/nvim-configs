@@ -25,7 +25,7 @@ vim.cmd([[
   hi tklink ctermfg=72 guifg=#689d6a cterm=bold,underline gui=bold,underline
   hi tkBrackets ctermfg=gray guifg=gray
   hi tkHighlight ctermbg=214 ctermfg=124 cterm=bold guibg=#fabd2f guifg=#9d0006 gui=bold
-  hi tkTag ctermfg=175 guifg=#d3869B
+  hi tkTag ctermfg=175 guifg=#fabd2f
   hi tkTagSep ctermfg=gray guifg=gray
   hi link CalNavi CalRuler
   syntax region @text.reference.markdown_inline start=/|/ end=/$/ contained

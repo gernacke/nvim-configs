@@ -21,6 +21,7 @@ function M.on_attach(client, buffer)
   self:map("[w", M.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
   self:map("<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
 
+  -- FIX: format function below is commented out.
   local format = require("plugins.lsp.format").format
   -- self:map("<leader>cf", format, { desc = "Format Document", has = "documentFormatting" })
   -- self:map("<leader>cf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
