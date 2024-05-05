@@ -68,7 +68,7 @@ return {
           icons = {
             package_installed = "✓",
             package_pending = "➜",
-            package_uninstalled = "❌",
+            package_uninstalled = "",
           },
         },
       })
@@ -132,29 +132,4 @@ return {
       end, { desc = "Format file or range (in visual mode)" })
     end,
   },
-  -- {
-  -- 	"nvimtools/none-ls.nvim",
-  -- 	event = "BufReadPre",
-  -- 	dependencies = { "mason.nvim" },
-  -- 	config = function()
-  -- 		local nls = require("null-ls")
-  -- 		nls.setup({
-  -- 			sources = {
-  -- 				nls.builtins.formatting.prettier.with({
-  -- 					extra_filetypes = { "toml", "solidity" },
-  -- 					extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-  -- 				}),
-  -- 				nls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
-  -- 				nls.builtins.formatting.stylua,
-  --          -- nls.builtins.formatting.rustfmt,
-  -- 				--   formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
-  -- 				nls.builtins.formatting.shfmt,
-  -- 				nls.builtins.formatting.google_java_format,
-  -- 				nls.builtins.diagnostics.ruff.with({ extra_args = { "--max-line-length=180" } }),
-  -- 				nls.builtins.diagnostics.flake8,
-  -- 				nls.builtins.diagnostics.shellcheck,
-  -- 			},
-  -- 		})
-  -- 	end,
-  -- },
 }

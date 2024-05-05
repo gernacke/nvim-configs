@@ -3,7 +3,11 @@ local M = {}
 function M.on_attach(client, buffer)
   local self = M.new(client, buffer)
 
-  self:map("gd", "Lspsaga goto_definition", { desc = "Goto Definition" })
+  if vim.bo.filetype == "markdown" then
+    self:map("gd", "Telekasten follow_link", { desc = "Follow Telekasten Link" })
+  else
+    self:map("gd", "Lspsaga goto_definition", { desc = "Goto Definition" })
+  end
   self:map("gp", "Lspsaga peek_definition", { desc = "Peek Definition" })
   self:map("gh", "Lspsaga show_line_diagnostics", { desc = "Show Diagnostic" })
   self:map("ga", "Lspsaga code_action", { desc = "Code Action" })
