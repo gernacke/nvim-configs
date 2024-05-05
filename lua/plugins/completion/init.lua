@@ -311,6 +311,13 @@ return {
           { name = "copilot" },
         },
       })
+      cmp.setup.filetype({ "taskedit", "help" }, {
+        sources = {
+          { name = "path" },
+          { name = "buffer" },
+        },
+      })
+
       -- Use buffer source only in Command History ('q:') window
       cmp.setup.filetype({ "vim" }, {
         sources = {
