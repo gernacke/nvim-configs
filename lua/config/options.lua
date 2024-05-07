@@ -79,7 +79,7 @@ local options = {
 vim.g.mapleader = " "
 
 for k, v in pairs(options) do
-  vim.opt[k] = v
+  opt[k] = v
 end
 
 opt.runtimepath:append("/opt/homebrew/opt/fzf/")

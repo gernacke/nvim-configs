@@ -2,6 +2,15 @@ require("cmp").setup.buffer({
   sources = {
     { name = "buffer" },
     {
+      name = "spell",
+      option = {
+        keep_all_entries = false,
+        enable_in_context = function()
+          return true
+        end,
+      },
+    },
+    {
       name = "look",
       keyword_length = 2,
       options = {

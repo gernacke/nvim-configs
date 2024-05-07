@@ -53,10 +53,4 @@ require("lazy").setup({
 })
 vim.keymap.set("n", "<leader>zz", "<cmd>:Lazy<cr>", { desc = "Plugin Manager" })
 
--- To make buffeline transparent
--- vim.g.transparent_groups = vim.list_extend(
--- 	vim.g.transparent_groups or {},
--- 	vim.tbl_map(function(v)
--- 		return v.hl_group
--- 	end, vim.tbl_values(require("bufferline.config").highlights))
--- )
+-- vim.cmd.colorscheme("catppuccin")
