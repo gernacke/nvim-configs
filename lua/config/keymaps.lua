@@ -31,7 +31,7 @@ local keymappings = {
     [";"] = ";<c-g>u",
     ["[["] = "<ESC>:lua require('telekasten').insert_link({ i=true })<CR>",
     ["[#"] = "<cmd>lua require('telekasten').show_tags({i = true})<cr>",
-
+    ["<C-u>"] = "<ESC>viwU<ESC>A", -- Captialise the previous word under the cursor
     -- Move lines
     -- ["<A-j>"] = "<Esc>:m .+1<CR>==gi",
     -- ["<A-k>"] = "<Esc>:m .-2<CR>==gi",
