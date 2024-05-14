@@ -31,7 +31,8 @@ local keymappings = {
     [";"] = ";<c-g>u",
     ["[["] = "<ESC>:lua require('telekasten').insert_link({ i=true })<CR>",
     ["[#"] = "<cmd>lua require('telekasten').show_tags({i = true})<cr>",
-    ["<C-u>"] = "<ESC>viwU<ESC>A", -- Captialise the previous word under the cursor
+    ["<C-a>"] = "<ESC>viwU<ESC>ea", -- Captialise the previous word under the cursor
+    -- ["<C-,>"] = "<ESC>bvU<ESC>ea",
     -- Move lines
     -- ["<A-j>"] = "<Esc>:m .+1<CR>==gi",
     -- ["<A-k>"] = "<Esc>:m .-2<CR>==gi",
@@ -88,10 +89,6 @@ local keymappings = {
     ["<DOWN>"] = "<c-w>3+",
     ["<LEFT>"] = "<c-w>3<",
     ["<RIGHT>"] = "<c-w>3>",
-    ["gs"] = {
-      "<Plug>(leap-cross-window)",
-      { noremap = false, silent = false },
-    },
   },
   visual_mode = {
     [";"] = ":",

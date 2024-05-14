@@ -5,10 +5,10 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "hrsh7th/nvim-cmp",
   },
-  config = true,
-  -- config = function()
-  --   require("tabout").setup {
-  --     tabkey = "<C-i>",
-  --   }
-  -- end,
+  -- config = true,
+  config = function()
+    require("tabout").setup({
+      exclude = { "ps1" },
+    })
+  end,
 }
