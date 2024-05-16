@@ -9,6 +9,15 @@ return {
   config = function()
     require("tabout").setup({
       exclude = { "ps1" },
+      tabouts = {
+        { open = "'", close = "'" },
+        { open = '"', close = '"' },
+        { open = "`", close = "`" },
+        { open = "(", close = ")" },
+        { open = "[", close = "]" },
+        { open = "{", close = "}" },
+        { open = "|", close = "|" },
+      },
     })
   end,
 }

@@ -62,6 +62,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Set .keymap files to c filetype
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "*.keymap" },
+  callback = function()
+    vim.bo.filetype = "c"
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   pattern = { "" },
   callback = function()
