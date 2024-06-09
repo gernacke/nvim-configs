@@ -5,7 +5,6 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-project.nvim",
-      "dhruvmanila/browser-bookmarks.nvim",
       "ahmedkhalf/project.nvim",
       "cljoly/telescope-repo.nvim",
       "stevearc/aerial.nvim",
