@@ -67,10 +67,10 @@ return {
             ["i-"] = "@assignment.rhs",
             ["i_"] = "@assignment.outer",
             ["a;"] = "@comment.outer",
-            ["io"] = "@conditional.inner",
-            ["ao"] = "@conditional.outer",
-            ["il"] = "@loop.inner",
-            ["al"] = "@loop.outer",
+            -- ["io"] = "@conditional.inner",
+            -- ["ao"] = "@conditional.outer",
+            -- ["il"] = "@loop.inner",
+            -- ["al"] = "@loop.outer",
             ["iN"] = "@number.inner",
           },
         },
@@ -133,6 +133,17 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.powershell = {
+        install_info = {
+          url = "~/repositories/tree-sitter-PowerShell",
+          files = { "src/parser.c" },
+          branch = "main",
+          generate_requires_npm = false,
+          requires_generate_from_grammar = false,
+        },
+        filetype = "ps1",
+      }
     end,
   },
   {

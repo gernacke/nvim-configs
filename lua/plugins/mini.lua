@@ -1,3 +1,17 @@
+local files_set_cwd = function(path)
+  -- Works only if cursor is on the valid file system entry
+  local cur_entry_path = MiniFiles.get_fs_entry().path
+  local cur_directory = vim.fs.dirname(cur_entry_path)
+  vim.fn.chdir(cur_directory)
+end
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MiniFilesBufferCreate",
+  callback = function(args)
+    vim.keymap.set("n", "gl", files_set_cwd, { buffer = args.data.buf_id })
+  end,
+})
+
 return {
   {
     "echasnovski/mini.map",
@@ -24,6 +38,7 @@ return {
   {
     "echasnovski/mini.files",
     version = "*",
+    enabled = false,
     keys = {
       { "<leader>jo", "<cmd>lua MiniFiles.open()<cr>", desc = "Mini Files" },
     },
@@ -71,12 +86,15 @@ return {
   {
     "echasnovski/mini.ai",
     event = "VeryLazy",
+    -- enabled = false,
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     opts = function()
       local ai = require("mini.ai")
       return {
-        n_lines = 500,
-        search_method = "cover_or_nearest",
+        n_lines = 100,
+        search_method = "cover_or_next",
+        goto_left = "g[",
+        goto_right = "g]",
         custom_textobjects = {
           o = ai.gen_spec.treesitter({
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
@@ -146,7 +164,7 @@ return {
     "echasnovski/mini.bufremove",
     -- stylua: ignore
     keys = {
-      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
+      { "<leader>bo", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
     },
   },

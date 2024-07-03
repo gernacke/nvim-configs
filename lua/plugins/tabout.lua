@@ -17,6 +17,7 @@ return {
         { open = "[", close = "]" },
         { open = "{", close = "}" },
         { open = "|", close = "|" },
+        { open = "<", close = ">" },
       },
     })
   end,
