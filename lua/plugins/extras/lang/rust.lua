@@ -133,6 +133,19 @@ return {
                 --     end,
                 --   }
                 -- )
+                local map = function(mode, lhs, rhs, desc)
+                  if desc then
+                    desc = desc
+                  end
+                  vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
+                end
+                map(
+                  "n",
+                  "<leader>lcc",
+                  "<cmd>lua require'rust-tools'.open_cargo_toml.open_cargo_toml()<cr>",
+                  "Open Cargo.toml"
+                )
+
                 vim.cmd([[
                   augroup RustLSP
                     autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
