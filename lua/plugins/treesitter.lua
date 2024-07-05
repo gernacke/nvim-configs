@@ -73,6 +73,11 @@ return {
             -- ["al"] = "@loop.outer",
             ["iN"] = "@number.inner",
           },
+          selection_modes = {
+            ["@parameter.outer"] = "v", -- charwise
+            ["@class.outer"] = "v", -- charwise
+            ["@function.outer"] = "V", -- linewise
+          },
         },
         swap = {
           enable = true,
