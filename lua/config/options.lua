@@ -74,6 +74,7 @@ local options = {
   pumblend = 17, -- Enables pseudo-transparency for the |popup-menu|.
   pumheight = 10, -- Maximum height of the |popup-menu|.
   title = true,
+  virtualedit = "block", -- Allow the cursor to move where there is no text in Visual mode
 }
 
 vim.g.mapleader = " "
@@ -144,6 +145,7 @@ let g:db_ui_icons = {
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.cmd.highlight("default link IndentLine Comment")
+vim.cmd([[autocmd BufNewFile,BufRead *.keymap setfiletype c]])
 
 -- Remove deprecated commands from Neotree
 -- vim.g.neo_tree_remove_legacy_commands = 1
