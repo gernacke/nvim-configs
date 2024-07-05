@@ -41,15 +41,15 @@ return {
       },
       highlight = { enable = true },
       indent = { enable = true, disable = { "python" } },
-      -- incremental_selection = {
-      --   enable = true,
-      --   keymaps = {
-      --     init_selection = "gnn",
-      --     node_incremental = "grn",
-      --     scope_incremental = "grc",
-      --     node_decremental = "<BS>",
-      --   },
-      -- },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<leader>ss",
+          node_incremental = "<leader>si",
+          scope_incremental = "<leader>sc",
+          node_decremental = "<BS>",
+        },
+      },
       textobjects = {
         select = {
           enable = true,
