@@ -216,11 +216,11 @@ M.project_files = function()
   end
 end
 
-M.fine_all_files = function()
+M.find_all_files = function()
   local fopts = {}
 
   fopts.layout_strategy = "horizontal"
-  fopts.layout_config = { height = 0.8 }
+  fopts.layout_config = { height = 0.6, width = 0.7 }
 
   fopts.prompt_title = " Find"
   fopts.prompt_prefix = "  "

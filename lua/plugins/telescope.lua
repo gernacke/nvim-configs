@@ -23,7 +23,7 @@ return {
       { "<leader>sb", "<cmd>lua require('utils.telescope').search_current_buffer()<cr>", desc = "Grep CrnBuffer" },
       { "<leader>co", "<cmd>Telescope aerial<cr>", desc = "Code Outline" },
       { "<leader><space>", "<cmd>lua require('utils.telescope').project_files()<cr>", desc = "Find Git Files" },
-      { "<leader>ff", "<cmd>lua require('utils.telescope').fine_all_files()<cr>", desc = "Find All Files" },
+      { "<leader>ff", "<cmd>lua require('utils.telescope').find_all_files()<cr>", desc = "Find All Files" },
       { "<leader>fl", "<cmd>Telescope oldfiles<cr>", desc = "Last Opened Files" },
       -- { "<leader>fr", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", desc = "frecency files" },
       { "<leader><tab>", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
