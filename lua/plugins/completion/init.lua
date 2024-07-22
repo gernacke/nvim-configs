@@ -228,13 +228,15 @@ return {
             group_index = 1,
             -- max_item_count = 3,
           },
-          { name = "copilot", keyword_length = 1, group_index = 2 },
           { name = "luasnip", max_item_count = 5, group_index = 2 },
           { name = "path", max_item_count = 3, group_index = 3 },
-          { name = "buffer", keyword_length = 4, max_item_count = 3, group_index = 2 },
           { name = "treesitter", max_item_count = 5, group_index = 2 },
           -- { name = "codeium", group_index = 1 },
           { name = "crates", group_index = 2 },
+        }, {
+          { name = "copilot", keyword_length = 1, group_index = 1 },
+        }, {
+          { name = "buffer", keyword_length = 4, max_item_count = 3, group_index = 2 },
         }),
         sorting = {
           comparators = {
@@ -267,9 +269,13 @@ return {
               treesitter = "(treesitter)",
               codeium = "(codeium)",
               copilot = "(copilot)",
+              look = "(look)",
+              crates = "(crates)",
             }
+            -- dup - when non-zero this match will be added even when an
+            -- item with the same word is already present.
             local duplicates = {
-              buffer = 1,
+              buffer = 0,
               path = 1,
               nvim_lsp = 1,
               luasnip = 0,
