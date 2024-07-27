@@ -53,6 +53,7 @@ return {
     opts = {
       window = {
         backdrop = 0.9,
+        width = 150, -- width of the Zen window
       },
       plugins = {
         lualine = { enabled = false },
@@ -109,10 +110,26 @@ return {
   },
   {
     "folke/trouble.nvim",
-    cmd = "TroubleToggle",
+    cmd = "Trouble",
+    keys = {
+      { "<leader>fo", "<cmd>Trouble symbols<cr>", desc = "Symbols Outline" },
+    },
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      require("trouble").setup({})
+      require("trouble").setup({
+        modes = {
+          symbols = {
+            desc = "document symbols",
+            mode = "lsp_document_symbols",
+            focus = true,
+            win = { position = "right" },
+            filter = {
+              -- remove Package since luals uses it for control flow structures
+              ["not"] = { ft = "lua", kind = "Package" },
+            },
+          },
+        },
+      })
     end,
   },
   {
@@ -202,7 +219,7 @@ return {
   keys = {
     { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
     { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+    { "<leader>r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
     { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
   },
