@@ -30,30 +30,18 @@ return {
     event = "BufReadPre",
     opts = {
       signs = {
-        add = { hl = "GitSignsAdd", text = "▍", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+        add = { text = "▍" },
         change = {
-          hl = "GitSignsChange",
           text = "▍",
-          numhl = "GitSignsChangeNr",
-          linehl = "GitSignsChangeLn",
         },
         delete = {
-          hl = "GitSignsDelete",
           text = "▸",
-          numhl = "GitSignsDeleteNr",
-          linehl = "GitSignsDeleteLn",
         },
         topdelete = {
-          hl = "GitSignsDelete",
           text = "▾",
-          numhl = "GitSignsDeleteNr",
-          linehl = "GitSignsDeleteLn",
         },
         changedelete = {
-          hl = "GitSignsChange",
           text = "▍",
-          numhl = "GitSignsChangeNr",
-          linehl = "GitSignsChangeLn",
         },
       },
       -- update_debounce = 100,
@@ -89,16 +77,18 @@ return {
         map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", { desc = "Stage Hunk" })
         map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", { desc = "Reset Hunk" })
         map("n", "<leader>ghS", gs.stage_buffer, { desc = "Stage Buffer" })
+        map("n", "<leader>ghj", gs.next_hunk, { desc = "next hunk" })
+        map("n", "<leader>ghk", gs.prev_hunk, { desc = "prev hunk" })
         map("n", "<leader>ghu", gs.undo_stage_hunk, { desc = "Undo Stage Hunk" })
         map("n", "<leader>ghR", gs.reset_buffer, { desc = "Reset Buffer" })
         map("n", "<leader>ghp", gs.preview_hunk, { desc = "Preview Hunk" })
         map("n", "<leader>ghb", function()
-          gs.blame_line { full = true }
+          gs.blame_line({ full = true })
         end, { desc = "Blame Line" })
         map("n", "<leader>gtb", gs.toggle_current_line_blame, { desc = "Toggle Line Blame" })
         map("n", "<leader>ghd", gs.diffthis, { desc = "Diff This" })
         map("n", "<leader>ghD", function()
-          gs.diffthis "~"
+          gs.diffthis("~")
         end, { desc = "Diff This ~" })
         map("n", "<leader>gtd", gs.toggle_deleted, { desc = "Toggle Delete" })
 

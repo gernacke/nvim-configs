@@ -20,7 +20,7 @@ return {
     },
     cmd = "Telescope",
     keys = {
-      { "<leader>sb", "<cmd>lua require('utils.telescope').search_current_buffer()<cr>", desc = "Grep CrnBuffer" },
+      { "<leader>bk", "<cmd>lua require('utils.telescope').search_current_buffer()<cr>", desc = "Grep CrnBuffer" },
       { "<leader>co", "<cmd>Telescope aerial<cr>", desc = "Code Outline" },
       { "<leader><space>", "<cmd>lua require('utils.telescope').project_files()<cr>", desc = "Find Git Files" },
       { "<leader>ff", "<cmd>lua require('utils.telescope').find_all_files()<cr>", desc = "Find All Files" },
