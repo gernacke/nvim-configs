@@ -84,7 +84,7 @@ local keymappings = {
     -- ["<A-k>"] = ":m .-2<CR>==",
 
     ["Y"] = "y$",
-    ["<c-q>"] = ":call QuickFixToggle()<CR>",
+    ["<c-q>"] = ":lua require('utils.coding').QuickFixToggle()<cr>",
     ["<UP>"] = "<c-w>3-",
     ["<DOWN>"] = "<c-w>3+",
     ["<LEFT>"] = "<c-w>3<",

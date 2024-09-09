@@ -2,10 +2,10 @@ local M = {}
 
 local lang = ""
 local file_type = ""
-local utils = require "utils"
+local utils = require("utils")
 
 local function cht_on_open(term)
-  vim.cmd "stopinsert"
+  vim.cmd("stopinsert")
   vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
   vim.api.nvim_buf_set_name(term.bufnr, "cheatsheet-" .. term.bufnr)
   vim.api.nvim_buf_set_option(term.bufnr, "filetype", "cheat")
@@ -13,7 +13,7 @@ local function cht_on_open(term)
 end
 
 local function cht_on_exit(_)
-  vim.cmd [[normal gg]]
+  vim.cmd([[normal gg]])
 end
 
 function M.cht()
@@ -48,6 +48,22 @@ function M.cht()
     cmd = "curl cht.sh/" .. cmd
     utils.open_term(cmd, { direction = "vertical", on_open = cht_on_open, on_exit = cht_on_exit })
   end)
+end
+
+function M.QuickFixToggle()
+  local has_quickfix = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 then
+      has_quickfix = true
+      break
+    end
+  end
+
+  if has_quickfix then
+    vim.cmd("cclose")
+  else
+    vim.cmd("copen")
+  end
 end
 
 function M.stack_overflow()

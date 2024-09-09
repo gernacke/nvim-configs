@@ -149,14 +149,6 @@ vim.cmd([[
   " augroup END
 
 
-  function! QuickFixToggle()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-      copen
-    else
-      cclose
-    endif
-  endfunction
-
   " augroup _general_settings
   "   autocmd!
   "   autocmd Filetype qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
