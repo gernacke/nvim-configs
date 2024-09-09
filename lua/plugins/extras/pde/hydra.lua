@@ -16,7 +16,9 @@ local function gitsigns_menu()
       color = "pink",
       invoke_on_body = true,
       hint = {
-        border = "rounded",
+        float_opts = {
+          border = "rounded",
+        },
         position = "bottom",
       },
       on_enter = function()
@@ -98,7 +100,9 @@ local function window_resize()
       color = "pink",
       invoke_on_body = true,
       hint = {
-        border = "rounded",
+        float_opts = {
+          border = "rounded",
+        },
         position = "bottom",
       },
     },
@@ -141,7 +145,9 @@ local function dap_menu()
       color = "pink",
       invoke_on_body = true,
       hint = {
-        border = "rounded",
+        float_opts = {
+          border = "rounded",
+        },
         position = "middle-right",
       },
     },
@@ -185,7 +191,9 @@ local function lsp_menu()
       hint = {
         type = "window",
         position = "bottom",
-        border = "rounded",
+        float_opts = {
+          border = "rounded",
+        },
         show_name = true,
       },
     },
@@ -198,7 +206,6 @@ Common Actions
 - _a_: Code Actions
 - _s_: Jump to Definition
 - _d_: Show Diagnostics
-- _w_: Show Workspace Diagnostics
 ^
 Help
 - _e_: Show Declarations
@@ -211,11 +218,11 @@ _;_/_q_/_<Esc>_: Exit Hydra
 ]],
     body = "<A-m>",
     heads = {
-      { "s", cmd("TroubleToggle lsp_definitions"), { desc = "Jump to Definition", silent = true } },
+      { "s", cmd("Trouble lsp_definitions"), { desc = "Jump to Definition", silent = true } },
       { "h", cmd("Lspsaga hover_doc"), { desc = "Show Hover Doc", silent = true } },
-      { "o", cmd("TroubleToggle lsp_implementations"), { desc = "Show Implementations", silent = true } },
+      { "o", cmd("Trouble lsp_implementations"), { desc = "Show Implementations", silent = true } },
       { "j", vim.lsp.buf.signature_help, { desc = "Show Sig Help", silent = true } },
-      { "r", cmd("TroubleToggle lsp_references"), { desc = "Show References", silent = true } },
+      { "r", cmd("Trouble lsp_references"), { desc = "Show References", silent = true } },
       {
         "f",
         function()
@@ -224,9 +231,8 @@ _;_/_q_/_<Esc>_: Exit Hydra
         { desc = "Format Buffer", silent = true },
       },
       { "a", vim.lsp.buf.code_action, { desc = "Show Code Actions", silent = true } },
-      { "d", cmd("TroubleToggle document_diagnostics"), { desc = "Show Diagnostics", silent = true } },
-      { "w", cmd("TroubleToggle workspace_diagnostics"), { desc = "Show Workspace Diagnostics", silent = true } },
-      { "D", cmd("TroubleToggle lsp_definitions"), { desc = "Show Type Definition", silent = true } },
+      { "d", cmd("Trouble diagnostics"), { desc = "Show Diagnostics", silent = true } },
+      { "D", cmd("Trouble lsp_definitions"), { desc = "Show Type Definition", silent = true } },
       { "e", vim.lsp.buf.declaration, { desc = "Show Declaration", silent = true } },
       { ";", nil, { desc = "quit", exit = true, nowait = true } },
       { "q", nil, { desc = "quit", exit = true, nowait = true } },
@@ -266,7 +272,9 @@ _m_: Show Man Pages
       hint = {
         type = "window",
         position = "bottom",
-        border = "rounded",
+        float_opts = {
+          border = "rounded",
+        },
         show_name = true,
       },
     },
@@ -307,7 +315,7 @@ end
 
 return {
   {
-    "anuvyklack/hydra.nvim",
+    "nvimtools/hydra.nvim",
     event = "VeryLazy",
     config = function(_, _)
       local hydra = require("hydra")
