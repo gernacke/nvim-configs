@@ -197,13 +197,6 @@ return {
       { "|", "<cmd>lua require('various-textobjs').column()<CR>", mode = { "o", "x" }, desc = "Column" },
 
       {
-        "<leader>;",
-        "<cmd>lua require('various-textobjs').multiCommentedLines()<CR>",
-        mode = { "o", "x" },
-        desc = "Multi-Commented Lines",
-      },
-
-      {
         "iz",
         "<cmd>lua require('various-textobjs').closedFold('inner')<CR>",
         mode = { "o", "x" },
