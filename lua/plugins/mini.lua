@@ -159,31 +159,31 @@ return {
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
     },
   },
-  -- {
-  --   "echasnovski/mini.comment",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     options = {
-  --       custom_commentstring = function()
-  --         return vim.bo.commentstring
-  --       end,
-  --     },
-  --     mappings = {
-  --       comment = "gc",
-  --       comment_line = "gcc",
-  --       comment_visual = "gc",
-  --       textobject = "gc",
-  --     },
-  --     hooks = {
-  --       pre = function()
-  --         require("ts_context_commentstring.internal").update_commentstring({})
-  --       end,
-  --     },
-  --   },
-  --   config = function(_, opts)
-  --     require("mini.comment").setup(opts)
-  --   end,
-  -- },
+  {
+    "echasnovski/mini.comment",
+    event = "VeryLazy",
+    opts = {
+      options = {
+        custom_commentstring = function()
+          return vim.bo.commentstring
+        end,
+      },
+      mappings = {
+        comment = "gc",
+        comment_line = "gcc",
+        comment_visual = "gc",
+        textobject = "gc",
+      },
+      hooks = {
+        pre = function()
+          require("ts_context_commentstring.internal").update_commentstring({})
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("mini.comment").setup(opts)
+    end,
+  },
   {
     "echasnovski/mini.misc",
     config = true,
