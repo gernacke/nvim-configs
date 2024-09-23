@@ -13,9 +13,6 @@ return {
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
-    keys = {
-      { "<leader>fo", "<cmd>Lspsaga outline<cr>", desc = "Symbol Outline" },
-    },
     config = function()
       require("lspsaga").setup({
         -- ui = {
@@ -63,6 +60,12 @@ return {
           folder_level = 2,
           -- respect_root = false,
           -- color_mode = false,
+        },
+        definition = {
+          keys = {
+            vsplit = "<C-c>v",
+            split = "<C-c>x",
+          },
         },
         finder = {
           left_width = 0.14,
