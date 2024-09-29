@@ -5,6 +5,18 @@ return {
     lazy = false,
     config = function()
       require("oil").setup({
+        win_options = {
+          number = false,
+          relativenumber = false,
+          wrap = false,
+          signcolumn = "no",
+          cursorcolumn = false,
+          foldcolumn = "0",
+          spell = false,
+          list = false,
+          conceallevel = 3,
+          concealcursor = "nvic",
+        },
         columns = { "icon" },
         keymaps = {
           ["<C-h>"] = false,
@@ -32,11 +44,16 @@ return {
           end,
         },
       })
-      -- Open parent directory in floating window
-      vim.keymap.set("n", "<leader>jo", require("oil").toggle_float)
+
+      require("which-key").add({
+        {
+          nowait = true,
+          remap = false,
+          -- Open parent directory in floating window
+          { "<leader>jo", require("oil").toggle_float, desc = "Open Oil Floating" },
+          { "<leader>-", "<cmd>Oil<cr>", desc = "Open Oil To Side" },
+        },
+      })
     end,
-    keys = {
-      { "<leader>-", "<cmd>Oil<cr>", desc = "Open parent directory" },
-    },
   },
 }

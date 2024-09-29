@@ -1,1 +1,0 @@
-loadstring(text, chunkname?)
