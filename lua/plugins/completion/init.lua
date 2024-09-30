@@ -111,53 +111,11 @@ return {
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
           }),
-          -- ["<Tab>"] = cmp.mapping({
-          --   -- If you didn't select any item and the option table contains `select = true`
-          --   -- nvim-cmp will automatically select the first item.
-          --   i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-          --   c = function(fallback)
-          --     if cmp.visible() then
-          --       cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
-          --     else
-          --       fallback()
-          --     end
-          --   end,
-          -- }),
           ["<Tab>"] = cmp.mapping({
-            -- i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-            i = function(fallback)
-              if cmp.visible() then
-                cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
-              else
-                fallback()
-              end
-            end,
+            -- If you didn't select any item and the option table contains `select = true`
+            -- nvim-cmp will automatically select the first item.
+            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false }),
           }),
-          -- If you didn't select any item and the option table contains `select = true`
-          -- nvim-cmp will automatically select the first item.
-          --   i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-          --   c = function(fallback)
-          --     if cmp.visible() then
-          --       cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
-          --     else
-          --       fallback()
-          --     end
-          --   end,
-          -- }),
-          -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
-          --   if cmp.visible() and has_words_before() then
-          --     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-          --   else
-          --     fallback()
-          --   end
-          -- end),
-          -- Complete common string (similar to shell completion behavior).
-          -- ["<C-l>"] = cmp.mapping(function(fallback)
-          --   if cmp.visible() then
-          --     return cmp.complete_common_string()
-          --   end
-          --   fallback()
-          -- end, { "i", "c" }),
           ["<C-j>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
@@ -183,14 +141,6 @@ return {
               fallback()
             end
           end, { "i", "s", "c" }),
-
-          -- ["<C-g>"] = cmp.mapping(function(fallback)
-          --   vim.api.nvim_feedkeys(
-          --     vim.fn["copilot#Accept"](vim.api.nvim_replace_termcodes("<Tab>", true, true, true)),
-          --     "n",
-          --     true
-          --   )
-          -- end),
         }),
         --  * The kind of a completion entry.
         -- export namespace CompletionItemKind {
@@ -332,7 +282,21 @@ return {
       })
       -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline({
+          ["<Tab>"] = cmp.mapping({
+            -- If you didn't select any item and the option table contains `select = true`
+            -- nvim-cmp will automatically select the first item.
+            c = function(fallback)
+              if cmp.visible() then
+                -- 'Tab' confirms the highlighted selection,
+                -- or selects the first item if nothing's highlighted
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+              else
+                fallback()
+              end
+            end,
+          }),
+        }),
         sources = cmp.config.sources({
           { name = "path" },
         }, {
