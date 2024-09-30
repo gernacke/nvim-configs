@@ -39,8 +39,8 @@ local keymappings = {
   },
   normal_mode = {
     -- Moving with wrap on
-    ["k"] = { "v:count == 0 ? 'gk' : 'k'", { expr = true } },
-    ["j"] = { "v:count == 0 ? 'gj' : 'j'", { expr = true } },
+    ["k"] = { "v:count == 0 ? 'gk' : 'k'", { expr = true, noremap = true } },
+    ["j"] = { "v:count == 0 ? 'gj' : 'j'", { expr = true, noremap = true } },
     [";"] = ":",
     [":"] = ";",
 
