@@ -41,24 +41,23 @@ vim.api.nvim_create_autocmd({ "Filetype" }, {
 --     -- vim.api.nvim_set_keymap("n", "<CR>", ":Lspsaga goto_definition<CR>", { noremap = true, silent = true })
 --     vim.cmd [[ syn match markdownIgnore "\w\@<=\w\@=" ]]
 --   end,
--- })
+
+-- wrap and check for spell in text filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "gitcommit" },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.wrap = true
+    vim.cmd([[ syn match markdownIgnore "\w\@<=\w\@=" ]])
+    vim.opt_local.conceallevel = 2
+    vim.opt_local.linebreak = true -- prevents breaking words
+  end,
+})
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   pattern = { "" },
   callback = function()
     vim.cmd([[ set formatoptions-=cro ]])
-  end,
-})
-
--- wrap and check for spell in text filetypes
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("wrap_spell"),
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.opt_local.conceallevel = 2
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-    vim.cmd([[ syn match markdownIgnore "\w\@<=\w\@=" ]])
   end,
 })
 
