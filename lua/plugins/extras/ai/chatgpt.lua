@@ -65,6 +65,13 @@ return {
           system_prompt = "I want you to act as a senior Linux Administrator. I will ask you with the task I want to do, you just reply me with the suggested code in block. No explanation. When I need it, I will ask for it.",
         },
         {
+          name = "Proof-reader",
+          chat = true,
+          command = false,
+          model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
+          system_prompt = "I want you act as a proofreader. I would like you to review them for any spelling, logic, grammar, or punctuation errors. Suggest it with a more positive attitude. Please reply me with the suggested version only without anything else.",
+        },
+        {
           name = "Senior-Programmer",
           chat = true,
           command = false,
@@ -132,7 +139,14 @@ return {
           chat = true,
           command = false,
           model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
-          system_prompt = "I want you to act as a commit message generator. I will provide you with information about the task and the prefix for the task code, and I would like you to generate an appropriate commit message using the conventional commit format. Do not write any explanations or other words, just reply with the commit message.",
+          system_prompt = "I want you to act as a commit message generator. I will provide you with information about the task and the prefix for the task code, and I would like you to generate an appropriate commit message using the conventional commit format. Reply with the commit message only.",
+        },
+        {
+          name = "Documentation-Generator",
+          chat = true,
+          command = false,
+          model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
+          system_prompt = "I want you to act as a documentation comment generator for code snippets. I will provide you with a piece of code, and you will generate concise and clear documentation comments that describe the purpose of the code. Ensure that the comments are easy to understand and follow best practices for documentation. My first code snippet is: [SELECT @id = IIF(@id = 0, ISNULL(MAX(StaffID), 0), @id) FROM vStaff s].",
         },
       },
       hooks = {
@@ -150,26 +164,30 @@ return {
           local agent = gp.get_chat_agent("ChatGPT4o-mini")
           gp.Prompt(params, gp.Target.vnew, agent, template)
         end,
+        Documentation = function(gp, params)
+          local template = "I have the following code from {{filename}}:\n\n"
+            .. "```{{filetype}}\n{{selection}}\n```\n\n"
+          local agent = gp.get_chat_agent("Documentation-Generator")
+          gp.Prompt(params, gp.Target.vnew("markdown"), agent, template)
+        end,
+        GitCommit = function(gp, params)
+          local template = "{{selection}}\n\n"
+          local agent = gp.get_chat_agent("Git-Commit-Generator")
+          gp.Prompt(params, gp.Target.append, agent, template)
+        end,
         CodeReview = function(gp, params)
           local template = "I have the following code from {{filename}}:\n\n"
             .. "```{{filetype}}\n{{selection}}\n```\n\n"
-            .. "I want you to act as a senior programmer. I will provide you with snippets of code, and your task will be to review the code for best practices, better readability, consider to make it more ergonomical, and identify any potential bugs or inefficiencies, and reply me with the suggested code in block. Explain with the minimal number of words possible for the changes. Point out the changes with the minimum number of words."
-          local agent = gp.get_chat_agent("ChatGPT4o-mini")
+          local agent = gp.get_chat_agent("Senior-Programmer")
           gp.Prompt(params, gp.Target.vnew("markdown"), agent, template)
         end,
         Translator = function(gp, params)
           local chat_system_prompt = "You are a Translator, please translate between English and Chinese."
           gp.cmd.vnew(params, chat_system_prompt)
-
-          -- -- you can also create a chat with a specific fixed agent like this:
-          -- local agent = gp.get_chat_agent("ChatGPT4o")
-          -- gp.cmd.ChatNew(params, chat_system_prompt, agent)
         end,
         ProofRead = function(gp, params)
-          local template = "I have the writing from {{filename}}:\n\n"
-            .. "```{{filetype}}\n{{selection}}\n```\n\n"
-            .. "I want you act as a proofreader. I would like you to review them for any spelling, logic, grammar, or punctuation errors. Suggest it with a more positive attitude. Please reply me with the suggested version only without anything else."
-          local agent = gp.get_chat_agent("ChatGPT4o-mini")
+          local template = "I have the writing from {{filename}}:\n\n" .. "```{{filetype}}\n{{selection}}\n```\n\n"
+          local agent = gp.get_chat_agent("Proof-reader")
           gp.Prompt(params, gp.Target.vnew, agent, template)
         end,
       },
@@ -201,11 +219,13 @@ return {
         { "<C-g>s", "<cmd>GpStop<cr>", desc = "GpStop" },
         { "<C-g>t", ":<C-u>'<,'>GpChatToggle<cr>", desc = "Visual Toggle Chat" },
         { "<C-g>h", group = "Preset Prompts" },
+        { "<C-g>hc", ":<C-u>'<,'>GpCodeReview<cr>", desc = "Code Review" },
+        { "<C-g>hd", ":<C-u>'<,'>GpDocumentation<cr>", desc = "Generate Documentation" },
+        { "<C-g>hg", ":<C-u>'<,'>GpGitCommit<cr>", desc = "Git Commit Message" },
+        { "<C-g>hr", ":<C-u>'<,'>GpProofRead<cr>", desc = "Proof Read" },
+        { "<C-g>ht", ":<C-u>'<,'>GpTranslator<cr>", desc = "Translate" },
         { "<C-g>hu", ":<C-u>'<,'>GpUnitTests<cr>", desc = "Unit Tests" },
         { "<C-g>hx", ":<C-u>'<,'>GpExplain<cr>", desc = "Explain" },
-        { "<C-g>hc", ":<C-u>'<,'>GpCodeReview<cr>", desc = "Code Review" },
-        { "<C-g>ht", ":<C-u>'<,'>GpTranslator<cr>", desc = "Translate" },
-        { "<C-g>hr", ":<C-u>'<,'>GpProofRead<cr>", desc = "Proof Read" },
         { "<C-g>w", group = "Whisper" },
         { "<C-g>wa", ":<C-u>'<,'>GpWhisperAppend<cr>", desc = "Whisper Append" },
         { "<C-g>wb", ":<C-u>'<,'>GpWhisperPrepend<cr>", desc = "Whisper Prepend" },
