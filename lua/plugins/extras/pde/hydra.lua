@@ -93,7 +93,7 @@ local function gitsigns_menu()
   }
 end
 
-local function window_resize()
+local function window_movement()
   return {
     name = "Side scroll",
     config = {
@@ -201,36 +201,18 @@ local function lsp_menu()
     LSP
 ^
 Common Actions
-- _h_: Show Hover Doc
-- _f_: Format Buffer
-- _a_: Code Actions
-- _s_: Jump to Definition
 - _d_: Show Diagnostics
 ^
 Help
 - _e_: Show Declarations
 - _D_: Show Type Definition
-- _j_: Show Sig Help
-- _o_: Show Implementation
 - _r_: Show References
 ^
 _;_/_q_/_<Esc>_: Exit Hydra
 ]],
     body = "<A-m>",
     heads = {
-      { "s", cmd("Trouble lsp_definitions"), { desc = "Jump to Definition", silent = true } },
-      { "h", cmd("Lspsaga hover_doc"), { desc = "Show Hover Doc", silent = true } },
-      { "o", cmd("Trouble lsp_implementations"), { desc = "Show Implementations", silent = true } },
-      { "j", vim.lsp.buf.signature_help, { desc = "Show Sig Help", silent = true } },
       { "r", cmd("Trouble lsp_references"), { desc = "Show References", silent = true } },
-      {
-        "f",
-        function()
-          vim.lsp.buf.format({ async = true })
-        end,
-        { desc = "Format Buffer", silent = true },
-      },
-      { "a", vim.lsp.buf.code_action, { desc = "Show Code Actions", silent = true } },
       { "d", cmd("Trouble diagnostics"), { desc = "Show Diagnostics", silent = true } },
       { "D", cmd("Trouble lsp_definitions"), { desc = "Show Type Definition", silent = true } },
       { "e", vim.lsp.buf.declaration, { desc = "Show Declaration", silent = true } },
@@ -251,11 +233,6 @@ local function quick_menu()
 ^
 _v_: Open Terminal (vertical)
 _h_: Open Terminal (horizontal)
-
-_x_: Explains Codes
-_e_: Coding with Instructions
-_s_: Summarize Code
-_g_: Grammar Correction
 
 _b_: Buffer Fuzzy Search
 _o_: Open Symbols Outline
@@ -295,15 +272,6 @@ _m_: Show Man Pages
         { desc = "Opens Symbols Outline", exit = true, silent = true },
       },
 
-      { "x", cmd("ChatGPTRun explain_code"), { desc = "Explains Code", silent = true } },
-      {
-        "e",
-        cmd(":lua require'chatgpt'.edit_with_instructions()<cr>"),
-        { desc = "Edit Codes With Instructions", silent = true },
-      },
-      { "s", cmd("ChatGPTRun summarize"), { desc = "Summarize Codes", silent = true } },
-      { "g", cmd("ChatGPTRun grammar_correction"), { desc = "Grammar Correction", silent = true } },
-
       { "v", cmd("ToggleTerm size=85 direction=vertical"), { desc = "Vertical Terminal", silent = true } },
       { "h", cmd("ToggleTerm direction=horizontal"), { desc = "Horizontal Terminal", silent = true } },
 
@@ -323,7 +291,7 @@ return {
       hydra(dap_menu())
       hydra(quick_menu())
       hydra(lsp_menu())
-      hydra(window_resize())
+      hydra(window_movement())
     end,
   },
 }

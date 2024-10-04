@@ -6,7 +6,8 @@ function M.on_attach(client, buffer)
   if vim.bo.filetype == "markdown" then
     self:map("gd", "Telekasten follow_link", { desc = "Follow Telekasten Link" })
   else
-    self:map("gd", "Lspsaga goto_definition", { desc = "Goto Definition" })
+    -- self:map("gd", "Lspsaga goto_definition", { desc = "Goto Definition" })
+    vim.api.nvim_set_keymap("n", "gd", "<CMD>Lspsaga goto_definition<CR>zt", { noremap = true, silent = true })
   end
   self:map("gp", "Lspsaga peek_definition", { desc = "Peek Definition" })
   self:map("gh", "Lspsaga show_line_diagnostics", { desc = "Show Diagnostic" })
