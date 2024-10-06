@@ -9,6 +9,7 @@ return {
   {
     "karb94/neoscroll.nvim",
     event = "BufEnter",
+    enabled = false,
     config = function()
       require("neoscroll").setup({
         easing_function = "quadratic",
@@ -37,6 +38,7 @@ return {
   {
     "gen740/SmoothCursor.nvim",
     event = "BufEnter",
+    enabled = false,
     config = function()
       require("smoothcursor").setup({
         type = "matrix", -- Cursor movement calculation method, choose "default", "exp" (exponential) or "matrix".
