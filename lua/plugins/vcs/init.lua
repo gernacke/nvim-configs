@@ -15,7 +15,7 @@ return {
       integrations = { diffview = true },
     },
     keys = {
-      { "<leader>gS", "<cmd>Neogit kind=tab<cr>", desc = "Status" },
+      { "<leader>gs", "<cmd>Neogit kind=tab<cr>", desc = "Status" },
     },
   },
   {
@@ -25,7 +25,7 @@ return {
       "tpope/vim-rhubarb",
     },
     keys = {
-      { "<leader>gs", "<CMD>Git diff --staged<CR>", desc = "Diff Staged Files" },
+      { "<leader>gds", "<CMD>Git diff --staged<CR>", desc = "Diff Staged Files" },
     },
   },
   {
