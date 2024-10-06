@@ -130,6 +130,15 @@ return {
           -- system prompt (use this to specify the persona/role of the AI)
           system_prompt = "I want you to act as a Git commands advisor for an intermediate user. I will ask you about specific Git commands, and you will provide a very brief explanation of what each command does. Please keep the explanations concise and focus only on the command itself without any extensive details. My first command is `git diff`",
         },
+        {
+          name = "auto-completion",
+          chat = true,
+          command = false,
+          -- string with model name or table with model name and parameters
+          model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
+          -- system prompt (use this to specify the persona/role of the AI)
+          system_prompt = "I want you to act as an auto completion agent. I will provide you with snippets of code, and you will try to complete the code by following the conventions and styles evident in my provided snippets at the place where I have inserted 'xxx'. Please ensure your suggestions align with the programming language and structure I use. My first code snippet is: def calculate_sum(a, b):",
+        },
       },
       hooks = {
         UnitTests = function(gp, params)
@@ -151,6 +160,11 @@ return {
             .. "```{{filetype}}\n{{selection}}\n```\n\n"
           local agent = gp.get_chat_agent("Documentation-Generator")
           gp.Prompt(params, gp.Target.vnew("markdown"), agent, template)
+        end,
+        AutoComplete = function(gp, params)
+          local template = "{{selection}}\n\n"
+          local agent = gp.get_chat_agent("auto-completion")
+          gp.Prompt(params, gp.Target.append, agent, template)
         end,
         GitCommitAppend = function(gp, params)
           local template = "{{selection}}\n\n"
@@ -209,6 +223,7 @@ return {
         { "<C-g>hc", ":<C-u>'<,'>GpCodeReview<cr>", desc = "Code Review" },
         { "<C-g>hd", ":<C-u>'<,'>GpDocumentation<cr>", desc = "Generate Documentation" },
         { "<C-g>hg", ":<C-u>'<,'>GpGitCommitAppend<cr>", desc = "Git Commit Message" },
+        { "<C-g>hp", ":<C-u>'<,'>GpAutoComplete<cr>", desc = "Auto Complete Code" },
         { "<C-g>hr", ":<C-u>'<,'>GpProofRead<cr>", desc = "Proof Read" },
         { "<C-g>ht", ":<C-u>'<,'>GpTranslator<cr>", desc = "Translate" },
         { "<C-g>hu", ":<C-u>'<,'>GpUnitTests<cr>", desc = "Unit Tests" },
