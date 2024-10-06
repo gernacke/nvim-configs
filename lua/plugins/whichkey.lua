@@ -1,140 +1,66 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  dependencies = { { "echasnovski/mini.nvim", version = "*" } },
   config = function()
     local wk = require("which-key")
     wk.setup({
       show_help = false,
       plugins = { spelling = true }, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      key_labels = { ["<leader>"] = "SPC" },
-      triggers = "auto",
+      triggers = {
+        { "<auto>", mode = "nxso" },
+      },
     })
-    wk.register({
-      a = { name = "+AI", p = { "<CMD>Copilot panel<CR>", "Copilot panel" } },
-      b = { name = "+Buffers" },
-      c = {
-        name = "+Code",
-        x = {
-          name = "Swap Next",
-          f = "Function",
-          p = "Parameter",
-          c = "Class",
-        },
-        X = {
-          name = "Swap Previous",
-          f = "Function",
-          p = "Parameter",
-          c = "Class",
-        },
-        h = { "<CMD>lua require('config.autocmds').toggle_crosshairs()<CR>", "No Highlight" },
-        c = { "<CMD>lua require('config.autocmds').toggle_color_column()<CR>", "Toggle Color Column" },
-        w = { "<CMD>lua require('config.autocmds').toggle_text_wrap()<CR>", "Toggle Text Wrap" },
+    wk.add({
+      {
+        mode = { "n", "v" },
+        { "<leader>b", group = "Buffers" },
+        { "<leader>c", group = "Code" },
+        { "<leader>cc", "<CMD>lua require('config.autocmds').toggle_color_column()<CR>", desc = "Toggle Color Column" },
+        { "<leader>ch", "<CMD>lua require('config.autocmds').toggle_crosshairs()<CR>", desc = "No Highlight" },
+        { "<leader>cw", "<CMD>lua require('config.autocmds').toggle_text_wrap()<CR>", desc = "Toggle Text Wrap" },
+        { "<leader>cX", group = "Swap Previous" },
+        { "<leader>cXc", desc = "Class" },
+        { "<leader>cXf", desc = "Function" },
+        { "<leader>cXp", desc = "Parameter" },
+        { "<leader>cx", group = "Swap Next" },
+        { "<leader>cxc", desc = "Class" },
+        { "<leader>cxf", desc = "Function" },
+        { "<leader>cxp", desc = "Parameter" },
+        { "<leader>d", group = "Debug" },
+        { "<leader>e", group = "Database" },
+        { "<leader>f", group = "File" },
+        { "<leader>g", group = "Git" },
+        { "<leader>gd", group = "Diffview" },
+        { "<leader>gg", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazygit" },
+        { "<leader>gh", group = "Hunk" },
+        { "<leader>j", group = "Editing" },
+        { "<leader>ja", "<CMD>e ~/repositories/workbench/l1.md<CR>", desc = "list 1" },
+        { "<leader>jd", "<CMD>e ~/repositories/workbench/l3.md<CR>", desc = "list 3" },
+        { "<leader>jh", "<CMD>e ~/repositories/workbench/help.md<CR>", desc = "help notes" },
+        { "<leader>js", "<CMD>e ~/repositories/workbench/l2.md<CR>", desc = "list 2" },
+        { "<leader>l", group = "LSP" },
+        { "<leader>q", group = "Quit" },
+        { "<leader>qq", "<CMD>lua require('utils').quit()<CR>", desc = "Quit" },
+        { "<leader>qt", "<cmd>tabclose<cr>", desc = "Close Tab" },
+        { "<leader>s", group = "Search" },
+        { "<leader>sD", "<CMD>lua require('utils.telescope').grep_all_dotfiles()<CR>", desc = "Grep Dot Files" },
+        { "<leader>sF", "<CMD>lua require('utils.telescope').grep_nvim_configs()<CR>", desc = "Grep Nvim Configs" },
+        { "<leader>sN", "<CMD>lua require('utils.telescope').grep_notes()<CR>", desc = "Grep Notes" },
+        { "<leader>sQ", "<CMD>lua require('utils.telescope').grep_sqlfiles()<CR>", desc = "Grep SQL Scripts" },
+        { "<leader>sc", "<CMD>lua require('utils.coding').cht()<CR>", desc = "Cheatsheets" },
+        { "<leader>sd", "<CMD>lua require('utils.telescope').search_all_dotfiles()<CR>", desc = "Find Dot Files" },
+        { "<leader>sf", "<CMD>lua require('utils.telescope').search_nvim_configs()<CR>", desc = "Find Nvim Configs" },
+        { "<leader>sn", "<CMD>lua require('utils.telescope').search_notefiles()<CR>", desc = "Find Notes" },
+        { "<leader>sq", "<CMD>lua require('utils.telescope').search_sqlfiles()<CR>", desc = "Find SQL Scripts" },
+        { "<leader>t", group = "Test/Table" },
+        { "<leader>td", group = "Table Delete" },
+        { "<leader>ti", group = "Table Insert" },
+        { "<leader>v", group = "Virtual" },
+        { "<leader>vn", "<cmd>ZenMode<CR>", desc = "ZenMode" },
+        { "<leader>w", "<cmd>update!<CR>", desc = "Save" },
+        { "<leader>z", group = "ZK" },
       },
-      d = { name = "+Debug" },
-      e = { name = "+Database" },
-      f = { name = "+File" },
-      g = {
-        name = "+Git",
-        h = {
-          name = "+Hunk",
-        },
-        d = { name = "+Diffview" },
-        g = { "<CMD>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-      },
-      j = {
-        name = "+Editing",
-        h = {
-          { "<CMD>e ~/repositories/workbench/help.md<CR>", "help notes" },
-        },
-        a = {
-          { "<CMD>e ~/repositories/workbench/l1.md<CR>", "list 1" },
-        },
-        s = {
-          { "<CMD>e ~/repositories/workbench/l2.md<CR>", "list 2" },
-        },
-        d = {
-          { "<CMD>e ~/repositories/workbench/l3.md<CR>", "list 3" },
-        },
-      },
-      l = {
-        name = "+LSP",
-        -- D = {
-        --   { "<cmd>lua require('config.autocmds').DiagnosticToggle<cr>", "Toggle Diagnostic" }
-        -- },
-      },
-      P = { name = "List Projects" },
-      q = {
-        name = "Quit",
-        q = {
-          function()
-            require("utils").quit()
-          end,
-          "Quit",
-        },
-        t = {
-          "<cmd>tabclose<cr>",
-          "Close Tab",
-        },
-      },
-      s = {
-        name = "+Search",
-        c = {
-          function()
-            require("utils.coding").cht()
-          end,
-          "Cheatsheets",
-        },
-        d = {
-          "<CMD>lua require('utils.telescope').search_all_dotfiles()<CR>",
-          "Find Dot Files",
-        },
-        D = {
-          "<CMD>lua require('utils.telescope').grep_all_dotfiles()<CR>",
-          "Grep Dot Files",
-        },
-        f = {
-          "<CMD>lua require('utils.telescope').search_nvim_configs()<CR>",
-          "Find Nvim Configs",
-        },
-        F = {
-          "<CMD>lua require('utils.telescope').grep_nvim_configs()<CR>",
-          "Grep Nvim Configs",
-        },
-        n = { "<CMD>lua require('utils.telescope').search_notefiles()<CR>", "Find Notes" },
-        N = { "<CMD>lua require('utils.telescope').grep_notes()<CR>", "Grep Notes" },
-        o = {
-          function()
-            require("utils.coding").stack_overflow()
-          end,
-          "Stack Overflow",
-        },
-        q = {
-          "<CMD>lua require('utils.telescope').search_sqlfiles()<CR>",
-          "Find SQL Scripts",
-        },
-        Q = {
-          "<CMD>lua require('utils.telescope').grep_sqlfiles()<CR>",
-          "Grep SQL Scripts",
-        },
-        -- FIX:
-        -- r = {
-        --   function()
-        --     require("utils.coding").reddit()
-        --   end,
-        --   "Reddit",
-        -- },
-      },
-      t = {
-        name = "+Test/Table",
-        d = { name = "Table Delete" },
-        i = { name = "Table Insert" },
-      },
-      v = {
-        name = "+Virtual",
-        n = { "<cmd>ZenMode<CR>", "ZenMode" },
-      },
-      w = { "<cmd>update!<CR>", "Save" },
-      z = { name = "+ZK" },
-    }, { prefix = "<leader>", mode = { "n", "v" } })
+    })
   end,
 }
