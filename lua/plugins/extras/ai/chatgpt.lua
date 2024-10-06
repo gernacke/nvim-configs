@@ -121,6 +121,15 @@ return {
           model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
           system_prompt = "I want you to act as a documentation comment generator for code snippets. I will provide you with a piece of code, and you will generate concise and clear documentation comments that describe the purpose of the code. Ensure that the comments are easy to understand and follow best practices for documentation. My first code snippet is: [SELECT @id = IIF(@id = 0, ISNULL(MAX(StaffID), 0), @id) FROM vStaff s].",
         },
+        {
+          name = "Git-Advisor",
+          chat = true,
+          command = false,
+          -- string with model name or table with model name and parameters
+          model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
+          -- system prompt (use this to specify the persona/role of the AI)
+          system_prompt = "I want you to act as a Git commands advisor for an intermediate user. I will ask you about specific Git commands, and you will provide a very brief explanation of what each command does. Please keep the explanations concise and focus only on the command itself without any extensive details. My first command is `git diff`",
+        },
       },
       hooks = {
         UnitTests = function(gp, params)
@@ -143,10 +152,15 @@ return {
           local agent = gp.get_chat_agent("Documentation-Generator")
           gp.Prompt(params, gp.Target.vnew("markdown"), agent, template)
         end,
-        GitCommit = function(gp, params)
+        GitCommitAppend = function(gp, params)
           local template = "{{selection}}\n\n"
           local agent = gp.get_chat_agent("Git-Commit-Generator")
           gp.Prompt(params, gp.Target.append, agent, template)
+        end,
+        GitCommitBuffer = function(gp, params)
+          local template = "{{selection}}\n\n"
+          local agent = gp.get_chat_agent("Git-Commit-Generator")
+          gp.Prompt(params, gp.Target.vnew, agent, template)
         end,
         CodeReview = function(gp, params)
           local template = "I have the following code from {{filename}}:\n\n"
@@ -194,7 +208,7 @@ return {
         { "<C-g>h", group = "Preset Prompts" },
         { "<C-g>hc", ":<C-u>'<,'>GpCodeReview<cr>", desc = "Code Review" },
         { "<C-g>hd", ":<C-u>'<,'>GpDocumentation<cr>", desc = "Generate Documentation" },
-        { "<C-g>hg", ":<C-u>'<,'>GpGitCommit<cr>", desc = "Git Commit Message" },
+        { "<C-g>hg", ":<C-u>'<,'>GpGitCommitAppend<cr>", desc = "Git Commit Message" },
         { "<C-g>hr", ":<C-u>'<,'>GpProofRead<cr>", desc = "Proof Read" },
         { "<C-g>ht", ":<C-u>'<,'>GpTranslator<cr>", desc = "Translate" },
         { "<C-g>hu", ":<C-u>'<,'>GpUnitTests<cr>", desc = "Unit Tests" },
@@ -236,7 +250,8 @@ return {
         { "<C-g>gt", "<cmd>GpTabnew<cr>", desc = "GpTabnew" },
         { "<C-g>gv", "<cmd>GpVnew<cr>", desc = "GpVnew" },
         { "<C-g>h", group = "Preset Prompts .." },
-        { "<C-g>hr", ":%GpProofRead<cr>", desc = "Proof Read Buffer" },
+        { "<C-g>hg", ":%GpGitCommitBuffer<CR>", desc = "Git Commit Message" },
+        { "<C-g>hr", ":%GpProofRead<CR>", desc = "Proof Read Buffer" },
         { "<C-g>w", group = "Whisper" },
         { "<C-g>wa", "<cmd>GpWhisperAppend<cr>", desc = "Whisper Append (after)" },
         { "<C-g>wb", "<cmd>GpWhisperPrepend<cr>", desc = "Whisper Prepend (before)" },
