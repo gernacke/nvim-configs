@@ -15,7 +15,7 @@ return {
       integrations = { diffview = true },
     },
     keys = {
-      { "<leader>gs", "<cmd>Neogit kind=tab<cr>", desc = "Status" },
+      { "<leader>gS", "<cmd>Neogit kind=tab<cr>", desc = "Status" },
     },
   },
   {
@@ -23,6 +23,9 @@ return {
     cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
     dependencies = {
       "tpope/vim-rhubarb",
+    },
+    keys = {
+      { "<leader>gs", "<CMD>Git diff --staged<CR>", desc = "Diff Staged Files" },
     },
   },
   {
