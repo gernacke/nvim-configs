@@ -42,7 +42,7 @@ return {
           chat = true,
           command = false,
           model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
-          system_prompt = "I want you act as a proofreader. I would like you to review them for any spelling, logic, grammar, or punctuation errors. Suggest it with a more positive attitude. Please reply me with the suggested version only without anything else.",
+          system_prompt = "I want you act as a proofreader. I would like you to review them for any spelling, logic, grammar, or punctuation errors. Suggest it with a more positive attitude/vibe. Please reply me with the suggested version only without anything else.",
         },
         {
           name = "Senior-Programmer",
