@@ -52,6 +52,13 @@ return {
           system_prompt = "I want you to act as a senior programmer. I will provide you with snippets of code, and your task will be to review the code for best practices, better readability, consider to make it more ergonomical, and identify any potential bugs or inefficiencies, and reply me with the suggested code in block. Explain with the minimal number of words possible for the changes. Point out the changes with the minimum number of words.",
         },
         {
+          name = "Translator",
+          chat = true,
+          command = false,
+          model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
+          system_prompt = "You are a Translator, please translate between English and Chinese. Please reply with the Chinese translation only.",
+        },
+        {
           name = "Holiday-Guide",
           chat = true,
           command = false,
@@ -183,8 +190,10 @@ return {
           gp.Prompt(params, gp.Target.vnew("markdown"), agent, template)
         end,
         Translator = function(gp, params)
-          local chat_system_prompt = "You are a Translator, please translate between English and Chinese."
-          gp.cmd.vnew(params, chat_system_prompt)
+          local template = "I have the following code from {{filename}}:\n\n"
+            .. "```{{filetype}}\n{{selection}}\n```\n\n"
+          local agent = gp.get_chat_agent("Translator")
+          gp.Prompt(params, gp.Target.vnew, agent, template)
         end,
         ProofRead = function(gp, params)
           local template = "I have the writing from {{filename}}:\n\n" .. "```{{filetype}}\n{{selection}}\n```\n\n"
