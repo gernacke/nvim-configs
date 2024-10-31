@@ -1,24 +1,38 @@
 return {
   {
     "ThePrimeagen/harpoon",
-    enabled = false,
-    --stylua: ignore
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    -- enabled = false,
+    -- stylua: ignore
     keys = {
-      { "<leader>ja", function() require("harpoon.mark").add_file() end, desc = "Add File" },
-      { "<leader>jm", function() require("harpoon.ui").toggle_quick_menu() end, desc = "File Menu" },
-      { "<leader>jc", function() require("harpoon.cmd-ui").toggle_quick_menu() end, desc = "Command Menu" },
-      -- { "<leader>1", function() require("harpoon.ui").nav_file(1) end, desc = "File 1" },
-      -- { "<leader>2", function() require("harpoon.ui").nav_file(2) end, desc = "File 2" },
-      -- { "<leader>3", function() require("harpoon.ui").nav_file(3) end, desc = "File 3" },
-      -- { "<leader>4", function() require("harpoon.ui").nav_file(4) end, desc = "File 4" },
-      -- { "<leader>5", function() require("harpoon.term").sendCommand(1,1) end, desc = "Command 1" },
-      -- { "<leader>6", function() require("harpoon.term").sendCommand(1,2) end, desc = "Command 2" },
+      { "<leader>h1", function() require("harpoon"):list():add() end, desc = "Add File" },
+      { "<leader>hl", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "List File" },
+      { "<leader>hf", function() require("harpoon"):list():select(1) end, desc = "Select File 1" },
+      { "<leader>hd", function() require("harpoon"):list():select(2) end, desc = "Select File 2" },
+      { "<leader>hs", function() require("harpoon"):list():select(3) end, desc = "Select File 3" },
+      { "<leader>ha", function() require("harpoon"):list():select(4) end, desc = "Select File 4" },
     },
-    opts = {
-      global_settings = {
-        save_on_toggle = true,
-        enter_on_sendcmd = true,
-      },
-    },
+    -- require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
+    -- require("harpoon"):list():select(1)
+    config = function()
+      local harpoon = require("harpoon")
+      harpoon.setup()
+      harpoon:extend({
+        UI_CREATE = function(cx)
+          vim.keymap.set("n", "<C-v>", function()
+            harpoon.ui:select_menu_item({ vsplit = true })
+          end, { buffer = cx.bufnr })
+
+          vim.keymap.set("n", "<C-x>", function()
+            harpoon.ui:select_menu_item({ split = true })
+          end, { buffer = cx.bufnr })
+
+          vim.keymap.set("n", "<C-t>", function()
+            harpoon.ui:select_menu_item({ tabedit = true })
+          end, { buffer = cx.bufnr })
+        end,
+      })
+    end,
   },
 }

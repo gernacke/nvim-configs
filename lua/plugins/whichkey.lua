@@ -15,6 +15,7 @@ return {
       {
         mode = { "n", "v" },
         { "<leader>b", group = "Buffers" },
+        { "<leader>bu", "<CMD>sort u<CR>", desc = "Retain unique values" },
         { "<leader>c", group = "Code" },
         { "<leader>cc", "<CMD>lua require('config.autocmds').toggle_color_column()<CR>", desc = "Toggle Color Column" },
         { "<leader>ch", "<CMD>lua require('config.autocmds').toggle_crosshairs()<CR>", desc = "No Highlight" },
@@ -34,6 +35,7 @@ return {
         { "<leader>gd", group = "Diffview" },
         { "<leader>gg", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazygit" },
         { "<leader>gh", group = "Hunk" },
+        { "<leader>h", group = "Harpoon" },
         { "<leader>j", group = "Editing" },
         { "<leader>ja", "<CMD>e ~/repositories/workbench/l1.md<CR>", desc = "list 1" },
         { "<leader>jd", "<CMD>e ~/repositories/workbench/l3.md<CR>", desc = "list 3" },
