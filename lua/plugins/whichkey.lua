@@ -16,6 +16,7 @@ return {
         mode = { "n", "v" },
         { "<leader>b", group = "Buffers" },
         { "<leader>bu", "<CMD>sort u<CR>", desc = "Retain unique values" },
+        { "<leader>bc", "<CMD>normal! V<CR>:!bc<CR>", desc = "Evaulate Maths" },
         { "<leader>c", group = "Code" },
         { "<leader>cc", "<CMD>lua require('config.autocmds').toggle_color_column()<CR>", desc = "Toggle Color Column" },
         { "<leader>ch", "<CMD>lua require('config.autocmds').toggle_crosshairs()<CR>", desc = "No Highlight" },

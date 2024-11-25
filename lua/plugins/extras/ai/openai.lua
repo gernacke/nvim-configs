@@ -56,7 +56,7 @@ return {
           chat = true,
           command = false,
           model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
-          system_prompt = "You are a Translator, please translate between English and Chinese. Please reply with the Chinese translation only.",
+          system_prompt = "You are a Translator, please translate between English and Chinese. Please reply with the opposite translation only.",
         },
         {
           name = "Holiday-Guide",

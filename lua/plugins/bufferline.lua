@@ -50,7 +50,6 @@ return {
       { "<c-down>", ":BufferLineCyclePrev<CR>", desc = "Previous Buffer" },
       { "<c-up>", ":BufferLineCycleNext<CR>", desc = "Next Buffer" },
       { "<leader>bj", "<cmd>BufferLinePick<CR>", desc = "Pick Buffer" },
-      { "<leader>bc", "<cmd>BufferLinePickClose<CR>", desc = "Pick Buffer to Close" },
     },
   },
   -- scope buffers to tabs
