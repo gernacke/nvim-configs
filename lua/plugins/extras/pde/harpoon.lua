@@ -6,7 +6,7 @@ return {
     -- enabled = false,
     -- stylua: ignore
     keys = {
-      { "<leader>h1", function() require("harpoon"):list():add() end, desc = "Add File" },
+      { "<leader>h1", function() require("harpoon"):list():add() end, desc = "Harpoon: Add File" },
       { "<leader>hl", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end, desc = "List File" },
       { "<leader>hf", function() require("harpoon"):list():select(1) end, desc = "Select File 1" },
       { "<leader>hd", function() require("harpoon"):list():select(2) end, desc = "Select File 2" },

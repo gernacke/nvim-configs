@@ -6,7 +6,7 @@ return {
       { "<leader>tf", "<cmd>TestFile<cr>", desc = "File" },
       { "<leader>tl", "<cmd>TestLast<cr>", desc = "Last" },
       { "<leader>tn", "<cmd>TestNearest<cr>", desc = "Nearest" },
-      { "<leader>ts", "<cmd>TestSuite<cr>", desc = "Suite" },
+      -- { "<leader>ts", "<cmd>TestSuite<cr>", desc = "Suite" },
       { "<leader>tv", "<cmd>TestVisit<cr>", desc = "Visit" },
     },
     config = function()
@@ -19,7 +19,11 @@ return {
   {
     "nvim-neotest/neotest",
     keys = {
-      { "<leader>tNF", "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", desc = "Debug File" },
+      {
+        "<leader>tNF",
+        "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
+        desc = "Debug File",
+      },
       { "<leader>tNL", "<cmd>lua require('neotest').run.run_last({strategy = 'dap'})<cr>", desc = "Debug Last" },
       { "<leader>tNa", "<cmd>lua require('neotest').run.attach()<cr>", desc = "Attach" },
       { "<leader>tNf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "File" },
@@ -40,19 +44,19 @@ return {
     config = function()
       local opts = {
         adapters = {
-          require "neotest-python" {
+          require("neotest-python")({
             dap = { justMyCode = false },
             runner = "unittest",
-          },
-          require "neotest-plenary",
-          require "neotest-vim-test" {
+          }),
+          require("neotest-plenary"),
+          require("neotest-vim-test")({
             ignore_file_types = { "python", "vim", "lua" },
-          },
-          require "neotest-rust",
+          }),
+          require("neotest-rust"),
         },
         -- overseer.nvim
         consumers = {
-          overseer = require "neotest.consumers.overseer",
+          overseer = require("neotest.consumers.overseer"),
         },
         overseer = {
           enabled = true,

@@ -57,6 +57,7 @@ return {
         { "<leader>sn", "<CMD>lua require('utils.telescope').search_notefiles()<CR>", desc = "Find Notes" },
         { "<leader>sq", "<CMD>lua require('utils.telescope').search_sqlfiles()<CR>", desc = "Find SQL Scripts" },
         { "<leader>t", group = "Test/Table" },
+        { "<leader>ts", "<CMD>execute 'normal! i' . strftime('%Y-%m-%d %H:%M:%S')<CR>", desc = "Insert Timestamps" },
         { "<leader>td", group = "Table Delete" },
         { "<leader>ti", group = "Table Insert" },
         { "<leader>v", group = "Virtual" },
