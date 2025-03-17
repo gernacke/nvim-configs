@@ -9,8 +9,10 @@ return {
     ---@type render.md.UserConfig
     opts = {
       heading = {
-        backgrounds = {}, -- remove the background color across the lines
+        -- backgrounds = {}, -- remove the background color across the lines
+        border = true,
       },
+      indent = { enabled = true, skip_heading = true, skip_level = 0 },
     },
   },
   {
