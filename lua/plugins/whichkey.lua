@@ -34,7 +34,7 @@ return {
         { "<leader>f", group = "File" },
         { "<leader>g", group = "Git" },
         { "<leader>gd", group = "Diffview" },
-        { "<leader>gg", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazygit" },
+        { "<leader>gg", "<CMD>lua Snacks.lazygit()<CR>", desc = "Lazygit" },
         { "<leader>gh", group = "Hunk" },
         { "<leader>h", group = "Harpoon" },
         { "<leader>j", group = "Editing" },
