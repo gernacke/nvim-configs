@@ -2,7 +2,9 @@
 local wk = require("which-key")
 return {
   "robitx/gp.nvim",
-  lazy = false,
+  keys = {
+    { "<C-g><C-t>", ":<C-u>'<,'>GpChatNew tabnew<cr>", desc = "ChatNew tabnew" },
+  },
   config = function()
     local conf = {
       openai_api_key = { "cat", "/Users/ger/Documents/recovery_codes/openai_api_key" },
