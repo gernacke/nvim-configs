@@ -51,6 +51,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.cmd([[ syn match markdownIgnore "\w\@<=\w\@=" ]])
     vim.opt_local.conceallevel = 2
     vim.opt_local.linebreak = true -- prevents breaking words
+    vim.b.snacks_indent = false -- prevents indent lines from folke/snacks
   end,
 })
 
