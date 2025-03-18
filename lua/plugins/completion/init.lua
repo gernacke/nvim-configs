@@ -184,8 +184,6 @@ return {
           -- { name = "codeium", group_index = 1 },
           { name = "crates", group_index = 2 },
         }, {
-          { name = "copilot", keyword_length = 1, group_index = 1 },
-        }, {
           { name = "buffer", keyword_length = 4, max_item_count = 3, group_index = 2 },
         }),
         sorting = {
@@ -218,7 +216,6 @@ return {
               buffer = "(buffer)",
               treesitter = "(treesitter)",
               codeium = "(codeium)",
-              copilot = "(copilot)",
               look = "(look)",
               crates = "(crates)",
             }
@@ -229,7 +226,6 @@ return {
               path = 1,
               nvim_lsp = 1,
               luasnip = 0,
-              copilot = 0,
             }
             local duplicates_default = 0
             if max_width ~= 0 and #item.abbr > max_width then
@@ -264,7 +260,6 @@ return {
           { name = "vim-dadbod-completion" },
           { name = "luasnip" },
           { name = "buffer" },
-          { name = "copilot" },
         },
       })
       cmp.setup.filetype({ "taskedit", "help" }, {
