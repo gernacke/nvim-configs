@@ -48,22 +48,6 @@ return {
       vim.cmd([[ Dotenv ~/.config/nvim/DBUI.env ]])
     end,
   },
-  {
-    "folke/zen-mode.nvim",
-    opts = {
-      window = {
-        backdrop = 0.9,
-        width = 150, -- width of the Zen window
-      },
-      plugins = {
-        lualine = { enabled = false },
-      },
-    },
-    -- config = function ()
-    --   require("zen-mode").setup(options)
-    -- end,
-    cmd = { "ZenMode" },
-  },
   { "tpope/vim-repeat", event = "VeryLazy" },
 
   {
@@ -93,6 +77,168 @@ return {
         },
       })
     end,
+  },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      bigfile = { enabled = false },
+      dashboard = { enabled = false },
+      explorer = { enabled = false },
+      indent = {
+        priority = 1,
+        enabled = true,
+        char = "│",
+        animate = {
+          priority = 1,
+          enabled = vim.fn.has("nvim-0.10") == 1,
+          style = "out",
+          easing = "linear",
+          duration = {
+            step = 5, -- ms per step
+            total = 80, -- maximum duration
+          },
+        },
+      },
+      input = { enabled = true },
+      lazygit = { enabled = true },
+      picker = { enabled = true },
+      notifier = { enabled = true },
+      quickfile = { enabled = true },
+      scope = { enabled = false },
+      scroll = { enabled = true },
+      statuscolumn = { enabled = true },
+      words = { enabled = false },
+      zen = {
+        toggles = {
+          dim = false,
+          git_signs = true,
+          mini_diff_signs = true,
+        },
+        win = { style = "zen", width = 180 },
+        show = {
+          statusline = true, -- can only be shown when using the global statusline
+          tabline = true,
+        },
+      },
+    },
+    keys = {
+      -- Top Pickers & Explorer
+      {
+        "<leader><space>",
+        function()
+          Snacks.picker.smart()
+        end,
+        desc = "Smart Find Files",
+      },
+      {
+        "<leader><tab>",
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = "Buffers",
+      },
+      {
+        "<leader>/",
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = "Grep",
+      },
+      {
+        "<leader>:",
+        function()
+          Snacks.picker.command_history()
+        end,
+        desc = "Command History",
+      },
+      {
+        "<leader>n",
+        function()
+          Snacks.picker.notifications()
+        end,
+        desc = "Notification History",
+      },
+      {
+        "<leader>fe",
+        function()
+          Snacks.explorer()
+        end,
+        desc = "File Explorer",
+      },
+      -- find
+      {
+        "<leader>ff",
+        function()
+          Snacks.picker.files()
+        end,
+        desc = "Find Files",
+      },
+      {
+        "<leader>fg",
+        function()
+          Snacks.picker.git_files()
+        end,
+        desc = "Find Git Files",
+      },
+      {
+        "<leader>fl",
+        function()
+          Snacks.picker.recent()
+        end,
+        desc = "Recent",
+      },
+      -- Grep
+      {
+        "<leader>sb",
+        function()
+          Snacks.picker.lines()
+        end,
+        desc = "Buffer Lines",
+      },
+      {
+        "<leader>sB",
+        function()
+          Snacks.picker.grep_buffers()
+        end,
+        desc = "Grep Open Buffers",
+      },
+      {
+        "<leader>sw",
+        function()
+          Snacks.picker.grep_word()
+        end,
+        desc = "Visual selection or word",
+        mode = { "n", "x" },
+      },
+      -- Zen mode
+      {
+        "<leader>vn",
+        function()
+          Snacks.zen()
+        end,
+        desc = "Toggle Zen Mode",
+      },
+      {
+        "<leader>.",
+        function()
+          Snacks.scratch()
+        end,
+        desc = "Toggle Scratch Buffer",
+      },
+      {
+        "<leader>bo",
+        function()
+          Snacks.bufdelete()
+        end,
+        desc = "Delete Buffer",
+      },
+    },
   },
   {
     "andymass/vim-matchup",
@@ -140,20 +286,20 @@ return {
   },
   "MunifTanjim/nui.nvim",
   { "nacro90/numb.nvim", event = "BufReadPre", config = true },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    enabled = true,
-    event = "BufReadPre",
-    config = function()
-      require("ibl").setup({
-        indent = { char = "▏" },
-        scope = {
-          -- Shows an underline on the first line of the scope
-          show_start = false,
-        },
-      })
-    end,
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   enabled = true,
+  --   event = "BufReadPre",
+  --   config = function()
+  --     require("ibl").setup({
+  --       indent = { char = "▏" },
+  --       scope = {
+  --         -- Shows an underline on the first line of the scope
+  --         show_start = false,
+  --       },
+  --     })
+  --   end,
+  -- },
   -- {
   --   "nvimdev/indentmini.nvim",
   --   event = "BufEnter",
