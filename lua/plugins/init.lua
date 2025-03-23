@@ -136,7 +136,7 @@ return {
       notifier = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = false },
-      scroll = { enabled = true },
+      scroll = { enabled = false },
       statuscolumn = { enabled = true },
       words = { enabled = false },
       zen = {
@@ -171,14 +171,24 @@ return {
       { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
       { "<leader>fs", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer", },
-      -- FIX: find inside the all_dotfiles
-      -- { "<leader>fd", function() Snacks.picker.files() end, desc = "Find Files" },
 
+      { "<leader>fd", 
+        function() Snacks.picker.git_files({ 
+          cwd = os.getenv('HOME') .. "/repositories/all-dotfiles/",
+          prompt = " 󱁼 Find Dot File: ",
+          finder = "git_files",
+          show_empty = true,
+          format = "file",
+          untracked = false,
+          submodules = false,
+        }) end,
+      desc = "Find Dot File" },
       -- Git
       { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
       { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
       { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
       { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
       { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
 
       -- Grep & Search
@@ -188,8 +198,20 @@ return {
 
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
       { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
-      -- FIX: Grep the config files
-      -- { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>sD",
+        function() Snacks.picker.git_grep({
+          cwd = os.getenv('HOME') .. "/repositories/all-dotfiles/",
+          prompt = " 󱁼 Grep Dot File: ",
+          finder = "git_grep",
+          untracked = false,
+          need_search = true,
+          submodules = false,
+          regex = true,
+          show_empty = true,
+          live = true,
+          supports_live = true,
+        }) end,
+      desc = "Grep Dot File" },
       { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
       { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
       { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
