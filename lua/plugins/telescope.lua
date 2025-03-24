@@ -35,7 +35,6 @@ return {
       -- { "<leader>fp", "<cmd>Telescope registers<cr>", desc = "Registers" },
       { "<leader>P", "<cmd>Telescope projects<CR>", desc = "List Projects" },
       { "<leader>zs", "<cmd>Telescope lazy<cr>", desc = "Search Plugins" },
-      { "<leader>fz", "<cmd>Telescope zoxide list<cr>", desc = "Recent Folders" },
     },
     config = function(_, _)
       local telescope = require("telescope")

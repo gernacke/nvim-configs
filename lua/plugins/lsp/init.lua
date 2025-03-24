@@ -110,6 +110,8 @@ return {
           graphql = { "prettier" },
           lua = { "stylua" },
           python = { "isort", "black" },
+          sh = { "shfmt" },
+          sql = { "sqlfmt", "sql_formatter", "sqlfluff", "pg_format" },
         },
         format_on_save = {
           lsp_fallback = true,
