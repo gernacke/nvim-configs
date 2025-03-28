@@ -111,13 +111,29 @@ return {
     keys = {
       {
         "<leader>z/",
-        "<CMD>lua require('telekasten').find_notes({ with_live_grep = true })<CR>",
-        desc = "Search ZK Notes",
+        function()
+          Snacks.picker.grep({
+            cwd = os.getenv("HOME") .. "/Dropbox/zettelkasten/",
+            prompt = " 󱞁 Zettelkasten Grep 󰅂 ",
+          })
+        end,
+        desc = "Grep",
       },
       { "<leader>zn", "<CMD>Telekasten new_note<CR>", desc = "New ZK Notes" },
       { "<leader>zt", "<CMD>Telekasten show_tags<CR>", desc = "List ZK Tags" },
       { "<leader>zd", "<CMD>Telekasten follow_link<CR>", desc = "Follow Link" },
-      { "<leader>zf", "<CMD>Telekasten find_notes<CR>", desc = "Find ZK Notes" },
+      -- { "<leader>zf", "<CMD>Telekasten find_notes<CR>", desc = "Find ZK Notes" },
+      -- TODO: find a way to list the files in modified descending order
+      {
+        "<leader>zf",
+        function()
+          Snacks.picker.files({
+            cwd = os.getenv("HOME") .. "/Dropbox/zettelkasten/",
+            prompt = " 󱞁 Zettelkasten Notes 󰅂 ",
+          })
+        end,
+        desc = "Zettelkasten Notes",
+      },
       { "<leader>zl", "<CMD>Telekasten insert_link<CR>", desc = "Insert ZK Link" },
       {
         "<leader>zT",
