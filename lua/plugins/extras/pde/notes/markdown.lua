@@ -45,32 +45,6 @@ return {
     end,
   },
   { "mzlogin/vim-markdown-toc", ft = { "markdown" } },
-  -- {
-  --   "mickael-menu/zk-nvim",
-  --   lazy = false,
-  --   config = function()
-  --     require("zk").setup {
-  --       picker = "telescope",
-  --       lsp = {
-  --         config = {
-  --           cmd = { "zk", "lsp" },
-  --           name = "zk",
-  --         },
-  --         auto_attach = {
-  --           enabled = true,
-  --           filetypes = { "markdown" },
-  --         },
-  --       },
-  --     }
-  --   end,
-  --   keys = {
-  --     { "<leader>zl", "<CMD>ZkInsertLink<CR>", desc = "Current Note Links" },
-  --     { "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", desc = "New ZK Note" },
-  --     { "<leader>zf", "<CMD>ZkNotes { sort = { 'modified' } }<CR>", desc = "Search ZK Notes" },
-  --     { "<leader>z/", "<CMD>lua require('utils.telescope').grep_zkfiles()<CR>", desc = "Grep ZK Notes" },
-  --     { "<leader>zt", "<CMD>ZkTags<CR>", desc = "Select ZK Tags" },
-  --   },
-  -- },
   {
     "renerocksai/telekasten.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
@@ -123,7 +97,6 @@ return {
       { "<leader>zt", "<CMD>Telekasten show_tags<CR>", desc = "List ZK Tags" },
       { "<leader>zd", "<CMD>Telekasten follow_link<CR>", desc = "Follow Link" },
       -- { "<leader>zf", "<CMD>Telekasten find_notes<CR>", desc = "Find ZK Notes" },
-      -- TODO: find a way to list the files in modified descending order
       {
         "<leader>zf",
         function()
@@ -160,48 +133,4 @@ return {
       require("markmap").setup(opts)
     end,
   },
-  -- {
-  --   "folke/paint.nvim",
-  --     config = function()
-  --       require("paint").setup({
-  --         ---@type PaintHighlight[]
-  --         highlights = {
-  --           {
-  --             -- filter can be a table of buffer options that should match,
-  --             -- or a function called with buf as param that should return true.
-  --             -- The example below will paint @something in comments with Constant
-  --             filter = { filetype = "lua" },
-  --             pattern = "%s%-%-%-%s(@%w+)",
-  --             hl = "Constant",
-  --           },
-  --         },
-  --       })
-  --     end,
-  --   -- config = function()
-  --   --   local hlmap = {
-  --   --     ["^#%s+(.-)%s*$"] = "Operator",
-  --   --     ["^##%s+(.-)%s*$"] = "Type",
-  --   --     ["^###%s+(.-)%s*$"] = "String",
-  --   --     ["^####%s+(.-)%s*$"] = "Constant",
-  --   --     ["^#####%s+(.-)%s*$"] = "Number",
-  --   --     ["^######%s+(.-)%s*$"] = "Error",
-  --   --   }
-  --   --
-  --   --   local highlights = {}
-  --   --   for pattern, hl in pairs(hlmap) do
-  --   --     table.insert(highlights, {
-  --   --       filter = { filetype = "markdown" },
-  --   --       pattern = pattern,
-  --   --       hl = hl,
-  --   --     })
-  --   --   end
-  --   --
-  --   --   require("paint").setup({
-  --   --     ---@type PaintHighlight[]
-  --   --     highlights = highlights,
-  --   --   })
-  --   -- end,
-  --   filedtype = { "markdown" },
-  --   lazy = false,
-  -- },
 }
