@@ -60,7 +60,7 @@ return {
               staged = "✓",
               unmerged = "",
               renamed = "➜",
-              untracked = "U",
+              untracked = "❓",
               deleted = "",
               ignored = "◌",
             },
@@ -85,6 +85,7 @@ return {
       },
       view = {
         width = 30,
+        preserve_window_proportions = true,
         side = "left",
         float = {
           enable = false,
