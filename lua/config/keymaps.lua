@@ -45,10 +45,10 @@ local keymappings = {
     [":"] = ";",
 
     -- Buffer pane navigation
-    ["<C-l>"] = "<C-w>l",
-    ["<C-h>"] = "<C-w>h",
-    ["<C-k>"] = "<C-w>k",
-    ["<C-j>"] = "<C-w>j",
+    -- ["<C-l>"] = "<C-w>l",
+    -- ["<C-h>"] = "<C-w>h",
+    -- ["<C-k>"] = "<C-w>k",
+    -- ["<C-j>"] = "<C-w>j",
 
     -- Buffer movement
     ["<C-UP>"] = "<CMD>bnext<CR>",
