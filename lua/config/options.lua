@@ -143,6 +143,7 @@ let g:db_ui_icons = {
 --     augroup END
 -- ]]
 
+vim.g.tmux_navigator_no_mappings = 1
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.cmd.highlight("default link IndentLine Comment")
 vim.cmd([[autocmd BufNewFile,BufRead *.keymap setfiletype c]])
