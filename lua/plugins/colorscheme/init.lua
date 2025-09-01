@@ -78,6 +78,9 @@ return {
           PmenuSel = { fg = "NONE", bg = "#49443C" },
           PmenuSbar = { bg = theme.ui.bg_m1 },
           PmenuThumb = { bg = theme.ui.bg_p2 },
+
+          -- Copilot - Lavender
+          CopilotSuggestion = { fg = "#C586E8" },
         }
       end,
       colors = {
