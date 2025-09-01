@@ -9,6 +9,7 @@ return {
         expr = true,
         replace_keycodes = false,
       })
+      vim.keymap.set("i", "<C-L>", "<Plug>(copilot-accept-word)")
       vim.g.copilot_no_tab_map = true
     end,
     -- config = function()
@@ -100,6 +101,7 @@ return {
         })
       end, { desc = "CopilotChat - Write Test" })
 
+      -- Visual mode keybinding for writing documentation
       vim.keymap.set({ "v" }, "<leader>ad", function()
         require("CopilotChat").ask("#selection ", {
           system_prompt = "Act as a seasoned programmer with over 20 years of commercial experience. Your task is to write comprehensive documentation for a given [code]. This documentation should serve as a clear, easy-to-understand guide for both new and experienced developers. Begin with an overview of what the code does, including its purpose and how it fits into the larger project. Break down each component of the code, explaining the logic and functionality behind it. Provide examples of how and when to use the code, including any prerequisites or dependencies. Highlight any potential pitfalls or common mistakes to avoid. Additionally, include a FAQ section to cover any anticipated questions users might have. Ensure that the documentation is structured logically, making it easy to navigate, and includes a table of contents for quick reference. Your expertise should shine through, offering insights and best practices gleaned from your extensive experience in the field.",
