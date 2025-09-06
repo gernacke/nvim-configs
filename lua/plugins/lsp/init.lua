@@ -1,6 +1,21 @@
 return {
   { "smjonas/inc-rename.nvim", config = true },
   {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    priority = 1000,
+    opts = {
+      preset = "ghost",
+      options = {},
+      -- List of filetypes to disable the plugin for
+      disabled_ft = {},
+    },
+    config = function(_, opts)
+      require("tiny-inline-diagnostic").setup(opts)
+      vim.diagnostic.config({ virtual_text = false }) -- Disable default virtual text
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     dependencies = {
