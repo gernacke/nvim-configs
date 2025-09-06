@@ -130,7 +130,7 @@ return {
       lazygit = { enabled = true },
       picker = {
         enabled = true,
-
+        ui_select = true, -- replace `vim.ui.select` with the snacks picker
         win = {
           -- input window
           input = {
@@ -262,7 +262,6 @@ return {
       { "<leader>sT", function() Snacks.picker.todo_comments() end, desc = "Todo" },
       { "<leader>st", function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
       -- Zen mode
-      { "<leader>vn", function() Snacks.zen() end, desc = "Toggle Zen Mode", },
       { "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer", },
       { "<leader>bo", function() Snacks.bufdelete() end, desc = "Delete Buffer", },
       { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File", },
@@ -321,6 +320,34 @@ return {
         end,
       })
     end,
+  },
+  {
+    "shortcuts/no-neck-pain.nvim",
+    lazy = false,
+    version = "*",
+    opts = {
+      width = 100,
+      buffers = {
+        -- right = {
+        --   enabled = false,
+        -- },
+        -- colors = {
+        --   -- background = "onedark", -- you can use hex colors here
+        --   blend = 0.5,
+        -- },
+      },
+      integrations = {
+        NvimTree = {
+          position = "left",
+        },
+      },
+      autocmds = {
+        enableOnVimEnter = true,
+      },
+    },
+    keys = {
+      { "<leader>vn", ":NoNeckPain<CR>", desc = "Toggle No Neck Pain" },
+    },
   },
   {
     "andymass/vim-matchup",
