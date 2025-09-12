@@ -59,6 +59,42 @@ return {
         { "<leader>aa", "<cmd>CopilotChatToggle<cr>", desc = "Toggle Chat with Copilot" },
         { "<C-g>x", "<cmd>CopilotChatFix<cr>", desc = "Copilot Chat Fix" },
       })
+
+      -- Save and Load chat history keybindings
+      vim.keymap.set("n", "<leader>aS", function()
+        local filename = vim.fn.input("Save chat history to file: ")
+        if filename ~= "" then
+          require("CopilotChat").save(filename)
+          print("Chat history saved to " .. filename)
+        else
+          print("No filename provided, chat history not saved.")
+        end
+      end, { desc = "CopilotChat - Save chat history" })
+
+      vim.keymap.set("n", "<leader>aL", function()
+        local history_dir = vim.fn.expand("~/.local/share/nvim/copilotchat_history")
+        require("telescope.builtin").find_files({
+          prompt_title = "Load Copilot Chat History",
+          cwd = history_dir,
+          layout_config = { prompt_position = "top" },
+          sorting_strategy = "ascending",
+          attach_mappings = function(_, map)
+            map("i", "<CR>", function(prompt_bufnr)
+              local actions = require("telescope.actions")
+              local state = require("telescope.actions.state")
+              local selection = state.get_selected_entry()
+              actions.close(prompt_bufnr)
+              if selection and selection.path then
+                local filename = vim.fn.fnamemodify(selection.path, ":t:r")
+                require("CopilotChat").load(filename, history_dir)
+                print("Chat history loaded from " .. selection.path)
+              end
+            end)
+            return true
+          end,
+        })
+      end, { desc = "CopilotChat - Load chat history" })
+
       -- Quick chat keybinding
       vim.keymap.set("n", "<leader>aq", function()
         local input = vim.fn.input("Quick Chat: ")
