@@ -62,14 +62,27 @@ return {
 
       -- Save and Load chat history keybindings
       vim.keymap.set("n", "<leader>aS", function()
-        local filename = vim.fn.input("Save chat history to file: ")
-        if filename ~= "" then
-          require("CopilotChat").save(filename)
-          print("Chat history saved to " .. filename)
-        else
-          print("No filename provided, chat history not saved.")
-        end
-      end, { desc = "CopilotChat - Save chat history" })
+        local CopilotChat = require("CopilotChat")
+        -- Ask CopilotChat to generate a title for the chat history
+        CopilotChat.ask(
+          "#buffer Summarize this chat history in a short, descriptive title with no more than 7 words.",
+          {
+            callback = function(response)
+              local title = (response.content or ""):gsub("[\r\n]", " "):gsub("^%s*(.-)%s*$", "%1")
+              if title == "" then
+                title = "chat_history"
+              end
+              local filename = vim.fn.input("Save chat history to file: ", title)
+              if filename ~= "" then
+                CopilotChat.save(filename)
+                print("Chat history saved to " .. filename)
+              else
+                print("No filename provided, chat history not saved.")
+              end
+            end,
+          }
+        )
+      end, { desc = "CopilotChat - Save chat history with AI-generated title" })
 
       vim.keymap.set("n", "<leader>aL", function()
         local history_dir = vim.fn.expand("~/.local/share/nvim/copilotchat_history")
