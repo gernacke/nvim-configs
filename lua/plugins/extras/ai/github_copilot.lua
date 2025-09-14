@@ -131,8 +131,13 @@ return {
 
       -- Normal mode keybinding for generating commit message
       vim.keymap.set({ "n", "v" }, "<leader>ac", function()
-        require("CopilotChat").ask("#buffer generate a commit message", {
-          system_prompt = "I want you to act as a conventional commit message generator following the Conventional Commits specification. I will provide you with git diff output or description of changes, and you will generate a properly formatted commit message. The structure must be: [optional scope]: , followed by optional body and footers. Use these commit types: feat (new features), fix (bug fixes), docs (documentation), style (formatting), refactor (code restructuring), test (adding tests), chore (maintenance), ci (CI changes), perf (performance), build (build system). Include scope in parentheses when relevant (e.g., feat(api):). For breaking changes, add ! after type/scope or include BREAKING CHANGE: footer. The description should be imperative mood, lowercase, no period. Body should explain what and why, not how. Include relevant footers like Refs: #123, Reviewed-by:, etc. Do not include markdown code blocks in output. (This is just an example, make sure do not use anything from in this example in actual commit message) The output should only contains commit message and nothing more. Do not include markdown code blocks in output",
+        require("CopilotChat").ask("##git://diff/staged generate a commit message", {
+          system_prompt = "I want you to act as a conventional commit message generator following the Conventional Commits specification. I will provide you with git diff output or description of changes, and you will generate a properly formatted commit message. The structure must be: [optional scope]: , followed by optional body and footers. Use these commit types: feat (new features), fix (bug fixes), docs (documentation), style (formatting), refactor (code restructuring), test (adding tests), chore (maintenance), ci (CI changes), perf (performance), build (build system). Include scope in parentheses when relevant (e.g., feat(api):). For breaking changes, add ! after type/scope or include BREAKING CHANGE: footer. The description should be imperative mood, lowercase, no period. Body should explain what and why, not how. Include relevant footers like Refs: #123, Reviewed-by:, etc. Do not include markdown code blocks in output. The output should only contains commit message. Do not include markdown code blocks in output. Do not include blank lines in output.",
+          callback = function(response)
+            -- Optionally, trim/parse response if needed
+            vim.fn.setreg("+", response.content or "")
+            vim.notify("Commit message copied to clipboard!", vim.log.levels.INFO)
+          end,
         })
       end, { desc = "CopilotChat - Git Commit Message" })
 
