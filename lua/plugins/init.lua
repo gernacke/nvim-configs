@@ -326,7 +326,7 @@ return {
     lazy = false,
     version = "*",
     opts = {
-      width = 100,
+      width = 110,
       buffers = {
         -- right = {
         --   enabled = false,
@@ -341,9 +341,9 @@ return {
           position = "left",
         },
       },
-      autocmds = {
-        enableOnVimEnter = true,
-      },
+      -- autocmds = {
+      --   enableOnVimEnter = true,
+      -- },
     },
     keys = {
       { "<leader>vn", ":NoNeckPain<CR>", desc = "Toggle No Neck Pain" },
