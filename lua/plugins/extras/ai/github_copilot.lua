@@ -9,7 +9,9 @@ return {
         expr = true,
         replace_keycodes = false,
       })
-      vim.keymap.set("i", "<C-L>", "<Plug>(copilot-accept-word)")
+      vim.keymap.set("i", "<C-Q>", "<Plug>(copilot-accept-word)")
+      vim.keymap.set("i", "<C-DOWN>", "<Plug>(copilot-next)")
+      vim.keymap.set("i", "<C-UP>", "<Plug>(copilot-previous)")
       vim.g.copilot_no_tab_map = true
     end,
     -- config = function()
