@@ -146,7 +146,12 @@ return {
       -- Normal mode keybinding for proofreading
       vim.keymap.set({ "n", "v" }, "<leader>ap", function()
         require("CopilotChat").ask("#buffer proof read", {
-          system_prompt = "I want you act as a proofreader. I would like you to review them for any spelling, logic, grammar, or punctuation errors. Suggest it with a more positive attitude/vibe. Please reply me with the suggested version only without any extra explanation.",
+          system_prompt = "I want you act as a proofreader. I would like you to review them for any spelling, logic, grammar, or punctuation errors.  Suggest it with a more positive attitude/vibe. Please reply me with the suggested version. Do not include any code blocks format in your response. The output should only contains the corrected text.",
+          callback = function(response)
+            -- Optionally, trim/parse response if needed
+            vim.fn.setreg("+", response.content or "")
+            vim.notify("Commit message copied to clipboard!", vim.log.levels.INFO)
+          end,
         })
       end, { desc = "CopilotChat - Proof Read" })
 
