@@ -72,6 +72,16 @@ return {
           max_folder_discovery = 300,
           exclude = { ".git/" },
         },
+        open_file = {
+          window_picker = {
+            enable = false,
+            picker = "default",
+            exclude = {
+              filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+              buftype = { "nofile", "terminal", "help" },
+            },
+          },
+        },
       },
       diagnostics = {
         enable = true,
