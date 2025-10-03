@@ -55,8 +55,7 @@ local keymappings = {
     ["<C-DOWN>"] = "<CMD>bprevious<CR>",
 
     ["<c-w>z"] = "<c-w>_",
-    ["L"] = "g_",
-    ["H"] = "^",
+    ["$"] = "g_",
     ["zh"] = "zH", -- Moves left half screen
     ["zl"] = "zL", -- Moves right half screen
 
@@ -94,8 +93,7 @@ local keymappings = {
     [";"] = ":",
     [":"] = ";",
     ["<leader>ch"] = "<cmd>noh<CR>",
-    ["L"] = "g_",
-    ["H"] = "^",
+    ["$"] = "g_",
     ["p"] = "pgvy", -- when pasting, the register won't be replaced by deletion
     ["<"] = "<gv",
     [">"] = ">gv",
