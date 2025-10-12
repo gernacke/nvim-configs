@@ -51,6 +51,13 @@ return {
       -- separator = "━━",
       auto_insert_mode = false, -- Enter insert mode when opening
       prompts = {},
+      mappings = {
+        -- Disable the clear chat keymap
+        reset = {
+          normal = "",
+          insert = "",
+        },
+      },
     },
     config = function(_, opts)
       require("CopilotChat").setup(opts)
