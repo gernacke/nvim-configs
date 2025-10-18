@@ -17,6 +17,15 @@ return {
     -- config = function()
     --   require("copilot").setup({})
     -- end,
+    keys = {
+      {
+        "<leader>ag",
+        function()
+          require("utils").toggle_copilot()
+        end,
+        desc = "Toggle Copilot",
+      },
+    },
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",

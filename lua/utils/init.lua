@@ -25,6 +25,23 @@ function M.open_term(cmd, opts)
   new_term:open(opts.size, opts.direction)
 end
 
+function M.toggle_copilot()
+  local status = vim.g.copilot_enabled
+  if status == nil then
+    -- Assume enabled by default if unset
+    status = true
+  end
+  if status then
+    vim.api.nvim_command("Copilot disable")
+    vim.g.copilot_enabled = false
+    vim.notify("Copilot disabled", vim.log.levels.INFO)
+  else
+    vim.api.nvim_command("Copilot enable")
+    vim.g.copilot_enabled = true
+    vim.notify("Copilot enabled", vim.log.levels.INFO)
+  end
+end
+
 function M.quit()
   local bufnr = vim.api.nvim_get_current_buf()
   local buf_windows = vim.call("win_findbuf", bufnr)
