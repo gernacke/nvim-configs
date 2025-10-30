@@ -55,6 +55,7 @@ return {
           NormalFloat = { bg = "none" },
           FloatBorder = { bg = "none" },
           FloatTitle = { bg = "none" },
+          Visual = { bg = "#b57614", fg = "#fbf1c7" },
 
           -- Save an hlgroup with dark background and dimmed foreground
           -- so that you can use it where your still want darker windows.
