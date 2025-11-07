@@ -38,6 +38,7 @@ return {
       },
       filters = {
         dotfiles = true,
+        git_ignored = false,
       },
       renderer = {
         root_folder_modifier = ":t",
