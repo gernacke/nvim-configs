@@ -78,6 +78,18 @@ return {
       },
       setup = {
         rust_analyzer = function(_, opts)
+          function ToggleRustInlayHints()
+            local bufnr = vim.api.nvim_get_current_buf()
+
+            if vim.b[bufnr].rust_inlay_hints_enabled == nil or vim.b[bufnr].rust_inlay_hints_enabled then
+              vim.cmd("RustDisableInlayHints")
+              vim.b[bufnr].rust_inlay_hints_enabled = false
+            else
+              vim.cmd("RustEnableInlayHints")
+              vim.b[bufnr].rust_inlay_hints_enabled = true
+            end
+          end
+
           local lsp_utils = require("plugins.lsp.utils")
           lsp_utils.on_attach(function(client, buffer)
             local map = function(mode, lhs, rhs, desc)
@@ -92,6 +104,7 @@ return {
               map("n", "<leader>ll", function() vim.lsp.codelens.run() end, "Code Lens" )
               map("n", "<leader>lt", "<cmd>Cargo test<cr>", "Cargo test" )
               map("n", "<leader>lr", "<cmd>Cargo run<cr>", "Cargo run" )
+              map("n", "<leader>lh", "<cmd>lua ToggleRustInlayHints()<cr>", "Toggle inlay hints")
             end
           end)
 
