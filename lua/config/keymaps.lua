@@ -58,6 +58,8 @@ local keymappings = {
     ["$"] = "g_",
     ["zh"] = "zH", -- Moves left half screen
     ["zl"] = "zL", -- Moves right half screen
+    [")"] = "(", -- Make paragraph jumping more intuitive
+    ["("] = ")", -- Make paragraph jumping more intuitive
 
     -- Retains column positions while moving
     -- ["z<cr>"] = "zt", -- Moves the line to the top of the screen
