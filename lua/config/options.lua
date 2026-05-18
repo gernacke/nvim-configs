@@ -41,18 +41,19 @@ local options = {
 
   mouse = "nv", -- Enables mouse support. For example, to enable the mouse in Normal mode and Visual mode.
   ruler = true, -- Show the line and column number of the cursor position, separated by a comma.
-  sessionoptions = {
-    "blank",
-    "buffers",
-    "curdir",
-    "folds",
-    "help",
-    "tabpages",
-    "winsize",
-    "resize",
-    "winpos",
-    "terminal",
-  },
+  -- sessionoptions = {
+  --   "blank",
+  --   "buffers",
+  --   "curdir",
+  --   "folds",
+  --   "help",
+  --   "tabpages",
+  --   "winsize",
+  --   "resize",
+  --   "winpos",
+  --   "terminal",
+  -- },
+  sessionoptions = { "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions" },
   showmatch = true, -- When a bracket is inserted, briefly jump to the matching one.
   showtabline = 0, -- never show the tab line at the top of the buffers
   matchtime = 1, -- Tenths of a second to show the matching paren, when 'showmatch' is set.
