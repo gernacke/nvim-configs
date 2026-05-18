@@ -159,7 +159,6 @@ return {
       npairs.setup({
         check_ts = true,
         fast_wrap = {
-          map = "<C-l>",
           chars = { "{", "[", "(", '"', "'", "`" },
           pattern = [=[[%'%"%>%]%)%}%,]]=],
           end_key = "$",
