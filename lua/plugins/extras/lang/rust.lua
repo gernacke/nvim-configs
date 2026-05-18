@@ -104,7 +104,6 @@ return {
               map("n", "<leader>ll", function() vim.lsp.codelens.run() end, "Code Lens" )
               map("n", "<leader>lt", "<cmd>Cargo test<cr>", "Cargo test" )
               map("n", "<leader>lr", "<cmd>Cargo run<cr>", "Cargo run" )
-              map("n", "<leader>lh", "<cmd>lua ToggleRustInlayHints()<cr>", "Toggle inlay hints")
             end
           end)
 
@@ -158,6 +157,7 @@ return {
                   "<cmd>lua require'rust-tools'.open_cargo_toml.open_cargo_toml()<cr>",
                   "Open Cargo.toml"
                 )
+                map("n", "<leader>lch", "<cmd>lua ToggleRustInlayHints()<cr>", "Toggle inlay hints")
 
                 vim.cmd([[
                   augroup RustLSP
