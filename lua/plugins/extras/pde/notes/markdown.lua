@@ -13,6 +13,7 @@ return {
         border = true,
       },
       indent = { enabled = true, skip_heading = true, skip_level = 0 },
+      render_modes = true,
     },
   },
   {
