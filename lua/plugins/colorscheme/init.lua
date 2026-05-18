@@ -101,6 +101,7 @@ return {
       local kanagawa = require("kanagawa")
       require("kanagawa").setup(opts)
       kanagawa.load()
+      vim.cmd("highlight WinSeparator guifg=#5c6370 guibg=NONE")
     end,
   },
   {
