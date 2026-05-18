@@ -1,8 +1,8 @@
 return {
   {
     "github/copilot.vim",
+    lazy = true,
     cmd = "Copilot",
-    lazy = false,
     config = function()
       -- Change <C-F> to accept copilot suggestion
       vim.keymap.set("i", "<C-F>", 'copilot#Accept("")', {
@@ -136,7 +136,7 @@ return {
       -- Visual mode keybinding for code optimization
       vim.keymap.set("v", "<leader>ao", function()
         require("CopilotChat").ask("#selection optimize the code", {
-          system_prompt = "Act as a seasoned programmer with over 20 years of commercial experience. Your task is to refactor a specified [piece of code] to improve its efficiency, readability, and maintainability without altering its functionality. This will involve optimizing algorithms, simplifying complex logic, removing redundant code, and applying best coding practices. Ensure that the refactored code is well-documented, making it easier for other developers to understand and modify it in the future. Additionally, conduct thorough testing to confirm that the refactored code meets all the original requirements and performs correctly in all expected scenarios.",
+          system_prompt = "Act as a seasoned programmer with over 20 years of commercial experience. Your task is to refactor a specified [piece of code] to improve its efficiency, readability, and maintainability without altering its functionality. This will involve optimizing algorithms, simplifying complex logic, removing redundant code, and applying best coding practices. Ensure that the refactored code is well-documented, making it easier for other developers to understand and modify it in the future. Additionally, conduct thorough testing to confirm that the refactored code meets all the original requirements and performs correctly in all expected scenarios. When explaining your changes, provide the line numbers to clearly indicate where modifications were made.",
         })
       end, { desc = "CopilotChat - Optimize Code" })
 
