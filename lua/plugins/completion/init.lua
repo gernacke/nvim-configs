@@ -80,7 +80,7 @@ return {
 
       cmp.setup({
         completion = {
-          completeopt = "menu,menuone,noinsert,noselect",
+          completeopt = "menu,menuone,noinsert,noselect,popup",
           keyword_length = 2,
         },
         -- how to set up boarder in nvim-cmp preview window
