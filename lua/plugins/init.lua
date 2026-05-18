@@ -186,7 +186,7 @@ return {
       { "<leader>fw", function() Snacks.picker.spelling() end, desc = "Find Word Spelling", },
       { "<leader>fz", function() Snacks.picker.zoxide() end, desc = "Find in Zoxide", },
 
-      { "<leader>fd", 
+      { "<leader>fd",
         function() Snacks.picker.files({ 
           cwd = os.getenv('HOME') .. "/repositories/all-dotfiles/",
           prompt = " 󱁼 Find Dot File 󰅂 ",
@@ -196,6 +196,7 @@ return {
           hidden = true,
           follow = true,
           untracked = false,
+          exclude = { "*.glsl", "nvim/", "nvim-legacy/" },
         }) end,
       desc = "Find Dot File" },
       -- Git
