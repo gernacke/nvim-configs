@@ -1,7 +1,7 @@
 local M = {}
 
 local function default_on_open(term)
-  vim.cmd "stopinsert"
+  vim.cmd("stopinsert")
   vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
 end
 
@@ -13,7 +13,7 @@ function M.open_term(cmd, opts)
   opts.on_exit = opts.on_exit or nil
 
   local Terminal = require("toggleterm.terminal").Terminal
-  local new_term = Terminal:new {
+  local new_term = Terminal:new({
     cmd = cmd,
     dir = "git_dir",
     auto_scroll = false,
@@ -21,7 +21,7 @@ function M.open_term(cmd, opts)
     start_in_insert = false,
     on_open = opts.on_open,
     on_exit = opts.on_exit,
-  }
+  })
   new_term:open(opts.size, opts.direction)
 end
 
@@ -51,17 +51,17 @@ function M.quit()
       prompt = "You have unsaved changes. Quit anyway? (y/n) ",
     }, function(input)
       if input == "y" then
-        vim.cmd "qa!"
+        vim.cmd("qa!")
       end
     end)
   else
-    vim.cmd "qa!"
+    vim.cmd("qa")
   end
 end
 
 function M.find_files()
   local opts = {}
-  local telescope = require "telescope.builtin"
+  local telescope = require("telescope.builtin")
 
   local ok = pcall(telescope.git_files, opts)
   if not ok then
