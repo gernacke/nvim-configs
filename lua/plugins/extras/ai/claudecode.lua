@@ -12,7 +12,7 @@ return {
     },
     config = true,
     keys = {
-      { "<leader>aT", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude Code" },
+      { "<leader>al", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude Code" },
       { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude Code" },
       { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
       { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
