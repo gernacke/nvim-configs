@@ -65,6 +65,7 @@ local options = {
   splitkeep = "screen",
   splitbelow = true,
   splitright = true,
+  equalalways = false,
   timeoutlen = 500, -- Time in milliseconds to wait for a mapped sequence to complete.
   updatetime = 300, -- If this many milliseconds nothing is typed the swap file will be written to disk (see |crash-recovery|).
   wildmode = "longest:full", -- Completion mode that is used for the character specified with 'wildchar'.
