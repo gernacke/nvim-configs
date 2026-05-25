@@ -27,6 +27,33 @@ return {
     --   vim.keymap.set("n", "h", api.node.navigate.parent_close, opts "Close Directory")
     -- end
 
+    local saved_widths = {}
+
+    local function save_win_widths()
+      saved_widths = {}
+      local wins = {}
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local ft = vim.bo[vim.api.nvim_win_get_buf(win)].filetype
+        if ft ~= "NvimTree" then
+          wins[win] = vim.api.nvim_win_get_width(win)
+        end
+      end
+      if vim.tbl_count(wins) > 1 then
+        saved_widths = wins
+      end
+    end
+
+    local function restore_win_widths()
+      vim.schedule(function()
+        for win, width in pairs(saved_widths) do
+          if vim.api.nvim_win_is_valid(win) then
+            pcall(vim.api.nvim_win_set_width, win, width)
+          end
+        end
+        saved_widths = {}
+      end)
+    end
+
     require("nvim-tree").setup({
       -- on_attach = on_attach,
       disable_netrw = false,
@@ -112,5 +139,14 @@ return {
         },
       },
     })
+
+    local nt_api = require("nvim-tree.api")
+    nt_api.events.subscribe(nt_api.events.Event.TreeOpen, restore_win_widths)
+    nt_api.events.subscribe(nt_api.events.Event.TreeClose, restore_win_widths)
+
+    vim.keymap.set("n", "<leader>je", function()
+      save_win_widths()
+      nt_api.tree.toggle()
+    end, { desc = "NvimTree" })
   end,
 }
