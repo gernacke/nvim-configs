@@ -39,7 +39,7 @@ return {
       temperature = 0.3, -- Lower = focused, higher = creative
       window = {
         layout = "vertical", -- 'vertical', 'horizontal', 'float'
-        width = 0.55, -- 55% of screen width
+        width = 0.30, -- 55% of screen width
       },
       highlight_headers = false,
       separator = "---",
