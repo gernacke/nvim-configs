@@ -15,21 +15,37 @@ return {
     -- log_level = 'debug',
     pre_save_cmds = {
       function()
-        for _, win in ipairs(vim.api.nvim_list_wins()) do
-          if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "NvimTree" then
-            local width = vim.api.nvim_win_get_width(win)
-            local path = vim.fn.stdpath("data") .. "/nvim_tree_width"
-            vim.fn.writefile({ tostring(width) }, path)
-            break
+        local ok, api = pcall(require, "nvim-tree.api")
+        if not ok then
+          return
+        end
+        local state_path = vim.fn.stdpath("data") .. "/nvim_tree_state"
+        if api.tree.is_visible() then
+          local width = 30
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "NvimTree" then
+              width = vim.api.nvim_win_get_width(win)
+              break
+            end
           end
+          vim.fn.writefile({ "open", tostring(width) }, state_path)
+          api.tree.close()
+        else
+          vim.fn.writefile({ "closed" }, state_path)
         end
       end,
     },
     post_restore_cmds = {
       function()
-        local path = vim.fn.stdpath("data") .. "/nvim_tree_width"
-        local lines = vim.fn.filereadable(path) == 1 and vim.fn.readfile(path) or {}
-        local target_width = tonumber(lines[1]) or 30
+        local state_path = vim.fn.stdpath("data") .. "/nvim_tree_state"
+        if vim.fn.filereadable(state_path) == 0 then
+          return
+        end
+        local lines = vim.fn.readfile(state_path)
+        if lines[1] ~= "open" then
+          return
+        end
+        local target_width = tonumber(lines[2]) or 30
 
         local nvim_tree_api = require("nvim-tree.api")
         nvim_tree_api.tree.open()
