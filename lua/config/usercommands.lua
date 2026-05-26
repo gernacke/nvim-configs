@@ -14,7 +14,7 @@ end, {})
 
 vim.api.nvim_create_user_command("NvimConfigsPicker", function()
   Snacks.picker.files({
-    cwd = os.getenv("HOME") .. "/repositories/all-dotfiles/nvim/",
+    cwd = os.getenv("HOME") .. "/repositories/nvim/",
     prompt = " 󱁼 Find Nvim Configs 󰅂 ",
     finder = "files",
     format = "file",
