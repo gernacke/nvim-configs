@@ -12,6 +12,8 @@ return {
       "kristijanhusak/vim-dadbod-completion",
       "tpope/vim-dotenv",
     },
+    -- FIXME: This breaks the completion setup
+    -- lazy = false,
     opts = {
       db_competion = function()
         require("cmp").setup.buffer({ sources = { { name = "vim-dadbod-completion" } } })
