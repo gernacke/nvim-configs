@@ -148,5 +148,10 @@ return {
       save_win_widths()
       nt_api.tree.toggle()
     end, { desc = "NvimTree" })
+
+    vim.keymap.set("n", "<leader>jf", function()
+      save_win_widths()
+      nt_api.tree.focus()
+    end, { desc = "Focus NvimTree" })
   end,
 }
