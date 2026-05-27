@@ -29,9 +29,12 @@ local hl_mappings = {
   ["SagaWinbarOperator"] = { fg = "#414141" },
   ["SagaWinbarTypeParameter"] = { fg = "#F57C00" },
   ["SagaWinbarSep"] = { fg = "#FFAB91" },
-  ["IlluminatedWordText"] = { link = "CursorLine" },
-  ["IlluminatedWordRead"] = { link = "CursorLine" },
-  ["IlluminatedWordWrite"] = { link = "CursorLine" },
+  ["IlluminatedWordText"] = { bg = "#2D4F67" },
+  ["IlluminatedWordRead"] = { bg = "#2D4F67" },
+  ["IlluminatedWordWrite"] = { bg = "#43242B" },
+  ["LspReferenceText"] = { bg = "#2D4F67" },
+  ["LspReferenceRead"] = { bg = "#2D4F67" },
+  ["LspReferenceWrite"] = { bg = "#43242B" },
 
   -- VSCODE Codicon icon themes
   -- light blue
