@@ -1,9 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git push *)",
-      "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git -C /Users/ger/repositories/nvim status)",
+      "Bash(git -C /Users/ger/repositories/nvim diff)",
+      "Bash(git -C /Users/ger/repositories/nvim log --oneline -5)",
+      "Bash(git -C /Users/ger/repositories/nvim/nvim add lua/plugins/auto-session.lua)",
+      "Bash(git -C /Users/ger/repositories/nvim/nvim commit -m ' *)"
     ]
   }
 }
