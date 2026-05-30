@@ -9,8 +9,8 @@ return {
   ---@type AutoSession.Config
   opts = {
     suppressed_dirs = { "~/", "~/Downloads", "/" },
-    -- auto_save = true, -- Enables/disables auto saving session on exit
-    auto_save_enabled = true, -- Enables/disables auto saving session on exit
+    auto_save = true, -- Enables/disables auto saving session on exit
+    args_allow_files_auto_save = true, -- Save session even when launched with a file argument
 
     -- log_level = 'debug',
     pre_save_cmds = {
