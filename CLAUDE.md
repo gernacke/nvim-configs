@@ -79,6 +79,44 @@ To add a new language: create `extras/lang/<lang>.lua` that extends `nvim-treesi
 | `<leader>cf` | Format file/range |
 | `<leader>fc` | Find config files |
 
+## nvim-dev Instance
+
+This directory is the **nvim-dev** isolated config — launched via `NVIM_APPNAME=nvim-dev`. The alias is:
+
+```sh
+alias v11='NVIM_APPNAME=nvim-dev ~/.local/share/bob/v0.11.7/nvim-macos-arm64/bin/nvim'
+```
+
+Data/state lives in `~/.local/share/nvim-dev/`, cache in `~/.cache/nvim-dev/`.
+
+### Neovim 0.11 compatibility decisions
+
+This config is **pinned to Neovim 0.11.x** (currently 0.11.7 via bob). Several plugins and compatibility shims are intentionally set up for 0.11 — do not upgrade them to branches that require 0.12+.
+
+#### Plugin branch pins
+
+| Plugin | Branch / Version | Reason |
+|---|---|---|
+| `nvim-treesitter/nvim-treesitter` | `branch = "master"` | `main` branch is a 0.12+ rewrite; `master` locks the old `nvim-treesitter.configs` API |
+| `nvim-treesitter/nvim-treesitter-textobjects` | `branch = "master"` | Same split — `main` requires 0.12; `master` uses the nested `textobjects` table inside `configs.setup()` |
+| `mrcjkb/rustaceanvim` | `version = "^8.0.5"` | v9.0.0 (2026-04-03) dropped Neovim 0.11; v8.0.5 (commit `f69c85a`, branch `main`) is the last 0.11-compatible release |
+
+After changing branch pins, run `:Lazy restore` to reconcile on-disk plugin checkouts with `lazy-lock.json`, then `:TSUpdate` to rebuild parsers.
+
+#### 0.11 compatibility shims and fixes
+
+**`vim.lsp.buf.hover` / `signature_help` border** (`plugins/lsp/servers.lua`):
+Neovim 0.11 no longer routes `vim.lsp.buf.hover()` through `vim.lsp.handlers["textDocument/hover"]`, making `vim.lsp.with()` a no-op for border styling. The functions are wrapped directly to inject `float_opts`. Note: noice.nvim (`lsp.hover.enabled = true`) actually owns the K hover render when active — the wrapper is a harmless fallback.
+
+**`make_position_params` encoding shim** (`config/autocmds.lua`):
+0.11 made `position_encoding` a required argument. Several plugins (lspsaga, vim-illuminate, trouble, telescope, inc-rename) omit it. A global wrapper shim defaults to the buffer's first client encoding, suppressing the warning.
+
+**vim-matchup treesitter disabled** (`plugins/treesitter.lua`):
+The vim-matchup treesitter bridge calls `_node_id` on a nil node with the `master` branch on Neovim 0.11, crashing on every `CursorMoved`. Fix: `matchup = { enable = false }` inside nvim-treesitter opts. The regexp engine fallback preserves all matchup functionality (%, g%, [%/]%, a%/i%, offscreen match indicator).
+
+**noice hover padding** (`plugins/noice.lua`):
+noice.nvim intercepts `vim.lsp.buf.hover` when `lsp.hover.enabled = true` (default) + `presets.lsp_doc_border = true`. Its nui popup supports `border.padding`, so hover content padding is set via `views.hover.border.padding = { 1, 2 }`.
+
 ## Neovim 0.11 Key Features (vs 0.10)
 
 ### Built-in LSP — now first-class, no plugins needed for basics
