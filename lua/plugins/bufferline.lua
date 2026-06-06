@@ -7,7 +7,7 @@ return {
         mode = "tabs", -- tabs|buffers set to "tabs" to only show tabpages instead
         numbers = "buffer_id",
         diagnostics = "nvim_lsp",
-        always_show_bufferline = true,
+        always_show_bufferline = false,
         separator_style = "thin", -- slant|padded_slant
         close_command = function(bufnum)
           require("mini.bufremove").delete(bufnum, false)
