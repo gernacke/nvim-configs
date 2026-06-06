@@ -132,7 +132,9 @@ return {
             },
           },
         },
-        enable = true,
+        -- treesitter integration calls _node_id on a nil node with the master
+        -- branch on Neovim 0.11, crashing on CursorMoved. Use the regexp engine.
+        enable = false,
       },
       endwise = {
         enable = true,
