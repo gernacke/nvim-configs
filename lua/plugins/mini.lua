@@ -35,41 +35,6 @@ return {
       })
     end,
   },
-  {
-    "echasnovski/mini.files",
-    version = "*",
-    enabled = false,
-    keys = {
-      { "<leader>jo", "<cmd>lua MiniFiles.open()<cr>", desc = "Mini Files" },
-    },
-    config = function()
-      require("mini.files").setup({
-        mappings = {
-          close = "q",
-          go_in = "L",
-          go_in_plus = "l",
-          go_out = "H",
-          go_out_plus = "h",
-          reset = "<BS>",
-          reveal_cwd = "@",
-          show_help = "g?",
-          synchronize = "=",
-          trim_left = "<",
-          trim_right = ">",
-        },
-        windows = {
-          -- Whether to show preview of file/directory under cursor
-          preview = true,
-          -- Width of focused window
-          width_focus = 30,
-          -- Width of non-focused window
-          width_nofocus = 15,
-          -- Width of preview window
-          width_preview = 45,
-        },
-      })
-    end,
-  },
   -- {
   --   "echasnovski/mini.jump",
   --   opts = {},
@@ -288,14 +253,6 @@ return {
     event = "VeryLazy",
     config = function(_, opts)
       require("mini.pairs").setup(opts)
-    end,
-  },
-  {
-    "echasnovski/mini.animate",
-    event = "VeryLazy",
-    enabled = false,
-    config = function()
-      require("mini.animate").setup({})
     end,
   },
 }

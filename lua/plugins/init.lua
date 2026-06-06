@@ -28,9 +28,7 @@ return {
   -- { "christoomey/vim-tmux-navigator", keys = { "<C-j>", "<C-k>", "<C-h>", "<C-l>" } },
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-  "godlygeek/tabular",
   "nvim-lua/popup.nvim",
-  "ckipp01/stylua-nvim",
   "moll/vim-bbye",
   "neovim/nvim-lspconfig",
   "mortepau/codicons.nvim",
@@ -425,11 +423,6 @@ return {
   --   end,
   -- },
   {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    config = true,
-  },
-  {
     "ziontee113/icon-picker.nvim",
     config = function()
       require("icon-picker").setup({
@@ -447,25 +440,10 @@ return {
     config = { default = true }, -- same as config = true
   },
   {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    config = true,
-  },
-  {
     "sustech-data/wildfire.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
-  },
-  {
-    "TimUntersberger/neogit",
-    cmd = "Neogit",
-    config = {
-      integrations = { diffview = true },
-    },
-    keys = {
-      { "<leader>gs", "<cmd>Neogit kind=floating<cr>", desc = "Status" },
-    },
   },
   {
     "folke/flash.nvim",

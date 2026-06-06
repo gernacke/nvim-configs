@@ -78,3 +78,42 @@ To add a new language: create `extras/lang/<lang>.lua` that extends `nvim-treesi
 | `<leader>cm` | Mason |
 | `<leader>cf` | Format file/range |
 | `<leader>fc` | Find config files |
+
+## Neovim 0.11 Key Features (vs 0.10)
+
+### Built-in LSP — now first-class, no plugins needed for basics
+
+- **`vim.lsp.enable('server_name')`** — declarative server config; replaces manual lspconfig setup for simple cases
+- **`vim.lsp.is_enabled()`** — check if a config is enabled
+- **`vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })`** — built-in insert-mode LSP completion; potential future replacement for nvim-cmp
+- **`vim.lsp.completion.get()`** — manual trigger; also backs the default omnicompletion (`<C-x><C-o>`)
+
+Minimal zero-plugin LSP + completion setup:
+```lua
+vim.lsp.enable('lua_ls')
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    end
+  end,
+})
+```
+
+### New API
+
+| API | What it does |
+|---|---|
+| `nvim_buf_set_extmark()` `conceal_lines` | Conceal entire lines (not just inline text) |
+| `nvim_buf_set_extmark()` `hl_group` array | Layered highlight groups on an extmark |
+| `nvim_buf_set_extmark()` `virt_text_pos = "eol_right_align"` | Right-align virtual text at EOL |
+| `nvim_open_win()` `mouse` field | Configure mouse interaction per float |
+| `nvim_open_win()` `relative = "laststatus"/"tabline"` | Float relative to statusline or tabline |
+| `nvim_echo()` `err` field | Print error-styled messages via the API |
+| `nvim__ns_set()` | Set properties on a highlight namespace |
+| `vim.secure.read()` | Returns `true` for trusted directories |
+
+### Deprecated in 0.11
+
+- `vim.lsp.buf.completion` → use `vim.lsp.completion.get()`
