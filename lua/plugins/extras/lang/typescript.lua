@@ -5,26 +5,22 @@ return {
       vim.list_extend(opts.ensure_installed, { "javascript", "typescript", "tsx" })
     end,
   },
-
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "jose-elias-alvarez/typescript.nvim" },
     opts = {
       servers = {
-        tsserver = {},
+        ts_ls = {},
       },
       setup = {
-        tsserver = function(_, opts)
-          local lsp_utils = require "plugins.lsp.utils"
+        ts_ls = function(_, opts)
+          local lsp_utils = require("plugins.lsp.utils")
           lsp_utils.on_attach(function(client, buffer)
-            if client.name == "tsserver" then
-              -- stylua: ignore
-              vim.keymap.set("n", "<leader>co", "typescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
-              vim.keymap.set("n", "<leader>cR", "typescriptRenameFile", { desc = "Rename File", buffer = buffer })
+            if client.name == "ts_ls" then
+              vim.keymap.set("n", "<leader>co", function()
+                vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.api.nvim_buf_get_name(0) } })
+              end, { buffer = buffer, desc = "Organize Imports" })
             end
           end)
-          require("typescript").setup { server = opts }
-          return true
         end,
       },
     },
