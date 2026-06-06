@@ -8,6 +8,15 @@ local M = {
 }
 
 function M.config()
+  -- noice.text.treesitter.highlight crashes on unknown TS languages (e.g. "text" in Rust LSP
+  -- docs). has_lang() returns true in 0.11 because language.add() no longer throws, but
+  -- LanguageTree.new() then asserts. Wrap highlight in pcall so unknown langs silently skip TS.
+  local ts = require("noice.text.treesitter")
+  local orig_ts_highlight = ts.highlight
+  ts.highlight = function(...)
+    pcall(orig_ts_highlight, ...)
+  end
+
   require("noice").setup({
     lsp = {
       override = {
