@@ -13,16 +13,6 @@ return {
       "octaltree/cmp-look",
       "hrsh7th/cmp-emoji",
       {
-        "Exafunction/codeium.nvim",
-        dependencies = {
-          "nvim-lua/plenary.nvim",
-          "hrsh7th/nvim-cmp",
-        },
-        config = function()
-          require("codeium").setup({})
-        end,
-      },
-      {
         "jcdickinson/http.nvim",
         build = "cargo build --workspace --release",
       },
@@ -181,7 +171,6 @@ return {
           { name = "luasnip", max_item_count = 5, group_index = 2 },
           { name = "path", max_item_count = 3, group_index = 3 },
           { name = "treesitter", max_item_count = 5, group_index = 2 },
-          -- { name = "codeium", group_index = 1 },
           { name = "crates", group_index = 2 },
         }, {
           { name = "buffer", keyword_length = 4, max_item_count = 3, group_index = 2 },
@@ -215,7 +204,6 @@ return {
               luasnip = "(snippet)",
               buffer = "(buffer)",
               treesitter = "(treesitter)",
-              codeium = "(codeium)",
               look = "(look)",
               crates = "(crates)",
             }
