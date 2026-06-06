@@ -357,4 +357,19 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+-- Neovim 0.11 made `position_encoding` required in make_position_params and
+-- warns when it's omitted. Several plugins (lspsaga, vim-illuminate, trouble,
+-- telescope, inc-rename) still call it without one. Shim it to default to the
+-- buffer's first client encoding so the warning doesn't fire on every call.
+vim.lsp.util.make_position_params = (function(original)
+  return function(window, offset_encoding)
+    window = window or 0
+    if not offset_encoding then
+      local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_win_get_buf(window) })
+      offset_encoding = clients[1] and clients[1].offset_encoding or "utf-16"
+    end
+    return original(window, offset_encoding)
+  end
+end)(vim.lsp.util.make_position_params)
+
 return M
