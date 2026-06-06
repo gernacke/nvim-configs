@@ -63,11 +63,20 @@ local function lsp_init()
   -- Diagnostic configuration
   vim.diagnostic.config(config.diagnostic)
 
-  -- Hover configuration
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, config.float)
-
-  -- Signature help configuration
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, config.float)
+  -- Neovim 0.11 no longer routes vim.lsp.buf.hover/signature_help through
+  -- vim.lsp.handlers, so the old vim.lsp.with() override is a no-op and the
+  -- border is lost. Wrap the functions to apply our float config instead.
+  local float_opts = { focusable = config.float.focusable, border = config.float.border }
+  vim.lsp.buf.hover = (function(orig)
+    return function(opts)
+      return orig(vim.tbl_extend("force", float_opts, opts or {}))
+    end
+  end)(vim.lsp.buf.hover)
+  vim.lsp.buf.signature_help = (function(orig)
+    return function(opts)
+      return orig(vim.tbl_extend("force", float_opts, opts or {}))
+    end
+  end)(vim.lsp.buf.signature_help)
 end
 
 function M.setup(_, opts)

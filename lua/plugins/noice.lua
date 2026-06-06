@@ -36,6 +36,13 @@ function M.config()
           col = "50%",
         },
       },
+      -- Pad hover/signature docs so content isn't flush against the border.
+      -- { top/bottom, left/right } cells between the rounded border and text.
+      hover = {
+        border = {
+          padding = { 1, 2 },
+        },
+      },
     },
   })
 end
