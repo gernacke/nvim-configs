@@ -20,7 +20,7 @@ return {
     event = "BufReadPre",
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-      { "j-hui/fidget.nvim", config = true, tag = "legacy" },
+      { "j-hui/fidget.nvim", opts = {} },
       { "smjonas/inc-rename.nvim", config = true },
       "simrat39/rust-tools.nvim",
       "rust-lang/rust.vim",

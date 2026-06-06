@@ -137,15 +137,12 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 -- 	end,
 -- })
 
-vim.api.nvim_exec(
-  [[
+vim.cmd([[
 augroup nvim-incsearch-cursorline
 	autocmd!
 	autocmd CmdlineEnter /,\? :set cursorline hlsearch
 augroup END
-]],
-  false
-)
+]])
 
 vim.cmd([[
 
@@ -223,7 +220,7 @@ vim.cmd([[
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = augroup("auto_create_dir"),
   callback = function(event)
-    local file = vim.loop.fs_realpath(event.match) or event.match
+    local file = vim.uv.fs_realpath(event.match) or event.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })

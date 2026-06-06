@@ -322,12 +322,9 @@ return {
       SetAutoCmp(true)
 
       -- Database completion
-      vim.api.nvim_exec(
-        [[
-          autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
-        ]],
-        false
-      )
+      vim.cmd([[
+        autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
+      ]])
     end,
   },
   {
