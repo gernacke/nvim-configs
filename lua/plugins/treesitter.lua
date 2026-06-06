@@ -17,8 +17,10 @@ end)()
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      -- master = old API (configs.setup), compatible with Neovim 0.11; main = rewrite (0.12+)
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "master" },
       "JoosepAlviste/nvim-ts-context-commentstring",
       "RRethy/nvim-treesitter-endwise",
     },
