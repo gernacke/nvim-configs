@@ -84,7 +84,8 @@ To add a new language: create `extras/lang/<lang>.lua` that extends `nvim-treesi
 This directory is the **nvim-dev** isolated config — launched via `NVIM_APPNAME=nvim-dev`. The alias is:
 
 ```sh
-alias v11='NVIM_APPNAME=nvim-dev ~/.local/share/bob/v0.11.7/nvim-macos-arm64/bin/nvim'
+alias v='NVIM_APPNAME=nvim-dev ~/.local/share/bob/v0.11.7/nvim-macos-arm64/bin/nvim'
+alias v11='NVIM_APPNAME=nvim-dev ~/.local/share/bob/v0.11.7/nvim-macos-arm64/bin/nvim'  # kept for backwards compat
 ```
 
 Data/state lives in `~/.local/share/nvim-dev/`, cache in `~/.cache/nvim-dev/`.
