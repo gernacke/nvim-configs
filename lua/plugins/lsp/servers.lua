@@ -4,6 +4,17 @@ local lsp_utils = require("plugins.lsp.utils")
 local icons = require("config.icons")
 
 local function lsp_init()
+  -- rustaceanvim v8: inflight nio coroutines are left unguarded when the old
+  -- client is torn down by `RustLsp restart`. They raise UnhandledPromiseRejection
+  -- via vim.schedule; the restart itself succeeds so this is pure noise.
+  local _orig_notify = vim.notify
+  vim.notify = function(msg, level, opts)
+    if type(msg) == "string" and msg:find("Shutdown already requested", 1, true) then
+      return
+    end
+    _orig_notify(msg, level, opts)
+  end
+
   -- Ignore Rust LSP Warnings: rust_analyzer: -32802: server cancelled the request
   for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do
     local default_diagnostic_handler = vim.lsp.handlers[method]

@@ -158,6 +158,18 @@ keymap("n", "i", function()
   end
 end, { expr = true })
 
+-- Jump into the first focusable floating window (hover docs, explainError, etc.).
+-- Once inside, normal scroll keys work; press q/<Esc> or <C-w>p to return.
+keymap("n", "<C-w>f", function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local cfg = vim.api.nvim_win_get_config(win)
+    if cfg.focusable and cfg.relative ~= "" then
+      vim.api.nvim_set_current_win(win)
+      return
+    end
+  end
+end, { silent = true, desc = "Focus floating window" })
+
 function M.set_keymaps(mode, key, val)
   local opt = generic_opts[mode] and generic_opts[mode] or opts
   if type(val) == "table" then

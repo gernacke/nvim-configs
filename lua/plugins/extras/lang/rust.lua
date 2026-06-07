@@ -40,6 +40,14 @@ return {
     init = function()
       vim.g.rustaceanvim = {
         tools = {
+          -- Applies to all rustaceanvim floats (explainError, expandMacro, etc.)
+          -- except hover_actions which has its own border below.
+          -- Padding isn't configurable here: these use open_floating_preview
+          -- (not nui.nvim), so content sits flush against the border.
+          float_win_config = {
+            border = "rounded",
+            max_width = 80,
+          },
           hover_actions = { border = "solid" },
           -- Enable inlay hints only after rust-analyzer finishes indexing
           on_initialized = function(status)
@@ -53,7 +61,7 @@ return {
             local map = function(mode, lhs, rhs, desc)
               vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
             end
-            map("n", "<leader>le", function() vim.cmd.RustLsp("runnables") end, "Runnables")
+            map("n", "<leader>lE", function() vim.cmd.RustLsp("runnables") end, "Runnables")
             map("n", "<leader>lt", function() vim.cmd.RustLsp("testables") end, "Testables")
             map("n", "<leader>lr", function() vim.cmd.RustLsp({ "runnables", bang = true }) end, "Re-run Last")
             map("n", "<leader>ll", vim.lsp.codelens.run, "Code Lens")
@@ -65,6 +73,11 @@ return {
               )
             end, "Toggle Inlay Hints")
             map("n", "<leader>lA", function() vim.cmd.RustLsp({ "hover", "actions" }) end, "Hover Actions")
+            map("n", "<leader>lR", function() vim.cmd.RustAnalyzer("restart") end, "Restart rust-analyzer")
+            map("n", "<leader>le", function() vim.cmd.RustLsp("explainError") end, "Explain Error")
+            map("n", "<leader>ld", function() vim.cmd.RustLsp("debuggables") end, "Debuggables")
+            map("n", "<leader>lT", function() vim.cmd.RustLsp("relatedTests") end, "Related Tests")
+            map("n", "<leader>lo", function() vim.cmd.RustLsp("openDocs") end, "Open Docs")
 
             vim.api.nvim_create_autocmd("CursorHold", {
               buffer = bufnr,
