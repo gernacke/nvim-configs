@@ -75,9 +75,15 @@ return {
             map("n", "<leader>lA", function() vim.cmd.RustLsp({ "hover", "actions" }) end, "Hover Actions")
             map("n", "<leader>lR", function() vim.cmd.RustAnalyzer("restart") end, "Restart rust-analyzer")
             map("n", "<leader>le", function() vim.cmd.RustLsp("explainError") end, "Explain Error")
-            map("n", "<leader>ld", function() vim.cmd.RustLsp("debuggables") end, "Debuggables")
+            map("n", "<leader>ld", function() vim.cmd.RustLsp({ "renderDiagnostic", "current" }) end, "Render Diagnostic")
+            map("n", "<leader>ln", function() vim.cmd.RustLsp({ "renderDiagnostic", "cycle" }) end, "Cycle Diagnostics")
+            map("n", "<leader>lD", function() vim.cmd.RustLsp("debuggables") end, "Debuggables")
             map("n", "<leader>lT", function() vim.cmd.RustLsp("relatedTests") end, "Related Tests")
             map("n", "<leader>lo", function() vim.cmd.RustLsp("openDocs") end, "Open Docs")
+            map("n", "<leader>lk", function() vim.cmd.RustLsp({ "moveItem", "up" }) end, "Move Item Up")
+            map("n", "<leader>lj", function() vim.cmd.RustLsp({ "moveItem", "down" }) end, "Move Item Down")
+            map({ "n", "v" }, "<leader>ca", function() vim.cmd.RustLsp("codeAction") end, "Code Action")
+            map("n", "J", function() vim.cmd.RustLsp("joinLines") end, "Join Lines")
 
             vim.api.nvim_create_autocmd("CursorHold", {
               buffer = bufnr,
