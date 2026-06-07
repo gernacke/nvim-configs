@@ -50,10 +50,6 @@ local keymappings = {
     ["<C-k>"] = "<CMD>TmuxNavigateUp<CR>",
     ["<C-j>"] = "<CMD>TmuxNavigateDown<CR>",
 
-    -- Buffer movement
-    ["<C-UP>"] = "<CMD>bnext<CR>",
-    ["<C-DOWN>"] = "<CMD>bprevious<CR>",
-
     ["<c-w>z"] = "<c-w>_",
     ["$"] = "g_",
     ["zh"] = "zH", -- Moves left half screen
@@ -67,10 +63,6 @@ local keymappings = {
     -- ["z-"] = "zb", -- Moves the line to the bottom of the screen
     -- ["<c-u>"] = "<c-u>zz",
     -- ["<c-d>"] = "<c-d>zz",
-
-    -- Centers the line on next search result
-    ["n"] = "nzz",
-    ["N"] = "Nzz",
 
     -- Paste
     ["]p"] = "o<Esc>p",
@@ -134,21 +126,6 @@ local keymappings = {
   },
 }
 
-local lsp_keymappings = {
-
-  normal_mode = {
-    ["K"] = "<Cmd>lua vim.lsp.buf.hover()<CR>",
-    ["gD"] = "<Cmd>lua vim.lsp.buf.declaration()<CR>",
-    ["gd"] = "<Cmd>lua vim.lsp.buf.definition()<CR>",
-    ["gI"] = "<Cmd>lua vim.lsp.buf.implementation()<CR>",
-    ["gr"] = "<cmd>lua vim.lsp.buf.references()<CR>",
-    ["<leader>k"] = "<Cmd>lua vim.lsp.buf.signature_help()<CR>",
-    ["[d"] = "<Cmd>lua vim.diagnostic.goto_next()<CR>",
-    ["]d"] = "<Cmd>lua vim.diagnostic.goto_prev()<CR>",
-    ["[e"] = "<Cmd>Lspsaga diagnostic_jump_next<CR>",
-    ["]e"] = "<Cmd>Lspsaga diagnostic_jump_prev<CR>",
-  },
-}
 -- Auto indent line when in an empty line
 keymap("n", "i", function()
   if #vim.fn.getline(".") == 0 then
@@ -188,12 +165,6 @@ end
 
 function M.setup()
   for mode, mapping in pairs(keymappings) do
-    M.map(mode, mapping)
-  end
-end
-
-function M.setup_lsp_mappings()
-  for mode, mapping in pairs(lsp_keymappings) do
     M.map(mode, mapping)
   end
 end

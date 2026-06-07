@@ -43,15 +43,7 @@ return {
       },
       highlight = { enable = true },
       indent = { enable = true, disable = { "python" } },
-      incremental_selection = {
-        enable = false,
-        keymaps = {
-          init_selection = "<leader>ss",
-          node_incremental = "<leader>si",
-          scope_incremental = "<leader>sc",
-          node_decremental = "<BS>",
-        },
-      },
+      incremental_selection = { enable = false },
       textobjects = {
         select = {
           enable = true,

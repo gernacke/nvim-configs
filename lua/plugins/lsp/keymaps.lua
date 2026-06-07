@@ -31,8 +31,6 @@ function M.on_attach(client, buffer)
   -- self:map("<leader>cf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
   self:map("<leader>cr", M.rename, { expr = true, desc = "Rename", has = "rename" })
 
-  self:map("<leader>cs", require("utils.telescope").document_symbol, { desc = "Document Symbols" })
-  self:map("<leader>cS", require("utils.telescope").workspace_symbol, { desc = "Workspace Symbols" })
   self:map("<leader>cD", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
 end
 
