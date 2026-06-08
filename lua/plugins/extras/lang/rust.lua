@@ -82,7 +82,6 @@ return {
             map("n", "<leader>lo", function() vim.cmd.RustLsp("openDocs") end, "Open Docs")
             map("n", "<leader>lk", function() vim.cmd.RustLsp({ "moveItem", "up" }) end, "Move Item Up")
             map("n", "<leader>lj", function() vim.cmd.RustLsp({ "moveItem", "down" }) end, "Move Item Down")
-            map({ "n", "v" }, "<leader>ca", function() vim.cmd.RustLsp("codeAction") end, "Code Action")
             map("n", "J", function() vim.cmd.RustLsp("joinLines") end, "Join Lines")
 
             vim.api.nvim_create_autocmd("CursorHold", {
