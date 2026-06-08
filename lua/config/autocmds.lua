@@ -357,6 +357,24 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+-- Stale inlay hint extmarks from old buffer content cause "Invalid 'col': out of range"
+-- when the decoration provider fires during a noice popup reset after a branch switch.
+-- Toggle off/on to clear the stale cache and re-request from the LSP.
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = augroup("inlay_hint_refresh"),
+  callback = function(event)
+    local bufnr = event.buf
+    if vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }) then
+      vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+      vim.schedule(function()
+        if vim.api.nvim_buf_is_valid(bufnr) then
+          vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        end
+      end)
+    end
+  end,
+})
+
 -- Neovim 0.11 made `position_encoding` required in make_position_params and
 -- warns when it's omitted. Several plugins (lspsaga, vim-illuminate, trouble,
 -- telescope, inc-rename) still call it without one. Shim it to default to the
