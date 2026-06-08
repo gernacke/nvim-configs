@@ -10,10 +10,10 @@ function M.on_attach(client, buffer)
   end
   self:map("gp", "Lspsaga peek_definition", { desc = "Peek Definition" })
   self:map("gh", "Lspsaga show_line_diagnostics", { desc = "Show Diagnostic" })
-  self:map("ga", "Lspsaga code_action", { desc = "Code Action" })
+  self:map("ga", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
   -- self:map("gr", "Lspsaga finder", { desc = "References" })
   self:map("gD", "Telescope lsp_declarations", { desc = "Goto Declaration" })
-  self:map("gI", "Telescope lsp_implementations", { desc = "Goto Implementation" })
+  self:map("gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
   self:map("gb", "Telescope lsp_type_definitions", { desc = "Goto type Definition" })
   self:map("K", vim.lsp.buf.hover, { desc = "Hover" })
   self:map("gK", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
@@ -23,7 +23,7 @@ function M.on_attach(client, buffer)
   self:map("[e", M.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
   self:map("]w", M.diagnostic_goto(true, "WARNING"), { desc = "Next Warning" })
   self:map("[w", M.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
-  self:map("<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
+  self:map("<leader>ca", "Lspsaga code_action", { desc = "Code Action" })
 
   -- FIX: format function below is commented out.
   local format = require("plugins.lsp.format").format
