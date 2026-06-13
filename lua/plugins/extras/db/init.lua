@@ -100,6 +100,20 @@ return {
           vim.schedule(opts.db_completion)
         end,
       })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "dbout",
+        callback = function(ev)
+          vim.keymap.set("n", "<leader>eC", function()
+            local ts = os.date("%Y%m%d_%H%M%S")
+            local path = vim.fn.expand("~/Downloads/dbout_" .. ts .. ".csv")
+            vim.api.nvim_buf_call(ev.buf, function()
+              vim.cmd("write " .. vim.fn.fnameescape(path))
+            end)
+            vim.notify("Exported to " .. path, vim.log.levels.INFO)
+          end, { buffer = ev.buf, desc = "Export DB result to CSV" })
+        end,
+      })
     end,
     keys = {
       { "<leader>et", "<cmd>DBUIToggle<cr>", desc = "Toggle UI" },

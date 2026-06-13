@@ -54,6 +54,7 @@ To add a new language: create `extras/lang/<lang>.lua` that extends `nvim-treesi
 - **Diagnostics**: `tiny-inline-diagnostic.nvim` renders ghost-text style; default virtual text is disabled.
 - **Keymaps**: `;` and `:` are swapped. `<C-hjkl>` navigate splits/tmux panes via `vim-tmux-navigator`.
 - **DB connections**: Connection strings loaded from `~/.config/nvim/DBUI.env` via `vim-dotenv`. Saved queries go to `~/Google Drive/My Drive/VScode/SQL-Queries/DBUI/`.
+- **DB result export** (`plugins/extras/db/init.lua`): `<leader>eC` writes the `dbout` result buffer to `~/Downloads/dbout_<timestamp>.csv` via a `FileType dbout` autocmd. The format is dadbod-ui's pipe-delimited table — not true CSV. TODO: improve by post-processing the pipe-table into proper comma-separated values, or explore `:DB > file` redirect for cleaner adapter output.
 - **Claude Code**: `coder/claudecode.nvim` with snacks terminal provider, opens on the right at 40% width. Keys under `<leader>a`.
 - **Session management**: Both `folke/persistence.nvim` (`<leader>bs/bl/bt`) and `rmagatti/auto-session` are present.
 
@@ -73,6 +74,7 @@ To add a new language: create `extras/lang/<lang>.lua` that extends `nvim-treesi
 | `<leader>gg` | LazyGit |
 | `<leader>gs` | Neogit (tab) |
 | `<leader>et` | Toggle DBUI |
+| `<leader>eC` | Export DB result buffer to `~/Downloads/dbout_<timestamp>.csv` (only in `dbout` buffers) |
 | `<leader>aT` | Toggle Claude Code |
 | `<leader>zz` | Lazy plugin manager |
 | `<leader>cm` | Mason |
