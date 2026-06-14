@@ -376,18 +376,32 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Neovim 0.11 made `position_encoding` required in make_position_params and
--- warns when it's omitted. Several plugins (lspsaga, vim-illuminate, trouble,
--- telescope, inc-rename) still call it without one. Shim it to default to the
--- buffer's first client encoding so the warning doesn't fire on every call.
+-- make_range_params; warns when omitted. Several plugins (lspsaga,
+-- vim-illuminate, trouble, telescope, inc-rename) still call without one.
+-- Shim both to default to the buffer's first client encoding.
+local function _default_encoding(bufnr)
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+  return clients[1] and clients[1].offset_encoding or "utf-16"
+end
+
 vim.lsp.util.make_position_params = (function(original)
   return function(window, offset_encoding)
     window = window or 0
     if not offset_encoding then
-      local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_win_get_buf(window) })
-      offset_encoding = clients[1] and clients[1].offset_encoding or "utf-16"
+      offset_encoding = _default_encoding(vim.api.nvim_win_get_buf(window))
     end
     return original(window, offset_encoding)
   end
 end)(vim.lsp.util.make_position_params)
+
+vim.lsp.util.make_range_params = (function(original)
+  return function(window, offset_encoding)
+    window = window or 0
+    if not offset_encoding then
+      offset_encoding = _default_encoding(vim.api.nvim_win_get_buf(window))
+    end
+    return original(window, offset_encoding)
+  end
+end)(vim.lsp.util.make_range_params)
 
 return M
