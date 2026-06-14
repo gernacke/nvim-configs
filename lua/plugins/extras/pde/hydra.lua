@@ -284,6 +284,7 @@ end
 return {
   {
     "nvimtools/hydra.nvim",
+    commit = "7f53416", -- pinned: 0.11 patch applied to layer/init.lua (tbl_deep_extend getfenv fix)
     event = "VeryLazy",
     config = function(_, _)
       local hydra = require("hydra")
