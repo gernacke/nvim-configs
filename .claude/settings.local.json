@@ -5,7 +5,13 @@
       "Bash(git -C /Users/ger/repositories/nvim diff)",
       "Bash(git -C /Users/ger/repositories/nvim log --oneline -5)",
       "Bash(git -C /Users/ger/repositories/nvim/nvim add lua/plugins/auto-session.lua)",
-      "Bash(git -C /Users/ger/repositories/nvim/nvim commit -m ' *)"
+      "Bash(git -C /Users/ger/repositories/nvim/nvim commit -m ' *)",
+      "Bash(xargs ls)",
+      "Bash(git -C /Users/ger/repositories/nvim/nvim-dev status)",
+      "Bash(git -C /Users/ger/repositories/nvim/nvim-dev diff)",
+      "Bash(git *)",
+      "Read(//Users/ger/.local/share/bob/**)",
+      "Bash(bob list *)"
     ]
   }
 }
