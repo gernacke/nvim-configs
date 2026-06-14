@@ -81,16 +81,16 @@ To add a new language: create `extras/lang/<lang>.lua` that extends `nvim-treesi
 | `<leader>cf` | Format file/range |
 | `<leader>fc` | Find config files |
 
-## nvim-dev Instance
+## Production Instance
 
-This directory is the **nvim-dev** isolated config — launched via `NVIM_APPNAME=nvim-dev`. The alias is:
+This directory is the **production** config — launched as the default `nvim` (no `NVIM_APPNAME` needed). The alias is:
 
 ```sh
-alias v='NVIM_APPNAME=nvim-dev ~/.local/share/bob/v0.11.7/nvim-macos-arm64/bin/nvim'
-alias v11='NVIM_APPNAME=nvim-dev ~/.local/share/bob/v0.11.7/nvim-macos-arm64/bin/nvim'  # kept for backwards compat
+alias v='nvim'
+alias v10='NVIM_APPNAME=nvim-dev ~/.local/share/bob/v0.10.1/nvim-macos-arm64/bin/nvim'  # fallback to 0.10
 ```
 
-Data/state lives in `~/.local/share/nvim-dev/`, cache in `~/.cache/nvim-dev/`.
+Bob's default is pinned to 0.11.7 (`bob use v0.11.7`). Data/state lives in `~/.local/share/nvim/`, cache in `~/.cache/nvim/`.
 
 ### Neovim 0.11 compatibility decisions
 
