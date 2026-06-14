@@ -82,7 +82,6 @@ return {
           }),
           documentation = cmp.config.window.bordered({
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
-            -- border = { " ", "▔", " ", "▕", " ", "▁", " ", "▏" },
           }),
           -- border = "rounded",
           -- winhighlight = "Normal:MyPmenu,NormalFloat:yPmenu,CursorLine:PmenuSel,Search:None",
