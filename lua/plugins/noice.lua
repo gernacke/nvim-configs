@@ -24,6 +24,9 @@ function M.config()
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
       },
+      signature = {
+        view = "lsp_signature_help",
+      },
     },
     presets = {
       bottom_search = true,
@@ -45,12 +48,21 @@ function M.config()
           col = "50%",
         },
       },
-      -- Pad hover/signature docs so content isn't flush against the border.
-      -- { top/bottom, left/right } cells between the rounded border and text.
+      -- Pad hover docs (K) so content isn't flush against the border.
       hover = {
         border = {
           padding = { 1, 2 },
         },
+      },
+      -- Signature help: flush directly above cursor, no top/bottom padding.
+      lsp_signature_help = {
+        view = "hover",
+        border = {
+          padding = { 0, 1 },
+        },
+        position = { row = 0, col = 0 },
+        relative = "cursor",
+        anchor = "SW",
       },
     },
   })
