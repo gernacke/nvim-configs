@@ -55,6 +55,9 @@ local hl_mappings = {
   ["cmpItemAbbrMatchFuzzy"] = { link = "CmpItemAbbrMatch" },
   -- Cmp Menu
   ["CmpItemMenu"] = { fg = "#C792EA", italic = true },
+
+  -- Transparent tab bar background
+  ["TabLineFill"] = { bg = "NONE" },
 }
 
 function M.set_hl()

@@ -3,6 +3,15 @@ return {
     "akinsho/nvim-bufferline.lua",
     event = "VeryLazy",
     opts = {
+      highlights = {
+        fill = { bg = "NONE" },
+        background = { bg = "NONE" },
+        tab = { bg = "NONE" },
+        tab_selected = { bg = "NONE" },
+        tab_separator = { bg = "NONE" },
+        tab_separator_selected = { bg = "NONE" },
+        tab_close = { bg = "NONE" },
+      },
       options = {
         mode = "tabs", -- tabs|buffers set to "tabs" to only show tabpages instead
         numbers = "buffer_id",
