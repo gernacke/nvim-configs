@@ -49,6 +49,23 @@ return {
   {
     "renerocksai/telekasten.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
+    -- Dropbox file access is slow (~7s); patch the hardcoded 5000ms sync timeout
+    build = function(plugin)
+      local tags = plugin.dir .. "/lua/telekasten/utils/tags.lua"
+      local src = io.open(tags, "r")
+      if src then
+        local content = src:read("*a")
+        src:close()
+        local patched = content:gsub("}):sync%(%)$", "}):sync(15000)", 1)
+        if patched ~= content then
+          local dst = io.open(tags, "w")
+          if dst then
+            dst:write(patched)
+            dst:close()
+          end
+        end
+      end
+    end,
     opts = {
       home = vim.env.HOME .. "/Dropbox/zettelkasten",
       daily = vim.env.HOME .. "/Dropbox/zettelkasten/journal/daily",
